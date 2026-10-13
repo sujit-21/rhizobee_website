@@ -305,15 +305,15 @@ export default function HomePage() {
       {/* CORE VALUE PILLARS */}
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container-custom">
-          <div style={{ maxWidth: '42rem', margin: '0 auto', textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span className="badge-tag" style={{ justifyContent: 'center' }}>
+          <div style={{ maxWidth: '100%', textAlign: 'left', marginBottom: '3rem' }}>
+            <span className="badge-tag">
               <span className="badge-dot" />
               WHO WE ARE
             </span>
             <h2 style={{ fontSize: '2.35rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
               A fintech partner built for India's digital payments economy
             </h2>
-            <p style={{ fontSize: '1rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.75rem' }}>
+            <p style={{ fontSize: '1rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.5rem' }}>
               We unite regulated banking infrastructure with merchant-friendly hardware and cloud APIs.
             </p>
           </div>
@@ -438,15 +438,15 @@ export default function HomePage() {
       <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '5.5rem', paddingBottom: '5.5rem', position: 'relative', overflow: 'hidden' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.15 }} />
         <div className="container-custom" style={{ position: 'relative' }}>
-          <div style={{ textAlign: 'center', maxWidth: '38rem', margin: '0 auto 3.5rem' }}>
-            <span className="badge-tag" style={{ color: 'var(--sky)', justifyContent: 'center' }}>
+          <div style={{ textAlign: 'left', maxWidth: '100%', marginBottom: '3rem' }}>
+            <span className="badge-tag" style={{ color: 'var(--sky)' }}>
               <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
               SOLUTIONS
             </span>
             <h2 style={{ fontSize: '2.25rem', fontWeight: 600, color: '#ffffff', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
               The infrastructure behind every transaction
             </h2>
-            <p style={{ fontSize: '1rem', color: 'rgba(255, 255, 255, 0.7)', marginTop: '0.75rem' }}>
+            <p style={{ fontSize: '1rem', color: 'rgba(255, 255, 255, 0.7)', marginTop: '0.5rem' }}>
               Built for resilient uptime, low transaction latency, and deep financial integration across India.
             </p>
           </div>
@@ -487,15 +487,15 @@ export default function HomePage() {
       {/* BUILT FOR EVERY STAGE OF BUSINESS */}
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container-custom">
-          <div style={{ maxWidth: '42rem', margin: '0 auto', textAlign: 'center', marginBottom: '3.5rem' }}>
-            <span className="badge-tag" style={{ justifyContent: 'center' }}>
+          <div style={{ maxWidth: '100%', textAlign: 'left', marginBottom: '3rem' }}>
+            <span className="badge-tag">
               <span className="badge-dot" />
               WHO WE SERVE
             </span>
             <h2 style={{ fontSize: '2.35rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
               Built for every stage of business
             </h2>
-            <p style={{ fontSize: '1rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.75rem' }}>
+            <p style={{ fontSize: '1rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.5rem' }}>
               Whether you need single-terminal simplicity or complex multi-entity settlement architectures.
             </p>
           </div>
@@ -523,8 +523,8 @@ export default function HomePage() {
       {/* TESTIMONIALS */}
       <section style={{ backgroundColor: 'var(--paper-dim)', paddingTop: '5.5rem', paddingBottom: '5.5rem' }}>
         <div className="container-custom">
-          <div style={{ textAlign: 'center', maxWidth: '38rem', margin: '0 auto 3rem' }}>
-            <span className="badge-tag" style={{ justifyContent: 'center' }}>
+          <div style={{ textAlign: 'left', maxWidth: '100%', marginBottom: '3rem' }}>
+            <span className="badge-tag">
               <span className="badge-dot" />
               CLIENT VOICES
             </span>
