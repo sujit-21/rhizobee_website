@@ -1,6 +1,6 @@
-# Rhizobee Innovations Website Clone (MERN Stack)
+# Rhizobee Innovations Website (MERN Stack)
 
-Full-stack clone of [rhizobee.com](https://rhizobee.com/) built using the **MERN** technology stack: **React (Vite)**, **Node.js**, **Express.js**, and **MongoDB**.
+Full-stack web application for [rhizobee.com](https://rhizobee.com/) built using the **MERN** technology stack: **React (Vite)**, **Node.js**, **Express.js**, and **MongoDB**.
 
 ---
 
