@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
           </p>
           <div style={{ marginTop: '1.75rem', display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
             <button onClick={() => navigate('/admin')} className="btn-royal">
-              Go to Portal DB <ArrowRight size={15} />
+              Go to Database <ArrowRight size={15} />
             </button>
             <Link to="/" className="btn-outline-white">
               Public Site

@@ -175,7 +175,7 @@ export default function Navbar({ onOpenContactModal }) {
                 title={`Admin Portal: ${admin?.email || 'Logged in'}`}
               >
                 <ShieldCheck size={14} color="var(--royal)" />
-                <span>Portal DB</span>
+                <span>Database</span>
               </Link>
 
               <span 
@@ -324,7 +324,7 @@ export default function Navbar({ onOpenContactModal }) {
                     }}
                   >
                     <ShieldCheck size={15} color="var(--royal)" />
-                    <span>Portal DB</span>
+                    <span>Database</span>
                     {admin?.name && (
                       <span style={{ fontSize: '0.7rem', color: 'var(--slate)', fontWeight: 500 }}>
                         ({admin.name.split(' ')[0]})

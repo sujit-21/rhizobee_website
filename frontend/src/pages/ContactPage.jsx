@@ -281,7 +281,7 @@ export default function ContactPage() {
                         type="text"
                         name="fullName"
                         required
-                        placeholder="e.g. Sujit Kumar"
+                        placeholder="Full Name"
                         value={formData.fullName}
                         onChange={handleChange}
                         className="form-input"
@@ -297,7 +297,7 @@ export default function ContactPage() {
                           type="email"
                           name="email"
                           required
-                          placeholder="name@company.com"
+                          placeholder="Email Address"
                           value={formData.email}
                           onChange={handleChange}
                           className="form-input"
@@ -305,12 +305,12 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
-                          Phone Number
+                          Contact Number
                         </label>
                         <input
                           type="tel"
                           name="phone"
-                          placeholder="+91 98765 43210"
+                          placeholder="Contact Number"
                           value={formData.phone}
                           onChange={handleChange}
                           className="form-input"
