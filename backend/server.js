@@ -20,10 +20,61 @@ connectDB().then(() => {
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['X-Response-Time']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// High-Resolution API Response-Time Tracker & Console Logger
+app.use((req, res, next) => {
+  const startHrTime = process.hrtime();
+
+  // Attach X-Response-Time header before sending response headers
+  const originalEnd = res.end;
+  res.end = function (...args) {
+    const elapsed = process.hrtime(startHrTime);
+    const ms = (elapsed[0] * 1000 + elapsed[1] / 1e6).toFixed(2);
+    if (!res.headersSent) {
+      res.setHeader('X-Response-Time', `${ms}ms`);
+    }
+    return originalEnd.apply(this, args);
+  };
+
+  // Log on response completion
+  res.on('finish', () => {
+    const elapsedHrTime = process.hrtime(startHrTime);
+    const elapsedTimeInMs = (elapsedHrTime[0] * 1000 + elapsedHrTime[1] / 1e6).toFixed(2);
+
+    // Color indicator based on HTTP status code
+    let statusLabel = `${res.statusCode}`;
+    if (res.statusCode >= 500) {
+      statusLabel = `\x1b[31m${res.statusCode} ERROR\x1b[0m`;
+    } else if (res.statusCode >= 400) {
+      statusLabel = `\x1b[33m${res.statusCode} WARN\x1b[0m`;
+    } else if (res.statusCode >= 300) {
+      statusLabel = `\x1b[36m${res.statusCode}\x1b[0m`;
+    } else {
+      statusLabel = `\x1b[32m${res.statusCode} OK\x1b[0m`;
+    }
+
+    // Color indicator based on response duration: <100ms (fast/green), 100-400ms (normal/yellow), >400ms (slow/red)
+    let timeFormatted = `${elapsedTimeInMs} ms`;
+    if (elapsedTimeInMs > 400) {
+      timeFormatted = `\x1b[31m${elapsedTimeInMs} ms (SLOW)\x1b[0m`;
+    } else if (elapsedTimeInMs > 100) {
+      timeFormatted = `\x1b[33m${elapsedTimeInMs} ms\x1b[0m`;
+    } else {
+      timeFormatted = `\x1b[32m${elapsedTimeInMs} ms\x1b[0m`;
+    }
+
+    const method = req.method.padEnd(6);
+    const url = req.originalUrl || req.url;
+    console.log(`[API TIMER] ${method} ${url} ➔ ${statusLabel} in ${timeFormatted}`);
+  });
+
+  next();
+});
 
 // Health Check
 app.get('/api/health', (req, res) => {
