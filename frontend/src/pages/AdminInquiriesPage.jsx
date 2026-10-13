@@ -566,6 +566,9 @@ export default function AdminInquiriesPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: '1', minWidth: '220px', maxWidth: '380px' }}>
             <Search size={16} color="#64748b" />
             <input 
+              id="admin-search-input"
+              name="adminSearch"
+              aria-label="Search records"
               type="text"
               placeholder={
                 activeTab === 'careers' && careersSubSection === 'applications'
@@ -1838,12 +1841,14 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
           )}
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+            <label htmlFor="modal-item-title" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
               {formData.tab === 'about' && formData.section === 'stats'
                 ? 'Metric Value / Number * (e.g. 7, 99.9%, 24/7, 100%)'
                 : 'Title *'}
             </label>
             <input
+              id="modal-item-title"
+              name="title"
               type="text"
               required
               value={formData.title}
@@ -1855,12 +1860,14 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="modal-item-subtitle" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 {formData.tab === 'about' && formData.section === 'stats'
                   ? 'Metric Label / Description *'
                   : 'Subtitle / Tagline'}
               </label>
               <input
+                id="modal-item-subtitle"
+                name="subtitle"
                 type="text"
                 required={formData.tab === 'about' && formData.section === 'stats'}
                 value={formData.subtitle}
@@ -1870,10 +1877,12 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
               />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="modal-item-category" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 Category / Section
               </label>
               <input
+                id="modal-item-category"
+                name="category"
                 type="text"
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
@@ -1884,10 +1893,12 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+            <label htmlFor="modal-item-description" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
               Description
             </label>
             <textarea
+              id="modal-item-description"
+              name="description"
               rows="3"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -1900,10 +1911,12 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
           {formData.tab === 'careers' && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', backgroundColor: '#f8fafc', padding: '0.85rem', borderRadius: '0.5rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#334155', marginBottom: '0.3rem' }}>
+                <label htmlFor="modal-item-salary" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#334155', marginBottom: '0.3rem' }}>
                   Salary in ₹ (Indian Rupee)
                 </label>
                 <input
+                  id="modal-item-salary"
+                  name="extraSalary"
                   type="text"
                   value={formData.extraSalary}
                   onChange={(e) => setFormData({ ...formData, extraSalary: e.target.value })}
@@ -1912,10 +1925,12 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#334155', marginBottom: '0.3rem' }}>
+                <label htmlFor="modal-item-location" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#334155', marginBottom: '0.3rem' }}>
                   Location &amp; Type
                 </label>
                 <input
+                  id="modal-item-location"
+                  name="extraLocation"
                   type="text"
                   value={formData.extraLocation}
                   onChange={(e) => setFormData({ ...formData, extraLocation: e.target.value })}
@@ -1928,10 +1943,12 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
 
           {formData.tab === 'services' && (
             <div style={{ backgroundColor: '#f8fafc', padding: '0.85rem', borderRadius: '0.5rem' }}>
-              <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#334155', marginBottom: '0.3rem' }}>
+              <label htmlFor="modal-item-features" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#334155', marginBottom: '0.3rem' }}>
                 Key Features (comma-separated)
               </label>
               <input
+                id="modal-item-features"
+                name="extraFeatures"
                 type="text"
                 value={formData.extraFeatures}
                 onChange={(e) => setFormData({ ...formData, extraFeatures: e.target.value })}
@@ -1943,10 +1960,12 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="modal-item-status" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 Status
               </label>
               <select
+                id="modal-item-status"
+                name="status"
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                 style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem', backgroundColor: '#ffffff' }}
@@ -1957,10 +1976,12 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
               </select>
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="modal-item-order" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 Display Order
               </label>
               <input
+                id="modal-item-order"
+                name="order"
                 type="number"
                 value={formData.order}
                 onChange={(e) => setFormData({ ...formData, order: e.target.value })}
@@ -2025,10 +2046,12 @@ function InquiryModal({ initialData, onClose, onSave }) {
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
           <div>
-            <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+            <label htmlFor="inquiry-modal-name" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
               Full Name *
             </label>
             <input
+              id="inquiry-modal-name"
+              name="fullName"
               type="text"
               required
               value={formData.fullName}
@@ -2040,10 +2063,12 @@ function InquiryModal({ initialData, onClose, onSave }) {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="inquiry-modal-email" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 Email Address *
               </label>
               <input
+                id="inquiry-modal-email"
+                name="email"
                 type="email"
                 required
                 value={formData.email}
@@ -2053,10 +2078,12 @@ function InquiryModal({ initialData, onClose, onSave }) {
               />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="inquiry-modal-phone" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 Phone Number
               </label>
               <input
+                id="inquiry-modal-phone"
+                name="phone"
                 type="text"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -2068,10 +2095,12 @@ function InquiryModal({ initialData, onClose, onSave }) {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="inquiry-modal-company" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 Company Name
               </label>
               <input
+                id="inquiry-modal-company"
+                name="company"
                 type="text"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
@@ -2080,10 +2109,12 @@ function InquiryModal({ initialData, onClose, onSave }) {
               />
             </div>
             <div>
-              <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+              <label htmlFor="inquiry-modal-status" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 Status
               </label>
               <select
+                id="inquiry-modal-status"
+                name="status"
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                 style={{ width: '100%', padding: '0.55rem 0.75rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem', backgroundColor: '#ffffff' }}
@@ -2098,10 +2129,12 @@ function InquiryModal({ initialData, onClose, onSave }) {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+            <label htmlFor="inquiry-modal-service" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
               Service of Interest
             </label>
             <input
+              id="inquiry-modal-service"
+              name="serviceOfInterest"
               type="text"
               value={formData.serviceOfInterest}
               onChange={(e) => setFormData({ ...formData, serviceOfInterest: e.target.value })}
@@ -2111,10 +2144,12 @@ function InquiryModal({ initialData, onClose, onSave }) {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
+            <label htmlFor="inquiry-modal-notes" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
               Admin Internal Notes
             </label>
             <textarea
+              id="inquiry-modal-notes"
+              name="notes"
               rows="2"
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}

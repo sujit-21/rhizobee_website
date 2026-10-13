@@ -274,12 +274,14 @@ export default function ContactPage() {
 
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                      <label htmlFor="contact-fullName" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                         Full Name *
                       </label>
                       <input
+                        id="contact-fullName"
                         type="text"
                         name="fullName"
+                        autoComplete="name"
                         required
                         placeholder="Full Name"
                         value={formData.fullName}
@@ -290,12 +292,14 @@ export default function ContactPage() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                        <label htmlFor="contact-email" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                           Email Address *
                         </label>
                         <input
+                          id="contact-email"
                           type="email"
                           name="email"
+                          autoComplete="email"
                           required
                           placeholder="Email Address"
                           value={formData.email}
@@ -304,12 +308,14 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                        <label htmlFor="contact-phone" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                           Contact Number
                         </label>
                         <input
+                          id="contact-phone"
                           type="tel"
                           name="phone"
+                          autoComplete="tel"
                           placeholder="Contact Number"
                           value={formData.phone}
                           onChange={handleChange}
@@ -320,12 +326,14 @@ export default function ContactPage() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                        <label htmlFor="contact-company" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                           Company Name
                         </label>
                         <input
+                          id="contact-company"
                           type="text"
                           name="company"
+                          autoComplete="organization"
                           placeholder="Business name"
                           value={formData.company}
                           onChange={handleChange}
@@ -333,10 +341,11 @@ export default function ContactPage() {
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                        <label htmlFor="contact-businessType" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                           Business Type
                         </label>
                         <select
+                          id="contact-businessType"
                           name="businessType"
                           value={formData.businessType}
                           onChange={handleChange}
@@ -353,10 +362,11 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                      <label htmlFor="contact-serviceInterested" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                         Service Interested In
                       </label>
                       <select
+                        id="contact-serviceInterested"
                         name="serviceInterested"
                         value={formData.serviceInterested}
                         onChange={handleChange}
@@ -375,10 +385,11 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                      <label htmlFor="contact-message" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                         Message *
                       </label>
                       <textarea
+                        id="contact-message"
                         name="message"
                         required
                         rows="4"

@@ -194,12 +194,14 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
 
             <form onSubmit={handleSubmit} style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                <label htmlFor="job-fullName" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                   Full Name *
                 </label>
                 <input
+                  id="job-fullName"
                   type="text"
                   name="fullName"
+                  autoComplete="name"
                   required
                   placeholder="e.g. Rahul Sharma"
                   value={formData.fullName}
@@ -210,12 +212,14 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                  <label htmlFor="job-email" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                     Email Address *
                   </label>
                   <input
+                    id="job-email"
                     type="email"
                     name="email"
+                    autoComplete="email"
                     required
                     placeholder="name@domain.com"
                     value={formData.email}
@@ -224,12 +228,14 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                  <label htmlFor="job-phone" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                     Phone Number *
                   </label>
                   <input
+                    id="job-phone"
                     type="tel"
                     name="phone"
+                    autoComplete="tel"
                     required
                     placeholder="+91 98765 43210"
                     value={formData.phone}
@@ -241,10 +247,11 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                  <label htmlFor="job-location" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                     Preferred Location
                   </label>
                   <input
+                    id="job-location"
                     type="text"
                     name="preferredLocation"
                     placeholder="e.g. Mumbai, Gurgaon, Pune"
@@ -254,10 +261,11 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                  <label htmlFor="job-experience" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                     Relevant Experience (Years)
                   </label>
                   <input
+                    id="job-experience"
                     type="number"
                     name="experienceYears"
                     min="0"
@@ -271,10 +279,11 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                <label htmlFor="job-resumeLink" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                   Resume / LinkedIn Profile Link
                 </label>
                 <input
+                  id="job-resumeLink"
                   type="text"
                   name="resumeLink"
                   placeholder="https://drive.google.com/... or LinkedIn URL"
@@ -285,10 +294,11 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
+                <label htmlFor="job-coverNote" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
                   Brief Note / Why Rhizobee?
                 </label>
                 <textarea
+                  id="job-coverNote"
                   name="coverNote"
                   rows="3"
                   placeholder="Share a short note about your fintech background or key achievements..."

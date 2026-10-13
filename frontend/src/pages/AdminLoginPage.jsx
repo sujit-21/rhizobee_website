@@ -297,14 +297,16 @@ export default function AdminLoginPage() {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
           {isSignup && (
             <div>
-              <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '0.25rem', color: 'rgba(255, 255, 255, 0.85)' }}>
+              <label htmlFor="admin-name-input" style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '0.25rem', color: 'rgba(255, 255, 255, 0.85)' }}>
                 Admin Name
               </label>
               <div style={{ position: 'relative' }}>
                 <User size={15} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255, 255, 255, 0.4)' }} />
                 <input
+                  id="admin-name-input"
                   type="text"
                   name="name"
+                  autoComplete="name"
                   required
                   placeholder=" Administrator"
                   value={formData.name}
@@ -323,14 +325,16 @@ export default function AdminLoginPage() {
           )}
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '0.25rem', color: 'rgba(255, 255, 255, 0.85)' }}>
+            <label htmlFor="admin-email-input" style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '0.25rem', color: 'rgba(255, 255, 255, 0.85)' }}>
               Email ID
             </label>
             <div style={{ position: 'relative' }}>
               <Mail size={15} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255, 255, 255, 0.4)' }} />
               <input
+                id="admin-email-input"
                 type="email"
                 name="email"
+                autoComplete="email"
                 required
                 placeholder="admin@rhizobee.com"
                 value={formData.email}
@@ -348,14 +352,16 @@ export default function AdminLoginPage() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '0.25rem', color: 'rgba(255, 255, 255, 0.85)' }}>
+            <label htmlFor="admin-password-input" style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, marginBottom: '0.25rem', color: 'rgba(255, 255, 255, 0.85)' }}>
               Password
             </label>
             <div style={{ position: 'relative' }}>
               <Lock size={15} style={{ position: 'absolute', left: '0.85rem', top: '50%', transform: 'translateY(-50%)', color: 'rgba(255, 255, 255, 0.4)' }} />
               <input
+                id="admin-password-input"
                 type={showPassword ? 'text' : 'password'}
                 name="password"
+                autoComplete={isLogin ? 'current-password' : 'new-password'}
                 required
                 placeholder="••••••••••••"
                 value={formData.password}
