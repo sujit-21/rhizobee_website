@@ -23,6 +23,8 @@ frontend/build/
 .env.local
 .env.*.local
 backend/.env
+frontend/.env
+frontend/.env.local
 
 # Editor & OS files
 .vscode/
