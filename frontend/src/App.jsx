@@ -27,7 +27,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <Router>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <ScrollToTop />
           <StealthTrigger />
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
