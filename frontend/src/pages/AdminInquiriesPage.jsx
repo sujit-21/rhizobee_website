@@ -315,22 +315,22 @@ export default function AdminInquiriesPage() {
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', marginBottom: '2rem' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-              <span className="badge-tag" style={{ backgroundColor: 'rgba(22, 86, 214, 0.08)', color: 'var(--royal)' }}>
+              {/*an className="badge-tag" style={{ backgroundColor: 'rgba(22, 86, 214, 0.08)', color: 'var(--royal)' }}>
                 <Database size={15} color="var(--royal)" />
                 MongoDB Live Portal DB
               </span>
               <span style={{ fontSize: '0.75rem', padding: '0.2rem 0.55rem', borderRadius: '0.35rem', backgroundColor: '#dcfce7', color: '#15803d', fontWeight: 600 }}>
                 MongoDB Port 27017 Online
-              </span>
+              </span>*/}
               <span style={{ fontSize: '0.75rem', padding: '0.2rem 0.55rem', borderRadius: '0.35rem', backgroundColor: 'rgba(22, 86, 214, 0.1)', color: 'var(--royal)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
                 <ShieldCheck size={13} /> {admin?.name || 'Administrator'} ({admin?.role || 'admin'})
               </span>
             </div>
             <h1 style={{ fontSize: '2.15rem', fontWeight: 700, color: 'var(--ink)', marginTop: '0.5rem', letterSpacing: '-0.02em' }}>
-              Rhizobee Portal DB &amp; Full CRUD CMS
+              Rhizobee Database
             </h1>
             <p style={{ fontSize: '0.925rem', color: 'var(--slate)', marginTop: '0.25rem' }}>
-              Manage dynamic content for all 7 website tabs (Home, About Us, Services, Solutions, Industries, Careers, Contacts) with full Create, Read, Update, and Delete operations.
+              Manage dynamic content of website.
             </p>
           </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, AlertCircle, Briefcase, Send } from 'lucide-react';
 
 export default function JobModal({ isOpen, onClose, selectedJob }) {
@@ -6,7 +6,7 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
     fullName: '',
     email: '',
     phone: '',
-    position: selectedJob?.title || 'Enterprise Sales Manager',
+    position: selectedJob?.title || 'Senior Fintech Backend Engineer',
     preferredLocation: selectedJob?.location || '',
     experienceYears: '',
     resumeLink: '',
@@ -16,6 +16,18 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormData(prev => ({
+        ...prev,
+        position: selectedJob?.title || prev.position || 'Senior Fintech Backend Engineer',
+        preferredLocation: selectedJob?.location || prev.preferredLocation || ''
+      }));
+      setError(null);
+      setSuccess(null);
+    }
+  }, [isOpen, selectedJob]);
 
   if (!isOpen) return null;
 
@@ -263,7 +275,7 @@ export default function JobModal({ isOpen, onClose, selectedJob }) {
                   Resume / LinkedIn Profile Link
                 </label>
                 <input
-                  type="url"
+                  type="text"
                   name="resumeLink"
                   placeholder="https://drive.google.com/... or LinkedIn URL"
                   value={formData.resumeLink}

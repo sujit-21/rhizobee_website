@@ -64,14 +64,14 @@ exports.createJobApplication = async (req, res) => {
     }
 
     const application = await JobApplication.create({
-      fullName,
-      email,
-      phone,
-      position,
-      preferredLocation,
+      fullName: String(fullName).trim(),
+      email: String(email).trim().toLowerCase(),
+      phone: String(phone).trim(),
+      position: String(position).trim(),
+      preferredLocation: preferredLocation ? String(preferredLocation).trim() : 'Any',
       experienceYears: Number(experienceYears) || 0,
-      resumeLink,
-      coverNote
+      resumeLink: resumeLink ? String(resumeLink).trim() : '',
+      coverNote: coverNote ? String(coverNote).trim() : ''
     });
 
     res.status(201).json({
@@ -81,7 +81,7 @@ exports.createJobApplication = async (req, res) => {
     });
   } catch (err) {
     console.error('Error creating job application:', err);
-    res.status(500).json({ success: false, message: 'Server error while submitting application.', error: err.message });
+    res.status(500).json({ success: false, message: err.message || 'Server error while submitting application.', error: err.message });
   }
 };
 

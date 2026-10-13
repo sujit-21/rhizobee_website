@@ -20,12 +20,7 @@ const jobApplicationSchema = new mongoose.Schema({
   position: {
     type: String,
     required: [true, 'Position applied for is required'],
-    enum: [
-      'Enterprise Sales Manager',
-      'Reception cum Admin and HR',
-      'Business Development Manager – Corporate Tie-ups (MICE)',
-      'General / Other'
-    ]
+    trim: true
   },
   preferredLocation: {
     type: String,
