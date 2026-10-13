@@ -41,6 +41,44 @@ const initialSeedItems = [
     extraData: { highlight: 'Same Day Credit' }
   },
 
+  // --- HOME TAB (FEEDBACK / TESTIMONIALS) ---
+  {
+    tab: 'home',
+    section: 'testimonials',
+    title: 'Ramesh Kulkarni',
+    subtitle: 'Director of Retail Operations, Maharashtra',
+    description: 'Deploying Rhizobee’s soundbox and POS terminals across our 45 retail outlets cut counter disputes to practically zero. Audio confirmations are instant and loud.',
+    category: 'Retail Operations',
+    icon: 'MessageSquare',
+    status: 'active',
+    order: 1,
+    extraData: { rating: 5, location: 'Maharashtra' }
+  },
+  {
+    tab: 'home',
+    section: 'testimonials',
+    title: 'Pooja Agarwal',
+    subtitle: 'Founder, D2C Lifestyle Brand, Delhi NCR',
+    description: 'Their payment gateway integrated seamlessly with our custom shopping cart. Checkout conversion jumped by 14% thanks to smart UPI fallback routing.',
+    category: 'D2C Brand',
+    icon: 'MessageSquare',
+    status: 'active',
+    order: 2,
+    extraData: { rating: 5, location: 'Delhi NCR' }
+  },
+  {
+    tab: 'home',
+    section: 'testimonials',
+    title: 'Anand Verma',
+    subtitle: 'Fintech Distributor, Madhya Pradesh',
+    description: 'Zoompe has transformed our regional agent network. Being able to offer banking cash-out, BBPS, and ticketing all on one portal brought real income growth to our CSPs.',
+    category: 'Fintech Distribution',
+    icon: 'MessageSquare',
+    status: 'active',
+    order: 3,
+    extraData: { rating: 5, location: 'Madhya Pradesh' }
+  },
+
   // --- ABOUT US TAB (STATS / METRICS) ---
   {
     tab: 'about',
@@ -339,6 +377,16 @@ exports.seedIfEmpty = async () => {
         if (aboutStats.length > 0) {
           await ContentItem.insertMany(aboutStats);
           console.log('✅ Added missing About tab statistics to ContentItem collection.');
+        }
+      }
+
+      // Ensure missing testimonials section in 'home' is seeded
+      const testimonialsCount = await ContentItem.countDocuments({ tab: 'home', section: 'testimonials' });
+      if (testimonialsCount === 0) {
+        const homeTestimonials = initialSeedItems.filter(i => i.tab === 'home' && i.section === 'testimonials');
+        if (homeTestimonials.length > 0) {
+          await ContentItem.insertMany(homeTestimonials);
+          console.log('✅ Added missing Client Feedback / Testimonials to ContentItem collection.');
         }
       }
     }

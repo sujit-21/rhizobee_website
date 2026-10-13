@@ -40,7 +40,9 @@ import {
   AlertCircle,
   Users,
   FileText,
-  ExternalLink
+  ExternalLink,
+  Star,
+  MessageSquare
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -51,6 +53,7 @@ export default function AdminInquiriesPage() {
   // Active Management Tab:
   // 'home' | 'about' | 'services' | 'solutions' | 'industries' | 'careers' | 'contacts' | 'admins'
   const [activeTab, setActiveTab] = useState('home');
+  const [homeSubSection, setHomeSubSection] = useState('all'); // 'all' | 'features' | 'testimonials'
   const [aboutSubSection, setAboutSubSection] = useState('all'); // 'all' | 'stats' | 'values'
   const [careersSubSection, setCareersSubSection] = useState('applications'); // 'applications' | 'openings'
 
@@ -259,6 +262,7 @@ export default function AdminInquiriesPage() {
   // Filter content items for current active tab
   const currentTabItems = contentItems.filter(item => {
     if (item.tab !== activeTab) return false;
+    if (activeTab === 'home' && homeSubSection !== 'all' && item.section !== homeSubSection) return false;
     if (activeTab === 'about' && aboutSubSection !== 'all' && item.section !== aboutSubSection) return false;
     const matchesSearch = 
       (item.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -652,6 +656,19 @@ export default function AdminInquiriesPage() {
                       order: contentItems.filter(i => i.tab === 'careers').length + 1
                     });
                     setIsContentModalOpen(true);
+                  } else if (activeTab === 'home' && homeSubSection === 'testimonials') {
+                    setEditingContentItem({
+                      tab: 'home',
+                      section: 'testimonials',
+                      category: 'Merchant Trust',
+                      title: '',
+                      subtitle: '',
+                      description: '',
+                      status: 'active',
+                      extraData: { rating: 5 },
+                      order: contentItems.filter(i => i.tab === 'home' && i.section === 'testimonials').length + 1
+                    });
+                    setIsContentModalOpen(true);
                   } else {
                     setEditingContentItem(null);
                     setIsContentModalOpen(true);
@@ -670,6 +687,8 @@ export default function AdminInquiriesPage() {
                     ? 'Create New Inquiry' 
                     : activeTab === 'careers'
                     ? 'Post Job Opening'
+                    : activeTab === 'home' && homeSubSection === 'testimonials'
+                    ? 'Add Client Feedback'
                     : `Add New ${tabs.find(t => t.id === activeTab)?.label} Item`}
                 </span>
               </button>
@@ -688,6 +707,111 @@ export default function AdminInquiriesPage() {
             {/* CONTENT TABS: HOME, ABOUT, SERVICES, SOLUTIONS, INDUSTRIES */}
             {['home', 'about', 'services', 'solutions', 'industries'].includes(activeTab) && (
               <div>
+                {/* HOME TAB SECTION SUB-SELECTOR & QUICK ACTIONS */}
+                {activeTab === 'home' && (
+                  <div 
+                    style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'space-between', 
+                      flexWrap: 'wrap', 
+                      gap: '1rem', 
+                      marginBottom: '1.5rem', 
+                      backgroundColor: '#ffffff', 
+                      padding: '0.85rem 1.25rem', 
+                      borderRadius: '0.85rem', 
+                      border: '1px solid #e2e8f0',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.02)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ink)' }}>
+                        Home Page Sections:
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setHomeSubSection('all')}
+                        style={{
+                          padding: '0.4rem 0.9rem',
+                          borderRadius: '9999px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          border: 'none',
+                          backgroundColor: homeSubSection === 'all' ? 'var(--royal)' : '#f1f5f9',
+                          color: homeSubSection === 'all' ? '#ffffff' : '#64748b',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        All Items ({contentItems.filter(i => i.tab === 'home').length})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setHomeSubSection('features')}
+                        style={{
+                          padding: '0.4rem 0.9rem',
+                          borderRadius: '9999px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          border: 'none',
+                          backgroundColor: homeSubSection === 'features' ? 'var(--royal)' : '#f1f5f9',
+                          color: homeSubSection === 'features' ? '#ffffff' : '#64748b',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        🌟 Feature Highlights ({contentItems.filter(i => i.tab === 'home' && i.section === 'features').length})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setHomeSubSection('testimonials')}
+                        style={{
+                          padding: '0.4rem 0.9rem',
+                          borderRadius: '9999px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          border: 'none',
+                          backgroundColor: homeSubSection === 'testimonials' ? 'var(--royal)' : '#f1f5f9',
+                          color: homeSubSection === 'testimonials' ? '#ffffff' : '#64748b',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        💬 Client Feedback / Testimonials ({contentItems.filter(i => i.tab === 'home' && i.section === 'testimonials').length})
+                      </button>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setHomeSubSection('testimonials');
+                          setEditingContentItem({
+                            tab: 'home',
+                            section: 'testimonials',
+                            category: 'Merchant Trust',
+                            title: '',
+                            subtitle: '',
+                            description: '',
+                            status: 'active',
+                            extraData: { rating: 5 },
+                            order: contentItems.filter(i => i.tab === 'home' && i.section === 'testimonials').length + 1
+                          });
+                          setIsContentModalOpen(true);
+                        }}
+                        className="btn-royal"
+                        style={{
+                          padding: '0.45rem 0.85rem',
+                          fontSize: '0.825rem',
+                          gap: '0.35rem'
+                        }}
+                      >
+                        <Plus size={14} /> Add Client Feedback
+                      </button>
+                    </div>
+                  </div>
+                )}
+
                 {/* ABOUT TAB SECTION SUB-SELECTOR & QUICK ACTIONS */}
                 {activeTab === 'about' && (
                   <div 
@@ -825,11 +949,11 @@ export default function AdminInquiriesPage() {
                                 fontWeight: 600, 
                                 padding: '0.2rem 0.55rem', 
                                 borderRadius: '9999px',
-                                backgroundColor: item.section === 'stats' ? '#eff6ff' : 'rgba(22, 86, 214, 0.08)',
-                                color: item.section === 'stats' ? '#1d4ed8' : 'var(--royal)'
+                                backgroundColor: item.section === 'testimonials' ? '#fef3c7' : item.section === 'stats' ? '#eff6ff' : 'rgba(22, 86, 214, 0.08)',
+                                color: item.section === 'testimonials' ? '#b45309' : item.section === 'stats' ? '#1d4ed8' : 'var(--royal)'
                               }}
                             >
-                              {item.section === 'stats' ? '📊 Key Metric Bar' : (item.category || item.section)}
+                              {item.section === 'testimonials' ? '💬 Client Feedback' : item.section === 'stats' ? '📊 Key Metric Bar' : (item.category || item.section)}
                             </span>
                             <span 
                               style={{ 
@@ -846,8 +970,30 @@ export default function AdminInquiriesPage() {
                             </span>
                           </div>
 
-                          {/* Stat Metric visual preview box */}
-                          {item.section === 'stats' ? (
+                          {/* Testimonial Feedback preview */}
+                          {item.section === 'testimonials' ? (
+                            <div style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.85rem', padding: '1.2rem', marginBottom: '1rem' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', marginBottom: '0.65rem' }}>
+                                {[...Array(item.extraData?.rating || 5)].map((_, i) => (
+                                  <Star key={i} size={14} fill="#f59e0b" color="#f59e0b" />
+                                ))}
+                                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#b45309', marginLeft: '0.35rem' }}>
+                                  {item.extraData?.rating || 5}.0 / 5.0
+                                </span>
+                              </div>
+                              <p style={{ fontSize: '0.875rem', fontStyle: 'italic', color: '#1e293b', lineHeight: 1.55, marginBottom: '0.75rem' }}>
+                                "{item.description}"
+                              </p>
+                              <div style={{ borderTop: '1px solid #e2e8f0', paddingTop: '0.55rem' }}>
+                                <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--ink)' }}>
+                                  {item.title}
+                                </div>
+                                <div style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.1rem' }}>
+                                  {item.subtitle}
+                                </div>
+                              </div>
+                            </div>
+                          ) : item.section === 'stats' ? (
                             <div style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.75rem', padding: '1.25rem', marginBottom: '1rem', textAlign: 'center' }}>
                               <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--royal)', display: 'block', marginBottom: '0.35rem' }}>
                                 Live Metric Preview
@@ -1748,17 +1894,18 @@ export default function AdminInquiriesPage() {
 function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
   const [formData, setFormData] = useState(() => ({
     tab: initialData?.tab || activeTab,
-    section: initialData?.section || 'general',
+    section: initialData?.section || (activeTab === 'home' ? 'features' : 'general'),
     title: initialData?.title || '',
     subtitle: initialData?.subtitle || '',
-    category: initialData?.category || 'General',
+    category: initialData?.category || (activeTab === 'home' && initialData?.section === 'testimonials' ? 'Merchant Trust' : 'General'),
     description: initialData?.description || '',
     order: initialData?.order || 0,
     status: initialData?.status || 'active',
     extraSalary: initialData?.extraData?.salary || '',
     extraLocation: initialData?.extraData?.location || '',
     extraFeatures: Array.isArray(initialData?.extraData?.features) ? initialData.extraData.features.join(', ') : '',
-    extraHighlight: initialData?.extraData?.highlight || initialData?.extraData?.pricing || ''
+    extraHighlight: initialData?.extraData?.highlight || initialData?.extraData?.pricing || '',
+    extraRating: initialData?.extraData?.rating || 5
   }));
 
   const handleSubmit = (e) => {
@@ -1778,6 +1925,9 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
     if (formData.tab === 'about' && formData.section === 'stats') {
       extraData.statValue = formData.title;
       extraData.statLabel = formData.subtitle;
+    }
+    if (formData.tab === 'home' && formData.section === 'testimonials') {
+      extraData.rating = Number(formData.extraRating) || 5;
     }
 
     onSave({
@@ -1799,7 +1949,9 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1rem' }}>
           <div>
             <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--ink)' }}>
-              {initialData ? 'Edit Content Item' : `Add New ${formData.tab.toUpperCase()} Item`}
+              {initialData 
+                ? (formData.section === 'testimonials' ? 'Edit Client Feedback' : 'Edit Content Item') 
+                : (formData.section === 'testimonials' ? 'Add Client Feedback' : `Add New ${formData.tab.toUpperCase()} Item`)}
             </h3>
             <p style={{ fontSize: '0.825rem', color: '#64748b' }}>
               Tab: <strong style={{ color: 'var(--royal)' }}>{formData.tab}</strong> • Instant MongoDB CRUD
@@ -1811,6 +1963,35 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {/* HOME SECTION TYPE PICKER */}
+          {formData.tab === 'home' && (
+            <div style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '0.65rem', padding: '0.85rem 1rem' }}>
+              <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#166534', marginBottom: '0.4rem' }}>
+                Home Page Section Type:
+              </span>
+              <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="homeSectionType"
+                    checked={formData.section !== 'testimonials'}
+                    onChange={() => setFormData({ ...formData, section: 'features', category: 'Feature Highlight' })}
+                  />
+                  🌟 Feature Highlight
+                </label>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="homeSectionType"
+                    checked={formData.section === 'testimonials'}
+                    onChange={() => setFormData({ ...formData, section: 'testimonials', category: 'Merchant Trust' })}
+                  />
+                  💬 Client Feedback / Testimonials
+                </label>
+              </div>
+            </div>
+          )}
+
           {/* ABOUT SECTION TYPE PICKER */}
           {formData.tab === 'about' && (
             <div style={{ backgroundColor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '0.65rem', padding: '0.85rem 1rem' }}>
@@ -1844,6 +2025,8 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
             <label htmlFor="modal-item-title" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
               {formData.tab === 'about' && formData.section === 'stats'
                 ? 'Metric Value / Number * (e.g. 7, 99.9%, 24/7, 100%)'
+                : formData.tab === 'home' && formData.section === 'testimonials'
+                ? 'Client / Author Name * (e.g. Ramesh Kulkarni, Pooja Agarwal)'
                 : 'Title *'}
             </label>
             <input
@@ -1853,7 +2036,13 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
               required
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              placeholder={formData.tab === 'about' && formData.section === 'stats' ? 'e.g. 99.9% or 24/7' : 'e.g. Payment Gateway or Job Title'}
+              placeholder={
+                formData.tab === 'about' && formData.section === 'stats' 
+                  ? 'e.g. 99.9% or 24/7' 
+                  : formData.tab === 'home' && formData.section === 'testimonials'
+                  ? 'e.g. Ramesh Kulkarni or Pooja Agarwal'
+                  : 'e.g. Payment Gateway or Job Title'
+              }
               style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem' }}
             />
           </div>
@@ -1863,6 +2052,8 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
               <label htmlFor="modal-item-subtitle" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
                 {formData.tab === 'about' && formData.section === 'stats'
                   ? 'Metric Label / Description *'
+                  : formData.tab === 'home' && formData.section === 'testimonials'
+                  ? 'Client Designation / Company / Location *'
                   : 'Subtitle / Tagline'}
               </label>
               <input
@@ -1872,7 +2063,13 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
                 required={formData.tab === 'about' && formData.section === 'stats'}
                 value={formData.subtitle}
                 onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                placeholder={formData.tab === 'about' && formData.section === 'stats' ? 'e.g. Transaction platform uptime' : 'e.g. Online Checkout Suite'}
+                placeholder={
+                  formData.tab === 'about' && formData.section === 'stats' 
+                    ? 'e.g. Transaction platform uptime' 
+                    : formData.tab === 'home' && formData.section === 'testimonials'
+                    ? 'e.g. Director of Retail Operations, Maharashtra'
+                    : 'e.g. Online Checkout Suite'
+                }
                 style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem' }}
               />
             </div>
@@ -1886,7 +2083,7 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
                 type="text"
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                placeholder="e.g. Key Metric or Engineering"
+                placeholder="e.g. Merchant Trust or Engineering"
                 style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem' }}
               />
             </div>
@@ -1894,7 +2091,9 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
 
           <div>
             <label htmlFor="modal-item-description" style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
-              Description
+              {formData.tab === 'home' && formData.section === 'testimonials'
+                ? 'Client Testimonial Quote *'
+                : 'Description'}
             </label>
             <textarea
               id="modal-item-description"
@@ -1902,10 +2101,41 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
               rows="3"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Detailed description for this item..."
+              placeholder={
+                formData.tab === 'home' && formData.section === 'testimonials'
+                  ? 'e.g. "Deploying Rhizobee\'s soundbox and POS terminals across our 45 retail outlets cut counter disputes to practically zero..."'
+                  : 'Detailed description for this item...'
+              }
               style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem' }}
             />
           </div>
+
+          {/* TESTIMONIAL STAR RATING PICKER */}
+          {formData.tab === 'home' && formData.section === 'testimonials' && (
+            <div style={{ backgroundColor: '#fffbeb', border: '1px solid #fde68a', padding: '0.85rem 1rem', borderRadius: '0.5rem' }}>
+              <label htmlFor="modal-item-rating" style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#92400e', marginBottom: '0.4rem' }}>
+                Client Star Rating (1 - 5 Stars)
+              </label>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <select
+                  id="modal-item-rating"
+                  name="extraRating"
+                  value={formData.extraRating}
+                  onChange={(e) => setFormData({ ...formData, extraRating: Number(e.target.value) })}
+                  style={{ padding: '0.45rem 0.75rem', borderRadius: '0.375rem', border: '1px solid #f59e0b', fontSize: '0.875rem', fontWeight: 600, backgroundColor: '#ffffff' }}
+                >
+                  <option value={5}>⭐⭐⭐⭐⭐ (5 Stars - Exceptional)</option>
+                  <option value={4}>⭐⭐⭐⭐ (4 Stars - Very Good)</option>
+                  <option value={3}>⭐⭐⭐ (3 Stars - Good)</option>
+                  <option value={2}>⭐⭐ (2 Stars - Fair)</option>
+                  <option value={1}>⭐ (1 Star - Basic)</option>
+                </select>
+                <span style={{ fontSize: '0.8rem', color: '#b45309' }}>
+                  Shown on Home Page feedback card
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* TAB SPECIFIC EXTRA FIELDS */}
           {formData.tab === 'careers' && (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -18,13 +18,48 @@ import {
   Building2,
   Store,
   Users2,
-  Briefcase
+  Briefcase,
+  Star
 } from 'lucide-react';
 import PartnerMarquee from '../components/PartnerMarquee';
 import ZoompeBanner from '../components/ZoompeBanner';
 import FaqAccordion from '../components/FaqAccordion';
 
 export default function HomePage() {
+  const defaultTestimonials = [
+    {
+      _id: '1',
+      title: 'Ramesh Kulkarni',
+      subtitle: 'Director of Retail Operations, Maharashtra',
+      description: 'Deploying Rhizobee’s soundbox and POS terminals across our 45 retail outlets cut counter disputes to practically zero. Audio confirmations are instant and loud.'
+    },
+    {
+      _id: '2',
+      title: 'Pooja Agarwal',
+      subtitle: 'Founder, D2C Lifestyle Brand, Delhi NCR',
+      description: 'Their payment gateway integrated seamlessly with our custom shopping cart. Checkout conversion jumped by 14% thanks to smart UPI fallback routing.'
+    },
+    {
+      _id: '3',
+      title: 'Anand Verma',
+      subtitle: 'Fintech Distributor, Madhya Pradesh',
+      description: 'Zoompe has transformed our regional agent network. Being able to offer banking cash-out, BBPS, and ticketing all on one portal brought real income growth to our CSPs.'
+    }
+  ];
+
+  const [testimonials, setTestimonials] = useState(defaultTestimonials);
+
+  useEffect(() => {
+    fetch('/api/content?tab=home&section=testimonials&status=active')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data && data.data.length > 0) {
+          setTestimonials(data.data);
+        }
+      })
+      .catch(err => console.error('Failed to load testimonials:', err));
+  }, []);
+
   const solutions = [
     {
       title: 'Payment Gateway Solutions',
@@ -464,33 +499,37 @@ export default function HomePage() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-            {[
-              {
-                quote: 'Deploying Rhizobee’s soundbox and POS terminals across our 45 retail outlets cut counter disputes to practically zero. Audio confirmations are instant and loud.',
-                author: 'Ramesh Kulkarni',
-                role: 'Director of Retail Operations, Maharashtra'
-              },
-              {
-                quote: 'Their payment gateway integrated seamlessly with our custom shopping cart. Checkout conversion jumped by 14% thanks to smart UPI fallback routing.',
-                author: 'Pooja Agarwal',
-                role: 'Founder, D2C Lifestyle Brand, Delhi NCR'
-              },
-              {
-                quote: 'Zoompe has transformed our regional agent network. Being able to offer banking cash-out, BBPS, and ticketing all on one portal brought real income growth to our CSPs.',
-                author: 'Anand Verma',
-                role: 'Fintech Distributor, Madhya Pradesh'
-              }
-            ].map((t, idx) => (
-              <div key={idx} style={{ backgroundColor: '#ffffff', borderRadius: '1.25rem', padding: '2rem', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'var(--slate)', fontStyle: 'italic', marginBottom: '1.5rem' }}>
-                  "{t.quote}"
-                </p>
+            {testimonials.map((t, idx) => (
+              <div 
+                key={t._id || idx} 
+                style={{ 
+                  backgroundColor: '#ffffff', 
+                  borderRadius: '1.25rem', 
+                  padding: '2rem', 
+                  border: '1px solid var(--line)', 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  justifyContent: 'space-between',
+                  boxShadow: '0 4px 15px -3px rgba(0, 0, 0, 0.05)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.2rem', marginBottom: '1rem' }}>
+                    {[...Array(t.extraData?.rating || 5)].map((_, i) => (
+                      <Star key={i} size={15} fill="#f59e0b" color="#f59e0b" />
+                    ))}
+                  </div>
+                  <p style={{ fontSize: '0.95rem', lineHeight: 1.65, color: 'var(--slate)', fontStyle: 'italic', marginBottom: '1.5rem' }}>
+                    "{t.description || t.quote}"
+                  </p>
+                </div>
                 <div>
                   <div style={{ fontWeight: 600, color: 'var(--ink)', fontSize: '0.95rem' }}>
-                    {t.author}
+                    {t.title || t.author}
                   </div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--slate-dim)', marginTop: '0.2rem' }}>
-                    {t.role}
+                    {t.subtitle || t.role}
                   </div>
                 </div>
               </div>
