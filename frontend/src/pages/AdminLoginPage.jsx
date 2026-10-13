@@ -18,7 +18,7 @@ import { useAuth } from '../context/AuthContext';
 export default function AdminLoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { login, isAuthenticated } = useAuth();
+  const { login, logout, isAuthenticated, admin } = useAuth();
 
   const isSignupDefault = location.pathname.includes('signup');
   const [isSignup, setIsSignup] = useState(isSignupDefault);
@@ -34,31 +34,6 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
-
-  // If already authenticated, allow direct access to Portal DB
-  if (isAuthenticated) {
-    return (
-      <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--ink)', color: '#ffffff', padding: '2rem' }}>
-        <div style={{ textAlign: 'center', maxWidth: '28rem', backgroundColor: 'rgba(255, 255, 255, 0.05)', padding: '2.5rem', borderRadius: '1.25rem', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
-          <div style={{ width: '3.5rem', height: '3.5rem', borderRadius: '50%', backgroundColor: 'rgba(22, 86, 214, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', color: 'var(--sky)' }}>
-            <Shield size={28} />
-          </div>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Admin Session Active</h2>
-          <p style={{ marginTop: '0.5rem', color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.9rem' }}>
-            You are already authenticated with administrative privileges.
-          </p>
-          <div style={{ marginTop: '1.75rem', display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
-            <button onClick={() => navigate('/admin')} className="btn-royal">
-              Go to Database <ArrowRight size={15} />
-            </button>
-            <Link to="/" className="btn-outline-white">
-              Public Site
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -206,6 +181,53 @@ export default function AdminLoginPage() {
             Adminstrator Only
           </p>*/}
         </div>
+
+        {/* Active Session Notice if already logged in */}
+        {isAuthenticated && (
+          <div 
+            style={{ 
+              backgroundColor: 'rgba(22, 86, 214, 0.18)', 
+              border: '1px solid rgba(59, 130, 246, 0.35)', 
+              borderRadius: '0.75rem', 
+              padding: '0.75rem 0.85rem', 
+              marginBottom: '1.25rem', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '0.5rem' 
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', color: '#93c5fd' }}>
+                <Shield size={14} color="#60a5fa" />
+                <span>Active: <strong>{admin?.name || admin?.email || 'Admin'}</strong></span>
+              </div>
+              <button
+                type="button"
+                onClick={logout}
+                style={{
+                  fontSize: '0.72rem',
+                  color: '#fca5a5',
+                  backgroundColor: 'rgba(239, 68, 68, 0.18)',
+                  border: '1px solid rgba(239, 68, 68, 0.3)',
+                  borderRadius: '9999px',
+                  padding: '0.15rem 0.55rem',
+                  cursor: 'pointer',
+                  fontWeight: 600
+                }}
+                title="Log out current session"
+              >
+                Logout
+              </button>
+            </div>
+            <Link
+              to="/admin"
+              className="btn-royal"
+              style={{ padding: '0.45rem', fontSize: '0.8rem', width: '100%', justifyContent: 'center' }}
+            >
+              Go Directly to Database <ArrowRight size={14} />
+            </Link>
+          </div>
+        )}
 
         {/* Tab switch */}
         <div 
@@ -361,7 +383,7 @@ export default function AdminLoginPage() {
                 id="admin-password-input"
                 type={showPassword ? 'text' : 'password'}
                 name="password"
-                autoComplete={isLogin ? 'current-password' : 'new-password'}
+                autoComplete={isSignup ? 'new-password' : 'current-password'}
                 required
                 placeholder="••••••••••••"
                 value={formData.password}

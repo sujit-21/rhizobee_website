@@ -244,8 +244,18 @@ export default function Footer() {
           <div>
             © 2026 Rhizobee Innovations Private Limited. All rights reserved.
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
             <span>CIN: U72900DL2022PTC393198</span>
+            <span>·</span>
+            <Link 
+              to="/admin/login" 
+              style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.35rem', transition: 'color 0.2s' }} 
+              title="Admin Authentication Portal"
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--royal)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
+            >
+              <Shield size={13} color="var(--royal)" /> Admin Portal
+            </Link>
             <span>·</span>
             <span>rhizobee.com</span>
           </div>
