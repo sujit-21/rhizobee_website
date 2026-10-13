@@ -11,10 +11,30 @@
   --slate: #4a5578;
   --slate-dim: #7b84a3;
   --line: #dde1ee;
+  --card-bg: #ffffff;
+  --card-border: #dde1ee;
 
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-data: 'IBM Plex Mono', monospace;
+}
+
+html.dark, [data-theme="dark"] {
+  --ink: #f8fafc;
+  --ink-soft: #cbd5e1;
+  --royal: #3b82f6;
+  --royal-dark: #2563eb;
+  --sky: #60a5fa;
+  --gold: #fbbf24;
+  --gold-soft: #fde68a;
+  --paper: #090d16;
+  --paper-dim: #0f172a;
+  --slate: #94a3b8;
+  --slate-dim: #64748b;
+  --line: #1e293b;
+  --card-bg: #0f172a;
+  --card-border: #1e293b;
+  color-scheme: dark;
 }
 
 * {
@@ -273,3 +293,138 @@ h1, h2, h3, h4, h5, h6, .font-display {
 ::-webkit-scrollbar-thumb:hover {
   background: #9aa7c7;
 }
+
+/* ========================================================
+   DARK MODE COMPREHENSIVE & SAFE STYLING
+   ======================================================== */
+html.dark, html.dark body {
+  background-color: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+html, body {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* 1. HERO & DARK CTA SECTIONS (Must remain deep dark navy/black in dark mode) */
+html.dark section[style*="background-color: var(--ink)"],
+html.dark section[style*="background-color:var(--ink)"],
+html.dark div[style*="background-color: var(--ink)"],
+html.dark div[style*="background-color:var(--ink)"],
+html.dark [style*="background-color: var(--ink)"],
+html.dark [style*="background-color:var(--ink)"],
+html.dark [style*="background-color: rgb(10, 26, 58)"],
+html.dark [style*="background-color: #0a1a3a"] {
+  background-color: #060b16 !important;
+  color: #ffffff !important;
+}
+
+html.dark [style*="background-color: var(--ink)"] h1,
+html.dark [style*="background-color: var(--ink)"] h2,
+html.dark [style*="background-color: var(--ink)"] h3,
+html.dark [style*="background-color:var(--ink)"] h1,
+html.dark [style*="background-color:var(--ink)"] h2,
+html.dark [style*="background-color:var(--ink)"] h3 {
+  color: #ffffff !important;
+}
+
+/* 2. LIGHT SECTIONS & CARDS (Transform white/paper backgrounds into rich dark surfaces) */
+html.dark section[style*="background-color: #ffffff"],
+html.dark section[style*="background-color:#ffffff"],
+html.dark section[style*="background-color: rgb(255, 255, 255)"],
+html.dark section[style*="background-color: white"],
+html.dark footer[style*="background-color: #ffffff"],
+html.dark footer[style*="background-color:#ffffff"],
+html.dark footer[style*="background-color: rgb(255, 255, 255)"],
+html.dark footer[style*="background-color: white"] {
+  background-color: #090d16 !important;
+  border-color: var(--line) !important;
+}
+
+html.dark .feature-card,
+html.dark .job-card,
+html.dark div[style*="background-color: #ffffff"],
+html.dark div[style*="background-color:#ffffff"],
+html.dark div[style*="background-color: rgb(255, 255, 255)"],
+html.dark div[style*="background-color: white"] {
+  background-color: var(--card-bg) !important;
+  border-color: var(--line) !important;
+  color: var(--ink);
+}
+
+html.dark .feature-card:hover {
+  border-color: rgba(59, 130, 246, 0.45) !important;
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 3. LIGHT GREY / MUTED BACKGROUND CONTAINERS */
+html.dark div[style*="background-color: #f8fafc"],
+html.dark div[style*="background-color:#f8fafc"],
+html.dark div[style*="background-color: rgb(248, 250, 252)"],
+html.dark section[style*="background-color: #f8fafc"],
+html.dark section[style*="background-color:#f8fafc"] {
+  background-color: #080d1a !important;
+  border-color: var(--line) !important;
+}
+
+html.dark div[style*="background-color: #f1f5f9"],
+html.dark div[style*="background-color:#f1f5f9"],
+html.dark div[style*="background-color: #f3f4f6"],
+html.dark div[style*="background-color: var(--paper)"],
+html.dark div[style*="background-color:var(--paper)"] {
+  background-color: #0f172a !important;
+  border-color: var(--line) !important;
+}
+
+/* 4. FORM CONTROLS & INPUTS */
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html.dark textarea,
+html.dark select,
+html.dark .form-input {
+  background-color: #0f172a !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus,
+html.dark .form-input:focus {
+  border-color: var(--royal) !important;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* 5. BADGES & PILLS */
+html.dark span[style*="background-color: #e2e8f0"],
+html.dark span[style*="background-color: #f1f5f9"],
+html.dark span[style*="background-color: #f8fafc"] {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+/* 6. MODALS & DIALOGS */
+html.dark div[style*="position: fixed"][style*="z-index"] > div[style*="background-color: #ffffff"],
+html.dark div[style*="position: fixed"][style*="z-index"] > div[style*="background-color:#ffffff"] {
+  background-color: #0f172a !important;
+  border: 1px solid #1e293b !important;
+  color: #f8fafc !important;
+}
+
+/* 7. SCROLLBARS */
+html.dark ::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+

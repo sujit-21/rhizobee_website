@@ -13,6 +13,7 @@ import AdminInquiriesPage from './pages/AdminInquiriesPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import StealthTrigger from './components/StealthTrigger';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,10 +25,11 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <ScrollToTop />
-        <StealthTrigger />
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <ScrollToTop />
+          <StealthTrigger />
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />
           <main style={{ flex: 1 }}>
@@ -49,5 +51,6 @@ export default function App() {
         </div>
       </Router>
     </AuthProvider>
+  </ThemeProvider>
   );
 }
