@@ -41,7 +41,57 @@ const initialSeedItems = [
     extraData: { highlight: 'Same Day Credit' }
   },
 
-  // --- ABOUT US TAB ---
+  // --- ABOUT US TAB (STATS / METRICS) ---
+  {
+    tab: 'about',
+    section: 'stats',
+    title: '7',
+    subtitle: 'Core payment solutions on one platform',
+    description: 'Comprehensive suite encompassing Gateway, Soundbox, QR, POS, PPI Wallets, and Corporate Vouchers.',
+    category: 'Key Metric',
+    icon: 'Layers',
+    status: 'active',
+    order: 1,
+    extraData: { statValue: '7', statLabel: 'Core payment solutions on one platform' }
+  },
+  {
+    tab: 'about',
+    section: 'stats',
+    title: '99.9%',
+    subtitle: 'Transaction platform uptime',
+    description: 'Multi-rail redundancy with instant failover routing across major Tier-1 partner banks.',
+    category: 'Key Metric',
+    icon: 'Activity',
+    status: 'active',
+    order: 2,
+    extraData: { statValue: '99.9%', statLabel: 'Transaction platform uptime' }
+  },
+  {
+    tab: 'about',
+    section: 'stats',
+    title: '24/7',
+    subtitle: 'Merchant support availability',
+    description: 'Round-the-clock merchant helpdesk, technical onboarding, and hardware maintenance.',
+    category: 'Key Metric',
+    icon: 'Clock',
+    status: 'active',
+    order: 3,
+    extraData: { statValue: '24/7', statLabel: 'Merchant support availability' }
+  },
+  {
+    tab: 'about',
+    section: 'stats',
+    title: '100%',
+    subtitle: 'Compliant merchant onboarding',
+    description: 'Strict adherence to RBI guidelines, PCI-DSS compliance, and automated KYC verification.',
+    category: 'Key Metric',
+    icon: 'ShieldCheck',
+    status: 'active',
+    order: 4,
+    extraData: { statValue: '100%', statLabel: 'Compliant merchant onboarding' }
+  },
+
+  // --- ABOUT US TAB (VALUES) ---
   {
     tab: 'about',
     section: 'values',
@@ -281,6 +331,16 @@ exports.seedIfEmpty = async () => {
     if (count === 0) {
       await ContentItem.insertMany(initialSeedItems);
       console.log('✅ ContentItem seeded successfully with default items for all tabs.');
+    } else {
+      // Ensure missing stats section in 'about' is seeded
+      const statsCount = await ContentItem.countDocuments({ tab: 'about', section: 'stats' });
+      if (statsCount === 0) {
+        const aboutStats = initialSeedItems.filter(i => i.tab === 'about' && i.section === 'stats');
+        if (aboutStats.length > 0) {
+          await ContentItem.insertMany(aboutStats);
+          console.log('✅ Added missing About tab statistics to ContentItem collection.');
+        }
+      }
     }
   } catch (err) {
     console.error('Error seeding initial content items:', err.message);

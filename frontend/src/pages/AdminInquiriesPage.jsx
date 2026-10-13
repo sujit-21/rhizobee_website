@@ -49,6 +49,7 @@ export default function AdminInquiriesPage() {
   // Active Management Tab:
   // 'home' | 'about' | 'services' | 'solutions' | 'industries' | 'careers' | 'contacts' | 'admins'
   const [activeTab, setActiveTab] = useState('home');
+  const [aboutSubSection, setAboutSubSection] = useState('all'); // 'all' | 'stats' | 'values'
 
   // Content Items from MongoDB
   const [contentItems, setContentItems] = useState([]);
@@ -215,6 +216,7 @@ export default function AdminInquiriesPage() {
   // Filter content items for current active tab
   const currentTabItems = contentItems.filter(item => {
     if (item.tab !== activeTab) return false;
+    if (activeTab === 'about' && aboutSubSection !== 'all' && item.section !== aboutSubSection) return false;
     const matchesSearch = 
       (item.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
       (item.subtitle || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -595,6 +597,109 @@ export default function AdminInquiriesPage() {
             {/* CONTENT TABS: HOME, ABOUT, SERVICES, SOLUTIONS, INDUSTRIES, CAREERS */}
             {['home', 'about', 'services', 'solutions', 'industries', 'careers'].includes(activeTab) && (
               <div>
+                {/* ABOUT TAB SECTION SUB-SELECTOR & QUICK ACTIONS */}
+                {activeTab === 'about' && (
+                  <div 
+                    style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'space-between', 
+                      flexWrap: 'wrap', 
+                      gap: '1rem', 
+                      marginBottom: '1.5rem', 
+                      backgroundColor: '#ffffff', 
+                      padding: '0.85rem 1.25rem', 
+                      borderRadius: '0.85rem', 
+                      border: '1px solid #e2e8f0',
+                      boxShadow: '0 1px 3px rgba(0,0,0,0.02)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ink)' }}>
+                        About Us Sections:
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setAboutSubSection('all')}
+                        style={{
+                          padding: '0.4rem 0.9rem',
+                          borderRadius: '9999px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          border: 'none',
+                          backgroundColor: aboutSubSection === 'all' ? 'var(--royal)' : '#f1f5f9',
+                          color: aboutSubSection === 'all' ? '#ffffff' : '#64748b',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        All Items ({contentItems.filter(i => i.tab === 'about').length})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAboutSubSection('stats')}
+                        style={{
+                          padding: '0.4rem 0.9rem',
+                          borderRadius: '9999px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          border: 'none',
+                          backgroundColor: aboutSubSection === 'stats' ? 'var(--royal)' : '#f1f5f9',
+                          color: aboutSubSection === 'stats' ? '#ffffff' : '#64748b',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        📊 Key Metrics Bar ({contentItems.filter(i => i.tab === 'about' && i.section === 'stats').length})
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setAboutSubSection('values')}
+                        style={{
+                          padding: '0.4rem 0.9rem',
+                          borderRadius: '9999px',
+                          fontSize: '0.8rem',
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          border: 'none',
+                          backgroundColor: aboutSubSection === 'values' ? 'var(--royal)' : '#f1f5f9',
+                          color: aboutSubSection === 'values' ? '#ffffff' : '#64748b',
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        🛡️ Company Values ({contentItems.filter(i => i.tab === 'about' && i.section === 'values').length})
+                      </button>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEditingContentItem({
+                            tab: 'about',
+                            section: 'stats',
+                            category: 'Key Metric',
+                            title: '',
+                            subtitle: '',
+                            description: '',
+                            status: 'active',
+                            order: contentItems.filter(i => i.tab === 'about' && i.section === 'stats').length + 1
+                          });
+                          setIsContentModalOpen(true);
+                        }}
+                        className="btn-royal"
+                        style={{
+                          padding: '0.45rem 0.85rem',
+                          fontSize: '0.825rem',
+                          gap: '0.35rem'
+                        }}
+                      >
+                        <Plus size={14} /> Add Metric / Stat
+                      </button>
+                    </div>
+                  </div>
+                )}
+
                 {currentTabItems.length === 0 ? (
                   <div style={{ backgroundColor: '#ffffff', padding: '3.5rem', textAlign: 'center', borderRadius: '1rem', border: '1px dashed #cbd5e1' }}>
                     <Layers size={36} color="#94a3b8" style={{ margin: '0 auto 0.75rem' }} />
@@ -629,11 +734,11 @@ export default function AdminInquiriesPage() {
                                 fontWeight: 600, 
                                 padding: '0.2rem 0.55rem', 
                                 borderRadius: '9999px',
-                                backgroundColor: 'rgba(22, 86, 214, 0.08)',
-                                color: 'var(--royal)'
+                                backgroundColor: item.section === 'stats' ? '#eff6ff' : 'rgba(22, 86, 214, 0.08)',
+                                color: item.section === 'stats' ? '#1d4ed8' : 'var(--royal)'
                               }}
                             >
-                              {item.category || item.section}
+                              {item.section === 'stats' ? '📊 Key Metric Bar' : (item.category || item.section)}
                             </span>
                             <span 
                               style={{ 
@@ -650,18 +755,40 @@ export default function AdminInquiriesPage() {
                             </span>
                           </div>
 
-                          {/* Title & Subtitle */}
-                          <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.25rem' }}>
-                            {item.title}
-                          </h3>
-                          {item.subtitle && (
-                            <p style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--royal)', marginBottom: '0.5rem' }}>
-                              {item.subtitle}
-                            </p>
+                          {/* Stat Metric visual preview box */}
+                          {item.section === 'stats' ? (
+                            <div style={{ backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '0.75rem', padding: '1.25rem', marginBottom: '1rem', textAlign: 'center' }}>
+                              <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--royal)', display: 'block', marginBottom: '0.35rem' }}>
+                                Live Metric Preview
+                              </span>
+                              <div style={{ fontSize: '2.65rem', fontWeight: 700, color: 'var(--royal)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+                                {item.title}
+                              </div>
+                              <div style={{ fontSize: '0.925rem', fontWeight: 600, color: 'var(--ink)', marginTop: '0.45rem' }}>
+                                {item.subtitle}
+                              </div>
+                              {item.description && (
+                                <p style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '0.35rem', lineHeight: 1.4 }}>
+                                  {item.description}
+                                </p>
+                              )}
+                            </div>
+                          ) : (
+                            <>
+                              {/* Title & Subtitle */}
+                              <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.25rem' }}>
+                                {item.title}
+                              </h3>
+                              {item.subtitle && (
+                                <p style={{ fontSize: '0.8rem', fontWeight: 500, color: 'var(--royal)', marginBottom: '0.5rem' }}>
+                                  {item.subtitle}
+                                </p>
+                              )}
+                              <p style={{ fontSize: '0.875rem', color: '#64748b', lineHeight: 1.5, marginBottom: '1rem' }}>
+                                {item.description}
+                              </p>
+                            </>
                           )}
-                          <p style={{ fontSize: '0.875rem', color: '#64748b', lineHeight: 1.5, marginBottom: '1rem' }}>
-                            {item.description}
-                          </p>
 
                           {/* Extra Data preview (Careers salary, Features, etc.) */}
                           {item.extraData && Object.keys(item.extraData).length > 0 && (
@@ -985,6 +1112,10 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
       extraData.highlight = formData.extraHighlight;
       extraData.pricing = formData.extraHighlight;
     }
+    if (formData.tab === 'about' && formData.section === 'stats') {
+      extraData.statValue = formData.title;
+      extraData.statLabel = formData.subtitle;
+    }
 
     onSave({
       tab: formData.tab,
@@ -1017,16 +1148,47 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {/* ABOUT SECTION TYPE PICKER */}
+          {formData.tab === 'about' && (
+            <div style={{ backgroundColor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '0.65rem', padding: '0.85rem 1rem' }}>
+              <span style={{ display: 'block', fontSize: '0.8rem', fontWeight: 700, color: '#0369a1', marginBottom: '0.4rem' }}>
+                About Us Section Type:
+              </span>
+              <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="aboutSectionType"
+                    checked={formData.section === 'stats'}
+                    onChange={() => setFormData({ ...formData, section: 'stats', category: 'Key Metric' })}
+                  />
+                  📊 Key Metric Bar (7, 99.9%, 24/7, 100%)
+                </label>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 600, color: 'var(--ink)', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="aboutSectionType"
+                    checked={formData.section !== 'stats'}
+                    onChange={() => setFormData({ ...formData, section: 'values', category: 'Values' })}
+                  />
+                  🛡️ Company Values
+                </label>
+              </div>
+            </div>
+          )}
+
           <div>
             <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
-              Title *
+              {formData.tab === 'about' && formData.section === 'stats'
+                ? 'Metric Value / Number * (e.g. 7, 99.9%, 24/7, 100%)'
+                : 'Title *'}
             </label>
             <input
               type="text"
               required
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              placeholder="e.g. Payment Gateway or Job Title"
+              placeholder={formData.tab === 'about' && formData.section === 'stats' ? 'e.g. 99.9% or 24/7' : 'e.g. Payment Gateway or Job Title'}
               style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem' }}
             />
           </div>
@@ -1034,13 +1196,16 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             <div>
               <label style={{ display: 'block', fontSize: '0.825rem', fontWeight: 600, color: '#334155', marginBottom: '0.35rem' }}>
-                Subtitle / Tagline
+                {formData.tab === 'about' && formData.section === 'stats'
+                  ? 'Metric Label / Description *'
+                  : 'Subtitle / Tagline'}
               </label>
               <input
                 type="text"
+                required={formData.tab === 'about' && formData.section === 'stats'}
                 value={formData.subtitle}
                 onChange={(e) => setFormData({ ...formData, subtitle: e.target.value })}
-                placeholder="e.g. Online Checkout Suite"
+                placeholder={formData.tab === 'about' && formData.section === 'stats' ? 'e.g. Transaction platform uptime' : 'e.g. Online Checkout Suite'}
                 style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem' }}
               />
             </div>
@@ -1052,7 +1217,7 @@ function ContentItemModal({ activeTab, initialData, onClose, onSave }) {
                 type="text"
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                placeholder="e.g. Engineering or Hardware"
+                placeholder="e.g. Key Metric or Engineering"
                 style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '0.5rem', border: '1px solid #cbd5e1', fontSize: '0.9rem' }}
               />
             </div>

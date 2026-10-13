@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Target, Compass, HeartHandshake, Zap, CheckCircle2, ArrowRight } from 'lucide-react';
 import PartnerMarquee from '../components/PartnerMarquee';
 
 export default function AboutPage() {
+  const defaultStats = [
+    { _id: '1', title: '7', subtitle: 'Core payment solutions on one platform' },
+    { _id: '2', title: '99.9%', subtitle: 'Transaction platform uptime' },
+    { _id: '3', title: '24/7', subtitle: 'Merchant support availability' },
+    { _id: '4', title: '100%', subtitle: 'Compliant merchant onboarding' }
+  ];
+
+  const [statsList, setStatsList] = useState(defaultStats);
+
+  useEffect(() => {
+    fetch('/api/content?tab=about&section=stats&status=active')
+      .then(r => r.json())
+      .then(data => {
+        if (data.success && data.data && data.data.length > 0) {
+          setStatsList(data.data);
+        }
+      })
+      .catch(err => console.error('Failed to load stats from DB:', err));
+  }, []);
+
   const principles = [
     {
       title: 'Compliance first',
@@ -75,6 +95,24 @@ export default function AboutPage() {
             <Link to="/services" className="btn-outline-white" style={{ padding: '0.85rem 1.75rem' }}>
               Our Solutions
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS / METRICS BAR (DIRECTLY BELOW HERO) */}
+      <section style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', backgroundColor: '#ffffff' }}>
+        <div className="container-custom" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem' }}>
+            {statsList.map((st, idx) => (
+              <div key={st._id || idx} style={{ textAlign: 'left' }}>
+                <p style={{ fontSize: '2.65rem', fontWeight: 600, color: 'var(--royal)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+                  {st.title}
+                </p>
+                <p style={{ marginTop: '0.45rem', fontSize: '0.875rem', lineHeight: 1.45, color: 'var(--slate)' }}>
+                  {st.subtitle || st.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
