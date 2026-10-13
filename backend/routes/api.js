@@ -6,6 +6,8 @@ const {
   updateInquiryStatus,
   createJobApplication,
   getJobApplications,
+  updateJobApplicationStatus,
+  deleteJobApplication,
   createLead,
   getLeads,
   subscribeNewsletter,
@@ -54,6 +56,8 @@ router.delete('/inquiries/:id', deleteInquiry);
 // --- CAREERS APPLICATIONS ---
 router.post('/careers/apply', createJobApplication);
 router.get('/careers/applications', getJobApplications);
+router.patch('/careers/applications/:id', updateJobApplicationStatus);
+router.delete('/careers/applications/:id', deleteJobApplication);
 
 // --- LEADS & NEWSLETTER ---
 router.post('/leads', createLead);

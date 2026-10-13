@@ -94,6 +94,35 @@ exports.getJobApplications = async (req, res) => {
   }
 };
 
+exports.updateJobApplicationStatus = async (req, res) => {
+  try {
+    const { status, coverNote, notes } = req.body;
+    const update = {};
+    if (status) update.status = status;
+    if (coverNote || notes) update.coverNote = coverNote || notes;
+
+    const application = await JobApplication.findByIdAndUpdate(
+      req.params.id,
+      update,
+      { new: true }
+    );
+    if (!application) return res.status(404).json({ success: false, message: 'Application not found' });
+    res.json({ success: true, message: 'Application updated successfully', data: application });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+exports.deleteJobApplication = async (req, res) => {
+  try {
+    const application = await JobApplication.findByIdAndDelete(req.params.id);
+    if (!application) return res.status(404).json({ success: false, message: 'Application not found' });
+    res.json({ success: true, message: 'Application deleted successfully', data: application });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
 // --- LEADS & CALLBACKS ---
 exports.createLead = async (req, res) => {
   try {
