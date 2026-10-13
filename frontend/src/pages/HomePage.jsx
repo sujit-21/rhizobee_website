@@ -47,7 +47,15 @@ export default function HomePage() {
     }
   ];
 
+  const defaultMetrics = [
+    { _id: '1', title: '7', subtitle: 'Core payment solutions on one platform' },
+    { _id: '2', title: '99.9%', subtitle: 'Transaction platform uptime' },
+    { _id: '3', title: '24/7', subtitle: 'Merchant support availability' },
+    { _id: '4', title: '100%', subtitle: 'Compliant merchant onboarding' }
+  ];
+
   const [testimonials, setTestimonials] = useState(defaultTestimonials);
+  const [metrics, setMetrics] = useState(defaultMetrics);
 
   useEffect(() => {
     fetch('/api/content?tab=home&section=testimonials&status=active')
@@ -58,6 +66,15 @@ export default function HomePage() {
         }
       })
       .catch(err => console.error('Failed to load testimonials:', err));
+
+    fetch('/api/content?tab=about&section=stats&status=active')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data && data.data.length > 0) {
+          setMetrics(data.data);
+        }
+      })
+      .catch(err => console.error('Failed to load metrics:', err));
   }, []);
 
   const solutions = [
@@ -266,6 +283,24 @@ export default function HomePage() {
 
       {/* ZOOMPE SECTION */}
       <ZoompeBanner />
+
+      {/* 4 KEY METRICS BAR */}
+      <section style={{ borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', backgroundColor: '#ffffff' }}>
+        <div className="container-custom" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2rem' }}>
+            {metrics.map((st, idx) => (
+              <div key={st._id || idx} style={{ textAlign: 'left' }}>
+                <p style={{ fontSize: '2.5rem', fontWeight: 600, color: 'var(--royal)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+                  {st.title}
+                </p>
+                <p style={{ marginTop: '0.45rem', fontSize: '0.875rem', lineHeight: 1.45, color: 'var(--slate)' }}>
+                  {st.subtitle || st.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CORE VALUE PILLARS */}
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
