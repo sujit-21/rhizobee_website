@@ -2,6 +2,13 @@ const ContactInquiry = require('../models/ContactInquiry');
 const JobApplication = require('../models/JobApplication');
 const Lead = require('../models/Lead');
 const Newsletter = require('../models/Newsletter');
+const HomeItem = require('../models/HomeItem');
+const TestimonialItem = require('../models/TestimonialItem');
+const AboutItem = require('../models/AboutItem');
+const ServiceItem = require('../models/ServiceItem');
+const SolutionItem = require('../models/SolutionItem');
+const IndustryItem = require('../models/IndustryItem');
+const CareerOpening = require('../models/CareerOpening');
 
 // --- CONTACT INQUIRIES ---
 exports.createInquiry = async (req, res) => {
@@ -165,9 +172,29 @@ exports.subscribeNewsletter = async (req, res) => {
 // --- PLATFORM STATS / METRICS ---
 exports.getPlatformStats = async (req, res) => {
   try {
-    const inquiriesCount = await ContactInquiry.countDocuments();
-    const applicationsCount = await JobApplication.countDocuments();
-    const leadsCount = await Lead.countDocuments();
+    const [
+      inquiriesCount,
+      applicationsCount,
+      leadsCount,
+      homeCount,
+      testimonialsCount,
+      aboutCount,
+      servicesCount,
+      solutionsCount,
+      industriesCount,
+      careersCount
+    ] = await Promise.all([
+      ContactInquiry.countDocuments(),
+      JobApplication.countDocuments(),
+      Lead.countDocuments(),
+      HomeItem.countDocuments(),
+      TestimonialItem.countDocuments(),
+      AboutItem.countDocuments(),
+      ServiceItem.countDocuments(),
+      SolutionItem.countDocuments(),
+      IndustryItem.countDocuments(),
+      CareerOpening.countDocuments()
+    ]);
 
     res.json({
       success: true,
@@ -182,7 +209,15 @@ exports.getPlatformStats = async (req, res) => {
         databaseCounts: {
           inquiries: inquiriesCount,
           applications: applicationsCount,
-          leads: leadsCount
+          leads: leadsCount,
+          homeItems: homeCount,
+          testimonials: testimonialsCount,
+          aboutItems: aboutCount,
+          services: servicesCount,
+          solutions: solutionsCount,
+          industries: industriesCount,
+          careers: careersCount,
+          totalContentRecords: homeCount + testimonialsCount + aboutCount + servicesCount + solutionsCount + industriesCount + careersCount
         }
       }
     });

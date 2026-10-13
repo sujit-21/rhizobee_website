@@ -20,7 +20,7 @@ connectDB().then(() => {
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-admin-email'],
   exposedHeaders: ['X-Response-Time']
 }));
 app.use(express.json());

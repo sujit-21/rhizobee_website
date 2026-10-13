@@ -46,6 +46,15 @@ router.patch('/content/:id', updateContent);
 router.delete('/content/:id', deleteContent);
 router.post('/content/reset-seed', resetContentSeed);
 
+// --- DEDICATED TAB COLLECTIONS DIRECT ENDPOINTS ---
+router.get('/home-items', (req, res, next) => { req.query.tab = 'home'; next(); }, getContent);
+router.get('/testimonial-items', (req, res, next) => { req.query.tab = 'home'; req.query.section = 'testimonials'; next(); }, getContent);
+router.get('/about-items', (req, res, next) => { req.query.tab = 'about'; next(); }, getContent);
+router.get('/service-items', (req, res, next) => { req.query.tab = 'services'; next(); }, getContent);
+router.get('/solution-items', (req, res, next) => { req.query.tab = 'solutions'; next(); }, getContent);
+router.get('/industry-items', (req, res, next) => { req.query.tab = 'industries'; next(); }, getContent);
+router.get('/career-openings', (req, res, next) => { req.query.tab = 'careers'; next(); }, getContent);
+
 // --- INQUIRIES & CONTACTS CRUD ---
 router.post('/inquiries', createInquiry);
 router.post('/inquiries/admin-create', adminCreateInquiry);

@@ -1,9 +1,16 @@
 const ContentItem = require('../models/ContentItem');
 const ContactInquiry = require('../models/ContactInquiry');
+const HomeItem = require('../models/HomeItem');
+const TestimonialItem = require('../models/TestimonialItem');
+const AboutItem = require('../models/AboutItem');
+const ServiceItem = require('../models/ServiceItem');
+const SolutionItem = require('../models/SolutionItem');
+const IndustryItem = require('../models/IndustryItem');
+const CareerOpening = require('../models/CareerOpening');
 
 // Initial default seed items for all 6 content tabs
 const initialSeedItems = [
-  // --- HOME TAB ---
+  // --- HOME TAB (FEATURES) ---
   {
     tab: 'home',
     section: 'features',
@@ -362,67 +369,189 @@ const initialSeedItems = [
   }
 ];
 
-// Seed DB on startup if empty
-exports.seedIfEmpty = async () => {
-  try {
-    const count = await ContentItem.countDocuments();
-    if (count === 0) {
-      await ContentItem.insertMany(initialSeedItems);
-      console.log('✅ ContentItem seeded successfully with default items for all tabs.');
-    } else {
-      // Ensure missing stats section in 'about' is seeded
-      const statsCount = await ContentItem.countDocuments({ tab: 'about', section: 'stats' });
-      if (statsCount === 0) {
-        const aboutStats = initialSeedItems.filter(i => i.tab === 'about' && i.section === 'stats');
-        if (aboutStats.length > 0) {
-          await ContentItem.insertMany(aboutStats);
-          console.log('✅ Added missing About tab statistics to ContentItem collection.');
-        }
-      }
+// Mapping of tab models for lookups
+const tabModelConfigs = [
+  { tab: 'home', section: 'features', model: HomeItem, collection: 'home_items' },
+  { tab: 'home', section: 'testimonials', model: TestimonialItem, collection: 'testimonial_items' },
+  { tab: 'about', model: AboutItem, collection: 'about_items' },
+  { tab: 'services', model: ServiceItem, collection: 'service_items' },
+  { tab: 'solutions', model: SolutionItem, collection: 'solution_items' },
+  { tab: 'industries', model: IndustryItem, collection: 'industry_items' },
+  { tab: 'careers', model: CareerOpening, collection: 'career_openings' }
+];
 
-      // Ensure missing testimonials section in 'home' is seeded
-      const testimonialsCount = await ContentItem.countDocuments({ tab: 'home', section: 'testimonials' });
-      if (testimonialsCount === 0) {
-        const homeTestimonials = initialSeedItems.filter(i => i.tab === 'home' && i.section === 'testimonials');
-        if (homeTestimonials.length > 0) {
-          await ContentItem.insertMany(homeTestimonials);
-          console.log('✅ Added missing Client Feedback / Testimonials to ContentItem collection.');
-        }
-      }
+// Helper to seed all dedicated tab collections if empty
+const seedDedicatedCollections = async () => {
+  try {
+    // 1. Home items (features)
+    const homeCount = await HomeItem.countDocuments();
+    if (homeCount === 0) {
+      const items = initialSeedItems.filter(i => i.tab === 'home' && i.section !== 'testimonials');
+      await HomeItem.insertMany(items);
+      console.log('✅ Dedicated collection `home_items` seeded.');
+    }
+
+    // 2. Testimonial items
+    const testCount = await TestimonialItem.countDocuments();
+    if (testCount === 0) {
+      const items = initialSeedItems.filter(i => i.tab === 'home' && i.section === 'testimonials').map(i => ({
+        ...i,
+        rating: (i.extraData && i.extraData.rating) || 5
+      }));
+      await TestimonialItem.insertMany(items);
+      console.log('✅ Dedicated collection `testimonial_items` seeded.');
+    }
+
+    // 3. About items (stats + values)
+    const aboutCount = await AboutItem.countDocuments();
+    if (aboutCount === 0) {
+      const items = initialSeedItems.filter(i => i.tab === 'about');
+      await AboutItem.insertMany(items);
+      console.log('✅ Dedicated collection `about_items` seeded.');
+    }
+
+    // 4. Service items
+    const serviceCount = await ServiceItem.countDocuments();
+    if (serviceCount === 0) {
+      const items = initialSeedItems.filter(i => i.tab === 'services');
+      await ServiceItem.insertMany(items);
+      console.log('✅ Dedicated collection `service_items` seeded.');
+    }
+
+    // 5. Solution items
+    const solutionCount = await SolutionItem.countDocuments();
+    if (solutionCount === 0) {
+      const items = initialSeedItems.filter(i => i.tab === 'solutions');
+      await SolutionItem.insertMany(items);
+      console.log('✅ Dedicated collection `solution_items` seeded.');
+    }
+
+    // 6. Industry items
+    const industryCount = await IndustryItem.countDocuments();
+    if (industryCount === 0) {
+      const items = initialSeedItems.filter(i => i.tab === 'industries');
+      await IndustryItem.insertMany(items);
+      console.log('✅ Dedicated collection `industry_items` seeded.');
+    }
+
+    // 7. Career openings
+    const careerCount = await CareerOpening.countDocuments();
+    if (careerCount === 0) {
+      const items = initialSeedItems.filter(i => i.tab === 'careers');
+      await CareerOpening.insertMany(items);
+      console.log('✅ Dedicated collection `career_openings` seeded.');
     }
   } catch (err) {
-    console.error('Error seeding initial content items:', err.message);
+    console.error('Error seeding dedicated tab collections:', err.message);
   }
 };
 
-// GET all content items or filter by ?tab=
+// Seed DB on startup if empty
+exports.seedIfEmpty = async () => {
+  await seedDedicatedCollections();
+};
+
+// GET content items (filtered by ?tab= and/or ?section= or all collections)
 exports.getContent = async (req, res) => {
   try {
     const { tab, section, status } = req.query;
     const filter = {};
-    if (tab) filter.tab = tab;
-    if (section) filter.section = section;
     if (status) filter.status = status;
 
-    const items = await ContentItem.find(filter).sort({ order: 1, createdAt: -1 });
+    let items = [];
+
+    if (tab === 'home') {
+      if (section === 'testimonials') {
+        const testDocs = await TestimonialItem.find(filter).sort({ order: 1, createdAt: -1 });
+        items = testDocs.map(d => ({ ...d.toObject(), tab: 'home', section: 'testimonials' }));
+      } else if (section) {
+        const homeDocs = await HomeItem.find({ ...filter, section }).sort({ order: 1, createdAt: -1 });
+        items = homeDocs.map(d => ({ ...d.toObject(), tab: 'home' }));
+      } else {
+        const [homeDocs, testDocs] = await Promise.all([
+          HomeItem.find(filter).sort({ order: 1, createdAt: -1 }),
+          TestimonialItem.find(filter).sort({ order: 1, createdAt: -1 })
+        ]);
+        items = [
+          ...homeDocs.map(d => ({ ...d.toObject(), tab: 'home' })),
+          ...testDocs.map(d => ({ ...d.toObject(), tab: 'home', section: 'testimonials' }))
+        ];
+      }
+    } else if (tab === 'about') {
+      const query = { ...filter };
+      if (section) query.section = section;
+      const docs = await AboutItem.find(query).sort({ order: 1, createdAt: -1 });
+      items = docs.map(d => ({ ...d.toObject(), tab: 'about' }));
+    } else if (tab === 'services') {
+      const docs = await ServiceItem.find(filter).sort({ order: 1, createdAt: -1 });
+      items = docs.map(d => ({ ...d.toObject(), tab: 'services', section: d.section || 'services_list' }));
+    } else if (tab === 'solutions') {
+      const docs = await SolutionItem.find(filter).sort({ order: 1, createdAt: -1 });
+      items = docs.map(d => ({ ...d.toObject(), tab: 'solutions', section: d.section || 'solutions_list' }));
+    } else if (tab === 'industries') {
+      const docs = await IndustryItem.find(filter).sort({ order: 1, createdAt: -1 });
+      items = docs.map(d => ({ ...d.toObject(), tab: 'industries', section: d.section || 'industries_list' }));
+    } else if (tab === 'careers') {
+      const docs = await CareerOpening.find(filter).sort({ order: 1, createdAt: -1 });
+      items = docs.map(d => ({ ...d.toObject(), tab: 'careers', section: d.section || 'openings' }));
+    } else {
+      // No tab specified: fetch from ALL 7 dedicated tab collections concurrently
+      const [homes, testimonials, abouts, services, solutions, industries, careers] = await Promise.all([
+        HomeItem.find(filter).sort({ order: 1, createdAt: -1 }),
+        TestimonialItem.find(filter).sort({ order: 1, createdAt: -1 }),
+        AboutItem.find(filter).sort({ order: 1, createdAt: -1 }),
+        ServiceItem.find(filter).sort({ order: 1, createdAt: -1 }),
+        SolutionItem.find(filter).sort({ order: 1, createdAt: -1 }),
+        IndustryItem.find(filter).sort({ order: 1, createdAt: -1 }),
+        CareerOpening.find(filter).sort({ order: 1, createdAt: -1 })
+      ]);
+
+      items = [
+        ...homes.map(d => ({ ...d.toObject(), tab: 'home' })),
+        ...testimonials.map(d => ({ ...d.toObject(), tab: 'home', section: 'testimonials' })),
+        ...abouts.map(d => ({ ...d.toObject(), tab: 'about' })),
+        ...services.map(d => ({ ...d.toObject(), tab: 'services', section: d.section || 'services_list' })),
+        ...solutions.map(d => ({ ...d.toObject(), tab: 'solutions', section: d.section || 'solutions_list' })),
+        ...industries.map(d => ({ ...d.toObject(), tab: 'industries', section: d.section || 'industries_list' })),
+        ...careers.map(d => ({ ...d.toObject(), tab: 'careers', section: d.section || 'openings' }))
+      ];
+    }
+
     res.json({ success: true, count: items.length, data: items });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// GET single item
+// GET single item across collections
 exports.getContentById = async (req, res) => {
   try {
-    const item = await ContentItem.findById(req.params.id);
-    if (!item) return res.status(404).json({ success: false, message: 'Item not found' });
-    res.json({ success: true, data: item });
+    const { id } = req.params;
+    for (const conf of tabModelConfigs) {
+      const found = await conf.model.findById(id);
+      if (found) {
+        return res.json({
+          success: true,
+          data: {
+            ...found.toObject(),
+            tab: conf.tab,
+            section: found.section || conf.section || 'general'
+          }
+        });
+      }
+    }
+
+    // Legacy fallback
+    const legacy = await ContentItem.findById(id);
+    if (legacy) return res.json({ success: true, data: legacy });
+
+    res.status(404).json({ success: false, message: 'Item not found in any tab collection' });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// CREATE new content item
+// CREATE new content item into its dedicated collection
 exports.createContent = async (req, res) => {
   try {
     const { tab, section, title, subtitle, description, category, icon, status, order, extraData } = req.body;
@@ -431,8 +560,7 @@ exports.createContent = async (req, res) => {
     }
 
     const adminEmail = req.headers['x-admin-email'] || 'Admin';
-
-    const newItem = await ContentItem.create({
+    const payload = {
       tab,
       section: section || 'general',
       title,
@@ -445,56 +573,150 @@ exports.createContent = async (req, res) => {
       extraData: extraData || {},
       createdBy: adminEmail,
       updatedBy: adminEmail
-    });
+    };
 
-    res.status(201).json({ success: true, message: 'Content item created successfully', data: newItem });
+    let createdDoc;
+    let collectionName = '';
+
+    if (tab === 'home') {
+      if (section === 'testimonials') {
+        createdDoc = await TestimonialItem.create({
+          ...payload,
+          rating: (extraData && extraData.rating) ? Number(extraData.rating) : 5
+        });
+        collectionName = 'testimonial_items';
+      } else {
+        createdDoc = await HomeItem.create(payload);
+        collectionName = 'home_items';
+      }
+    } else if (tab === 'about') {
+      createdDoc = await AboutItem.create({
+        ...payload,
+        section: section || 'general'
+      });
+      collectionName = 'about_items';
+    } else if (tab === 'services') {
+      createdDoc = await ServiceItem.create(payload);
+      collectionName = 'service_items';
+    } else if (tab === 'solutions') {
+      createdDoc = await SolutionItem.create(payload);
+      collectionName = 'solution_items';
+    } else if (tab === 'industries') {
+      createdDoc = await IndustryItem.create(payload);
+      collectionName = 'industry_items';
+    } else if (tab === 'careers') {
+      createdDoc = await CareerOpening.create(payload);
+      collectionName = 'career_openings';
+    } else {
+      createdDoc = await ContentItem.create(payload);
+      collectionName = 'contentitems';
+    }
+
+    const result = {
+      ...createdDoc.toObject(),
+      tab,
+      section: createdDoc.section || section || 'general',
+      collection: collectionName
+    };
+
+    res.status(201).json({
+      success: true,
+      message: `Item created in dedicated '${collectionName}' collection`,
+      data: result
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// UPDATE content item
+// UPDATE content item in its dedicated collection
 exports.updateContent = async (req, res) => {
   try {
     const adminEmail = req.headers['x-admin-email'] || 'Admin';
     const updateData = { ...req.body, updatedBy: adminEmail };
+    const { id } = req.params;
 
-    const updated = await ContentItem.findByIdAndUpdate(req.params.id, updateData, { new: true, runValidators: true });
-    if (!updated) {
-      return res.status(404).json({ success: false, message: 'Content item not found' });
+    for (const conf of tabModelConfigs) {
+      const updated = await conf.model.findByIdAndUpdate(id, updateData, { new: true, runValidators: true });
+      if (updated) {
+        return res.json({
+          success: true,
+          message: `Item updated in dedicated '${conf.collection}' collection`,
+          data: {
+            ...updated.toObject(),
+            tab: conf.tab,
+            section: updated.section || conf.section || 'general'
+          }
+        });
+      }
     }
 
-    res.json({ success: true, message: 'Content item updated successfully', data: updated });
+    // Legacy fallback
+    const legacy = await ContentItem.findByIdAndUpdate(id, updateData, { new: true });
+    if (legacy) {
+      return res.json({ success: true, message: 'Content item updated successfully', data: legacy });
+    }
+
+    res.status(404).json({ success: false, message: 'Content item not found in any tab collection' });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// DELETE content item
+// DELETE content item from its dedicated collection
 exports.deleteContent = async (req, res) => {
   try {
-    const deleted = await ContentItem.findByIdAndDelete(req.params.id);
-    if (!deleted) {
-      return res.status(404).json({ success: false, message: 'Content item not found' });
+    const { id } = req.params;
+
+    for (const conf of tabModelConfigs) {
+      const deleted = await conf.model.findByIdAndDelete(id);
+      if (deleted) {
+        return res.json({
+          success: true,
+          message: `Item deleted from dedicated '${conf.collection}' collection`,
+          data: deleted
+        });
+      }
     }
-    res.json({ success: true, message: 'Content item deleted successfully', data: deleted });
+
+    // Legacy fallback
+    const legacy = await ContentItem.findByIdAndDelete(id);
+    if (legacy) {
+      return res.json({ success: true, message: 'Content item deleted successfully', data: legacy });
+    }
+
+    res.status(404).json({ success: false, message: 'Content item not found in any tab collection' });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// RESET / RE-SEED CONTENT
+// RESET / RE-SEED all dedicated tab collections
 exports.resetContentSeed = async (req, res) => {
   try {
-    await ContentItem.deleteMany({});
-    const items = await ContentItem.insertMany(initialSeedItems);
-    res.json({ success: true, message: 'Reset all tabs content to default templates.', count: items.length });
+    await Promise.all([
+      HomeItem.deleteMany({}),
+      TestimonialItem.deleteMany({}),
+      AboutItem.deleteMany({}),
+      ServiceItem.deleteMany({}),
+      SolutionItem.deleteMany({}),
+      IndustryItem.deleteMany({}),
+      CareerOpening.deleteMany({}),
+      ContentItem.deleteMany({})
+    ]);
+
+    await seedDedicatedCollections();
+
+    res.json({
+      success: true,
+      message: 'Reset all dedicated tab collections to defaults (home_items, testimonial_items, about_items, service_items, solution_items, industry_items, career_openings).'
+    });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
-// DELETE contact inquiry (for full CRUD over Contacts tab)
+// DELETE contact inquiry
 exports.deleteInquiry = async (req, res) => {
   try {
     const deleted = await ContactInquiry.findByIdAndDelete(req.params.id);
