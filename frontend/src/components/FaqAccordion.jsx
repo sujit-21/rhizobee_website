@@ -38,10 +38,10 @@ export default function FaqAccordion() {
   return (
     <section style={{ backgroundColor: 'var(--paper)', paddingTop: '5.5rem', paddingBottom: '5.5rem' }}>
       <div className="container-custom" style={{ maxWidth: '54rem' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <span className="badge-tag" style={{ justifyContent: 'center' }}>
+        <div style={{ textAlign: 'left', marginBottom: '3rem' }}>
+          <span className="badge-tag">
             <span className="badge-dot" />
-            Frequently Asked Questions
+            FREQUENTLY ASKED QUESTIONS
           </span>
           <h2 style={{ fontSize: '2.25rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
             Answers to common questions

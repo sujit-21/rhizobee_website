@@ -579,17 +579,17 @@ export default function HomePage() {
       {/* BOTTOM CTA BANNER */}
       <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', padding: '6rem 1.25rem', position: 'relative', overflow: 'hidden' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.2 }} />
-        <div style={{ position: 'relative', maxWidth: '44rem', margin: '0 auto', textAlign: 'center' }}>
-          <span className="badge-tag" style={{ color: 'var(--gold)', justifyContent: 'center' }}>
-            <Sparkles size={14} color="var(--gold)" /> Get Started Today
+        <div className="container-custom" style={{ position: 'relative', textAlign: 'left' }}>
+          <span className="badge-tag" style={{ color: 'var(--gold)' }}>
+            <Sparkles size={14} color="var(--gold)" /> GET STARTED TODAY
           </span>
           <h2 style={{ fontSize: '2.5rem', fontWeight: 600, color: '#ffffff', letterSpacing: '-0.02em', marginTop: '1rem', lineHeight: 1.2 }}>
             Ready to modernise how your business runs?
           </h2>
-          <p style={{ fontSize: '1.05rem', color: 'rgba(255, 255, 255, 0.75)', lineHeight: 1.65, marginTop: '1rem' }}>
+          <p style={{ fontSize: '1.05rem', color: 'rgba(255, 255, 255, 0.75)', lineHeight: 1.65, marginTop: '0.75rem' }}>
             Speak with our payment specialists today. We will guide you to the right mix of gateways, counter devices, and partner APIs.
           </p>
-          <div style={{ marginTop: '2.25rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+          <div style={{ marginTop: '2.25rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', gap: '1rem' }}>
             <Link to="/contact" className="btn-royal" style={{ padding: '0.875rem 2rem', fontSize: '1rem' }}>
               Talk to Our Team
             </Link>
