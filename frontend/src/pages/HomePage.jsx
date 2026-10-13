@@ -273,7 +273,7 @@ export default function HomePage() {
           <div style={{ maxWidth: '42rem', margin: '0 auto', textAlign: 'center', marginBottom: '3.5rem' }}>
             <span className="badge-tag" style={{ justifyContent: 'center' }}>
               <span className="badge-dot" />
-              Strategic Foundation
+              WHO WE ARE
             </span>
             <h2 style={{ fontSize: '2.35rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
               A fintech partner built for India's digital payments economy
@@ -341,7 +341,7 @@ export default function HomePage() {
             <div>
               <span className="badge-tag">
                 <span className="badge-dot" />
-                Product Portfolio
+                WHAT WE DO
               </span>
               <h2 style={{ fontSize: '2.35rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
                 Payment solutions built for every counter and checkout
@@ -406,7 +406,7 @@ export default function HomePage() {
           <div style={{ textAlign: 'center', maxWidth: '38rem', margin: '0 auto 3.5rem' }}>
             <span className="badge-tag" style={{ color: 'var(--sky)', justifyContent: 'center' }}>
               <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
-              High Performance Engine
+              SOLUTIONS
             </span>
             <h2 style={{ fontSize: '2.25rem', fontWeight: 600, color: '#ffffff', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
               The infrastructure behind every transaction
@@ -455,7 +455,7 @@ export default function HomePage() {
           <div style={{ maxWidth: '42rem', margin: '0 auto', textAlign: 'center', marginBottom: '3.5rem' }}>
             <span className="badge-tag" style={{ justifyContent: 'center' }}>
               <span className="badge-dot" />
-              Tailored Segments
+              WHO WE SERVE
             </span>
             <h2 style={{ fontSize: '2.35rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
               Built for every stage of business
@@ -491,7 +491,7 @@ export default function HomePage() {
           <div style={{ textAlign: 'center', maxWidth: '38rem', margin: '0 auto 3rem' }}>
             <span className="badge-tag" style={{ justifyContent: 'center' }}>
               <span className="badge-dot" />
-              Merchant Trust
+              CLIENT VOICES
             </span>
             <h2 style={{ fontSize: '2.25rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
               What our clients say about working with us
