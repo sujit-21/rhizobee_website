@@ -162,13 +162,21 @@ export default function Footer() {
 
             {/* Newsletter input */}
             <div>
-              <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink-soft)', marginBottom: '0.45rem' }}>
+              <label 
+                htmlFor="newsletter-email"
+                style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink-soft)', marginBottom: '0.45rem', cursor: 'pointer' }}
+              >
                 Stay updated with fintech insights
-              </p>
-              <form onSubmit={handleSubscribe} style={{ display: 'flex', gap: '0.35rem' }}>
+              </label>
+              <form 
+                id="newsletter-form" 
+                name="newsletterForm" 
+                onSubmit={handleSubscribe} 
+                style={{ display: 'flex', gap: '0.35rem' }}
+              >
                 <input
                   id="newsletter-email"
-                  name="newsletterEmail"
+                  name="email"
                   type="email"
                   autoComplete="email"
                   aria-label="Work email address"
@@ -187,6 +195,8 @@ export default function Footer() {
                   }}
                 />
                 <button
+                  id="newsletter-submit-btn"
+                  name="newsletterSubmit"
                   type="submit"
                   disabled={status.state === 'loading'}
                   style={{
@@ -198,8 +208,12 @@ export default function Footer() {
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    transition: 'all 0.2s',
+                    flexShrink: 0
                   }}
+                  title="Subscribe to newsletter"
+                  aria-label="Subscribe"
                 >
                   <Send size={14} />
                 </button>
