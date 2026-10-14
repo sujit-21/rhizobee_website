@@ -50,6 +50,7 @@ export default function ZoompeBanner() {
       {/* Background radial dots and glowing spheres */}
       <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.2 }} aria-hidden="true" />
       <div 
+        className="animate-glow-pulse"
         style={{
           position: 'absolute',
           left: '-6rem',
@@ -63,6 +64,7 @@ export default function ZoompeBanner() {
         aria-hidden="true"
       />
       <div 
+        className="animate-glow-pulse"
         style={{
           position: 'absolute',
           right: '-6rem',
@@ -71,7 +73,8 @@ export default function ZoompeBanner() {
           width: '22rem',
           borderRadius: '9999px',
           backgroundColor: 'rgba(217, 164, 65, 0.12)',
-          filter: 'blur(80px)'
+          filter: 'blur(80px)',
+          animationDelay: '3s'
         }}
         aria-hidden="true"
       />
@@ -86,7 +89,7 @@ export default function ZoompeBanner() {
           }}
         >
           {/* Left Column Description */}
-          <div>
+          <div className="animate-fade-in-up">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
               <img 
                 src="/images/zoompe/zoompe-logo.png" 
@@ -97,7 +100,7 @@ export default function ZoompeBanner() {
                 }}
               />
               <span className="badge-tag" style={{ color: 'var(--sky)' }}>
-                <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
+                <span className="beacon-pulse-green" style={{ marginRight: '6px' }} />
                 Retailer Portal
               </span>
             </div>
@@ -119,7 +122,7 @@ export default function ZoompeBanner() {
                 href="https://www.zoompe.in" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="btn-gold"
+                className="btn-gold btn-shimmer"
                 style={{ padding: '0.85rem 1.65rem', fontSize: '0.95rem' }}
               >
                 Visit Our Retailer Portal <ArrowUpRight size={18} />

@@ -143,7 +143,7 @@ export default function Navbar({ onOpenContactModal }) {
 
             <Link 
               to="/contact" 
-              className="btn-royal"
+              className="btn-royal btn-shimmer"
               style={{
                 padding: '0.65rem 1.35rem',
                 fontSize: '0.925rem',

@@ -144,6 +144,7 @@ export default function HomePage() {
       <section style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6rem', paddingBottom: '7rem' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.28 }} aria-hidden="true" />
         <div 
+          className="animate-glow-pulse"
           style={{
             position: 'absolute',
             right: '-8rem',
@@ -157,6 +158,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <div 
+          className="animate-glow-pulse"
           style={{
             position: 'absolute',
             left: '-6rem',
@@ -165,7 +167,8 @@ export default function HomePage() {
             width: '22rem',
             borderRadius: '9999px',
             backgroundColor: 'rgba(217, 164, 65, 0.15)',
-            filter: 'blur(90px)'
+            filter: 'blur(90px)',
+            animationDelay: '2.5s'
           }}
           aria-hidden="true"
         />
@@ -180,9 +183,9 @@ export default function HomePage() {
             }}
           >
             {/* Left Copy */}
-            <div>
+            <div className="animate-fade-in-up">
               <span className="badge-tag" style={{ color: 'var(--royal)' }}>
-                <span className="badge-dot" />
+                <span className="beacon-pulse-royal" style={{ marginRight: '6px' }} />
                 Fintech &amp; Digital Payment Solutions
               </span>
 
@@ -196,30 +199,30 @@ export default function HomePage() {
               </p>
 
               <div style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                <Link to="/contact" className="btn-royal" style={{ padding: '0.875rem 1.75rem', fontSize: '0.95rem' }}>
+                <Link to="/contact" className="btn-royal btn-shimmer" style={{ padding: '0.875rem 1.75rem', fontSize: '0.95rem' }}>
                   Talk to Our Team
                 </Link>
-                <Link to="/services" className="btn-outline-white" style={{ padding: '0.875rem 1.75rem', fontSize: '0.95rem' }}>
+                <Link to="/services" className="btn-outline-white btn-shimmer" style={{ padding: '0.875rem 1.75rem', fontSize: '0.95rem' }}>
                   Explore Services <ArrowRight size={16} />
                 </Link>
               </div>
 
               {/* Trust Badges */}
-              <div style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '1.5rem', fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.65)' }}>
+              <div style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '1.5rem', fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.75)' }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <CheckCircle2 size={18} color="var(--gold)" /> Secure &amp; Reliable
+                  <span className="beacon-pulse-green" /> Secure &amp; Reliable
                 </span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <CheckCircle2 size={18} color="var(--gold)" /> Fast &amp; Seamless
+                  <span className="beacon-pulse-green" /> Fast &amp; Seamless
                 </span>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <CheckCircle2 size={18} color="var(--gold)" /> Built for Growth
+                  <span className="beacon-pulse-green" /> Built for Growth
                 </span>
               </div>
             </div>
 
             {/* Right Interactive Mockup / Icon Mark */}
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: 'relative' }} className="animate-float-slow">
               <div 
                 style={{
                   borderRadius: '1.75rem',
