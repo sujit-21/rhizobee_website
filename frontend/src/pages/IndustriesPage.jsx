@@ -10,18 +10,22 @@ import {
   ArrowRight,
   TrendingUp,
   Receipt,
-  Headphones
+  Headphones,
+  Sparkles,
+  Zap
 } from 'lucide-react';
 import PartnerMarquee from '../components/PartnerMarquee';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function IndustriesPage() {
   const industries = [
     {
       title: 'Small Business Owners',
       badge: 'Counter Retail',
+      image: '/images/home/product-soundbox.jpg',
       icon: <Store size={26} color="var(--gold)" />,
       subtitle: 'Kirana stores, neighborhood cafes, pharmacies, salons, and local retail',
-      desc: 'Busy neighborhood merchants need zero-friction tools that eliminate cashier doubt and keep lines moving quickly.',
+      desc: 'Busy neighborhood merchants need zero-friction tools that eliminate cashier doubt and keep counter lines moving quickly.',
       solutions: [
         'Instant 4G Voice Soundbox announcing UPI receipts in regional dialects',
         'Weatherproof dynamic & static UPI QR standees',
@@ -32,6 +36,7 @@ export default function IndustriesPage() {
     {
       title: 'SMEs',
       badge: 'Growing Brands',
+      image: '/images/home/product-pos.jpg',
       icon: <Store size={26} color="var(--royal)" />,
       subtitle: 'Multi-outlet retailers, regional apparel brands, lifestyle stores, and hospitality',
       desc: 'Expanding retail chains that require consistent payment experiences, centralized settlement reports, and fast cashier training.',
@@ -45,6 +50,7 @@ export default function IndustriesPage() {
     {
       title: 'MSMEs',
       badge: 'Manufacturing & B2B',
+      image: '/images/services/gateway-dashboard.jpg',
       icon: <Factory size={26} color="var(--sky)" />,
       subtitle: 'Manufacturing units, industrial suppliers, distributors, and logistics firms',
       desc: 'B2B commerce entities dealing with vendor invoicing, partial deposits, and large ticket NEFT/RTGS and card settlements.',
@@ -58,6 +64,7 @@ export default function IndustriesPage() {
     {
       title: 'Enterprises',
       badge: 'National Chains',
+      image: '/images/solutions/enterprise-hub.jpg',
       icon: <Building2 size={26} color="var(--royal)" />,
       subtitle: 'Large retail conglomerates, omnichannel apparel, modern trade supermarkets',
       desc: 'High-volume national networks requiring ultra-low latency transaction switches, high availability SLAs, and custom ERP integration.',
@@ -71,6 +78,7 @@ export default function IndustriesPage() {
     {
       title: 'Corporates',
       badge: 'Employee & Rewards',
+      image: '/images/home/product-cards.jpg',
       icon: <Users2 size={26} color="var(--gold)" />,
       subtitle: 'Large institutions, tech firms, corporate campuses, and HR divisions',
       desc: 'Organizations looking to modernize employee perks, meal allowances, festive gifts, and partner channel incentives.',
@@ -86,111 +94,179 @@ export default function IndustriesPage() {
   return (
     <div>
       {/* HERO SECTION */}
-      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6.5rem', paddingBottom: '7rem', position: 'relative', overflow: 'hidden' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.25 }} />
-        <div className="container-custom" style={{ position: 'relative', maxWidth: '48rem', textAlign: 'center' }}>
-          <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--sky)' }}>
-            <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
-            Industry Specialization
-          </span>
+        <div 
+          className="animate-glow-pulse"
+          style={{
+            position: 'absolute',
+            right: '-6rem',
+            top: '-6rem',
+            height: '28rem',
+            width: '28rem',
+            borderRadius: '9999px',
+            backgroundColor: 'rgba(22, 86, 214, 0.35)',
+            filter: 'blur(90px)',
+            pointerEvents: 'none'
+          }} 
+        />
 
-          <h1 style={{ fontSize: '3.15rem', fontWeight: 600, letterSpacing: '-0.02em', marginTop: '1.25rem', lineHeight: 1.15 }}>
-            Digital payment solutions for <span className="text-gradient">every stage of business</span>
-          </h1>
+        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '50rem', textAlign: 'center' }}>
+          <ScrollReveal animation="fade-up">
+            <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--sky)' }}>
+              <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
+              Industry Specialization
+            </span>
 
-          <p style={{ marginTop: '1.25rem', fontSize: '1.125rem', lineHeight: 1.65, color: 'rgba(255, 255, 255, 0.75)' }}>
-            From single-counter retail to enterprise omnichannel chains, Rhizobee aligns payment technology to the exact scale of your operations.
-          </p>
+            <h1 style={{ fontSize: '3.3rem', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.15 }}>
+              Digital payment solutions for <span className="text-gradient">every stage of business</span>
+            </h1>
 
-          <div style={{ marginTop: '2.25rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-            <Link to="/contact" className="btn-royal" style={{ padding: '0.85rem 1.75rem' }}>
-              Find Your Solution
-            </Link>
-          </div>
+            <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)' }}>
+              From single-counter retail kiranas to enterprise omnichannel chains, Rhizobee aligns payment technology to the exact scale of your operations.
+            </p>
+
+            <div style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+              <Link to="/contact" className="btn-royal btn-shimmer" style={{ padding: '0.9rem 2rem', fontSize: '1rem' }}>
+                Find Your Industry Solution <ArrowRight size={16} />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* DETAILED INDUSTRY SECTIONS */}
+      {/* DETAILED INDUSTRY SECTIONS WITH PHOTOS */}
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container-custom">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-            {industries.map((ind, idx) => (
-              <div 
-                key={idx}
-                style={{
-                  padding: '2.5rem',
-                  borderRadius: '1.5rem',
-                  backgroundColor: idx % 2 === 0 ? 'var(--paper)' : '#ffffff',
-                  border: '1px solid var(--line)',
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                  gap: '2.5rem',
-                  alignItems: 'center'
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                    <div style={{ padding: '0.75rem', borderRadius: '0.75rem', backgroundColor: '#ffffff', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-                      {ind.icon}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+            {industries.map((ind, idx) => {
+              const isEven = idx % 2 === 1;
+              return (
+                <ScrollReveal key={idx} animation="fade-up" delay={idx * 50}>
+                  <div 
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                      gap: '3.5rem',
+                      alignItems: 'center',
+                      backgroundColor: 'var(--paper)',
+                      borderRadius: '1.75rem',
+                      padding: '2.5rem',
+                      border: '1px solid var(--line)'
+                    }}
+                  >
+                    {/* Media Column */}
+                    <div style={{ order: isEven ? 2 : 1, position: 'relative' }}>
+                      <div 
+                        style={{
+                          borderRadius: '1.25rem',
+                          overflow: 'hidden',
+                          border: '1px solid var(--line)',
+                          boxShadow: '0 20px 40px -15px rgba(0, 0, 0, 0.12)',
+                          backgroundColor: '#0b1528',
+                          height: '280px'
+                        }}
+                      >
+                        <img 
+                          src={ind.image} 
+                          alt={ind.title} 
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            display: 'block'
+                          }} 
+                        />
+                      </div>
+                      <span 
+                        style={{
+                          position: 'absolute',
+                          top: '16px',
+                          left: '16px',
+                          padding: '6px 14px',
+                          borderRadius: '9999px',
+                          backgroundColor: 'rgba(10, 26, 58, 0.9)',
+                          color: '#ffffff',
+                          fontSize: '0.75rem',
+                          fontWeight: 600,
+                          backdropFilter: 'blur(8px)',
+                          border: '1px solid rgba(255, 255, 255, 0.2)'
+                        }}
+                      >
+                        {ind.badge}
+                      </span>
                     </div>
-                    <span className="font-data" style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--royal)', padding: '0.25rem 0.65rem', borderRadius: '9999px', backgroundColor: '#ffffff' }}>
-                      {ind.badge}
-                    </span>
-                  </div>
 
-                  <h2 style={{ fontSize: '1.85rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.35rem' }}>
-                    {ind.title}
-                  </h2>
-                  <div style={{ fontSize: '0.9rem', color: 'var(--royal)', fontWeight: 500, marginBottom: '1rem' }}>
-                    {ind.subtitle}
-                  </div>
-                  <p style={{ fontSize: '0.925rem', lineHeight: 1.65, color: 'var(--slate)', marginBottom: '1.5rem' }}>
-                    {ind.desc}
-                  </p>
-                  <Link to="/contact" className="btn-royal" style={{ fontSize: '0.85rem' }}>
-                    Get Started for {ind.title} <ArrowRight size={14} />
-                  </Link>
-                </div>
+                    {/* Content Column */}
+                    <div style={{ order: isEven ? 1 : 2 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                        <div style={{ padding: '0.6rem', borderRadius: '0.75rem', backgroundColor: '#ffffff', border: '1px solid var(--line)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {ind.icon}
+                        </div>
+                        <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--royal)', fontFamily: 'var(--font-data)' }}>
+                          Tailored Deployment
+                        </span>
+                      </div>
 
-                <div style={{ backgroundColor: '#ffffff', padding: '2rem', borderRadius: '1.25rem', border: '1px solid var(--line)' }}>
-                  <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--ink)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '1.25rem', fontFamily: 'var(--font-data)' }}>
-                    Tailored Capabilities
-                  </h4>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-                    {ind.solutions.map((sol, sIdx) => (
-                      <li key={sIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '0.9rem', color: 'var(--slate)', lineHeight: 1.5 }}>
-                        <CheckCircle2 size={16} color="var(--royal)" style={{ shrink: 0, marginTop: '0.2rem' }} />
-                        <span>{sol}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+                      <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>
+                        {ind.title}
+                      </h2>
+                      <p style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--royal)', marginBottom: '0.85rem' }}>
+                        {ind.subtitle}
+                      </p>
+                      <p style={{ fontSize: '0.925rem', lineHeight: 1.65, color: 'var(--slate)', marginBottom: '1.5rem' }}>
+                        {ind.desc}
+                      </p>
+
+                      <div style={{ marginBottom: '1.75rem' }}>
+                        <div style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--ink)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.65rem' }}>
+                          Recommended Payment Stack
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          {ind.solutions.map((sol, i) => (
+                            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '0.875rem', color: 'var(--slate)', lineHeight: 1.5 }}>
+                              <CheckCircle2 size={16} color="var(--royal)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                              <span>{sol}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <Link to="/contact" className="btn-royal btn-shimmer" style={{ padding: '0.75rem 1.5rem', fontSize: '0.9rem' }}>
+                        Deploy for {ind.title} <ArrowRight size={15} />
+                      </Link>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* PARTNER MARQUEE */}
-      <PartnerMarquee 
-        title="Backed by leading banks and payment aggregators" 
-        subtitle="Regulated infrastructure trusted by merchants across every Indian state." 
-      />
+      <PartnerMarquee />
 
       {/* CTA */}
-      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', padding: '5.5rem 1.25rem', textAlign: 'center' }}>
-        <div style={{ maxWidth: '40rem', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 600, letterSpacing: '-0.02em' }}>
-            Don't see your business type listed?
-          </h2>
-          <p style={{ marginTop: '0.85rem', color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', lineHeight: 1.6 }}>
-            We customize hardware deployments and aggregator routing for specialized commerce workflows.
-          </p>
-          <div style={{ marginTop: '2rem' }}>
-            <Link to="/contact" className="btn-royal" style={{ padding: '0.85rem 2rem', fontSize: '1rem' }}>
-              Speak with a Specialist <ArrowRight size={16} />
-            </Link>
-          </div>
+      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', padding: '6rem 1.25rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.2 }} />
+        <div style={{ maxWidth: '42rem', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <ScrollReveal animation="fade-up">
+            <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--gold)' }}>
+              <Sparkles size={14} color="var(--gold)" /> CUSTOM FIT
+            </span>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '-0.025em', marginTop: '0.75rem' }}>
+              Find the perfect payment setup for your business
+            </h2>
+            <p style={{ marginTop: '0.85rem', color: 'rgba(255, 255, 255, 0.78)', fontSize: '1.05rem', lineHeight: 1.65 }}>
+              Our payment consultants work directly with your team to configure terminals, settlement terms, and gateway links.
+            </p>
+            <div style={{ marginTop: '2.25rem' }}>
+              <Link to="/contact" className="btn-royal btn-shimmer" style={{ padding: '0.95rem 2.25rem', fontSize: '1rem' }}>
+                Schedule Industry Consultation <ArrowRight size={16} />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

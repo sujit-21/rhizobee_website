@@ -13,15 +13,20 @@ import {
   Lock, 
   Cpu, 
   BarChart2, 
-  Sparkles
+  Sparkles,
+  Zap,
+  Layers,
+  Server
 } from 'lucide-react';
 import PartnerMarquee from '../components/PartnerMarquee';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function SolutionsPage() {
   const solutionPackages = [
     {
       title: 'In-Store Counter Acceptance',
       badge: 'Physical Retail',
+      image: '/images/home/retail-merchant.jpg',
       icon: <Volume2 size={24} color="var(--royal)" />,
       desc: 'Complete suite for brick-and-mortar storefronts, supermarkets, and restaurants. Combines high-speed Soundboxes for voice confirmation with 4G Android POS devices for card taps and receipt printing.',
       features: [
@@ -35,6 +40,7 @@ export default function SolutionsPage() {
     {
       title: 'Digital & Omnichannel Checkout',
       badge: 'Online Commerce',
+      image: '/images/services/gateway-dashboard.jpg',
       icon: <CreditCard size={24} color="var(--royal)" />,
       desc: 'Single developer-friendly integration connecting your website or mobile application to India’s top payment rails with intelligent dynamic fallback routing.',
       features: [
@@ -48,6 +54,7 @@ export default function SolutionsPage() {
     {
       title: 'Retailer Network & Rural Distribution',
       badge: 'Agent Distribution',
+      image: '/images/home/product-soundbox.jpg',
       icon: <Smartphone size={24} color="var(--gold)" />,
       desc: 'Powered by the Zoompe Retailer Portal, allowing retailers and CSP points to convert their counters into neighborhood banking kiosks with AePS, Micro ATM, and bill payments.',
       features: [
@@ -59,186 +66,219 @@ export default function SolutionsPage() {
       idealFor: 'Kirana stores, CSP kiosks, village entrepreneurs, regional distribution agents'
     },
     {
-      title: 'Corporate Rewards & PPI Wallets',
-      badge: 'Enterprise & HR',
-      icon: <Wallet size={24} color="var(--royal)" />,
-      desc: 'Semi-closed digital wallets and branded gift voucher programs tailored for employee benefits, vendor payouts, customer acquisition rewards, and loyalty programs.',
+      title: 'Enterprise FinOps & Corporate Switch',
+      badge: 'High-Volume Enterprise',
+      image: '/images/solutions/enterprise-hub.jpg',
+      icon: <Server size={24} color="var(--royal)" />,
+      desc: 'Multi-bank transaction orchestration switch with intelligent dynamic failovers, custom BIN routing, automated vendor disbursements, and deep ERP integration.',
       features: [
-        '200+ top brand vouchers (Amazon, Flipkart, Swiggy, Zomato)',
-        'Co-branded corporate prepaid expense cards',
-        'Instant digital distribution via API or batch excel uploads',
-        'Real-time spending reports and unredeemed balances tracking'
+        'Sub-second transaction processing with 99.98% platform reliability',
+        'Direct clearing integrations with India’s leading private & PSU banks',
+        'Unified multi-entity ledger for automated franchisee settlements',
+        '24/7 dedicated enterprise technical support and custom SLA agreements'
       ],
-      idealFor: 'Enterprises, corporate HR teams, loyalty platform providers, marketing agencies'
+      idealFor: 'Enterprises, multi-brand chains, conglomerates, large fintech platforms'
     }
   ];
 
   return (
     <div>
       {/* HERO SECTION */}
-      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6.5rem', paddingBottom: '7rem', position: 'relative', overflow: 'hidden' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.25 }} />
-        <div className="container-custom" style={{ position: 'relative', maxWidth: '48rem', textAlign: 'center' }}>
-          <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--sky)' }}>
-            <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
-            Integrated Architecture
-          </span>
+        <div 
+          className="animate-glow-pulse"
+          style={{
+            position: 'absolute',
+            right: '-6rem',
+            top: '-6rem',
+            height: '28rem',
+            width: '28rem',
+            borderRadius: '9999px',
+            backgroundColor: 'rgba(22, 86, 214, 0.35)',
+            filter: 'blur(90px)',
+            pointerEvents: 'none'
+          }} 
+        />
 
-          <h1 style={{ fontSize: '3.15rem', fontWeight: 600, letterSpacing: '-0.02em', marginTop: '1.25rem', lineHeight: 1.15 }}>
-            The complete payment solution, <span className="text-gradient">one merchant relationship</span>
-          </h1>
+        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '50rem', textAlign: 'center' }}>
+          <ScrollReveal animation="fade-up">
+            <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--sky)' }}>
+              <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
+              Integrated Payment Architecture
+            </span>
 
-          <p style={{ marginTop: '1.25rem', fontSize: '1.125rem', lineHeight: 1.65, color: 'rgba(255, 255, 255, 0.75)' }}>
-            We bring all payment modalities — soundboxes, POS terminals, dynamic QR, payment gateways, and prepaid wallets — together into a cohesive ecosystem.
-          </p>
+            <h1 style={{ fontSize: '3.3rem', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.15 }}>
+              The complete payment solution, <span className="text-gradient">one merchant relationship</span>
+            </h1>
 
-          <div style={{ marginTop: '2.25rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-            <Link to="/contact" className="btn-royal" style={{ padding: '0.85rem 1.75rem' }}>
-              Explore Custom Package
-            </Link>
-          </div>
+            <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)' }}>
+              We bring all payment modalities — soundboxes, POS terminals, dynamic QR, payment gateways, and enterprise switches — together into a unified, high-reliability architecture.
+            </p>
+
+            <div style={{ marginTop: '2.5rem', display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+              <Link to="/contact" className="btn-royal btn-shimmer" style={{ padding: '0.9rem 2rem', fontSize: '1rem' }}>
+                Explore Custom Package <ArrowRight size={16} />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* SOLUTION PACKAGES */}
+      {/* SOLUTION PACKAGES GRID WITH PHOTOS */}
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container-custom">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2.25rem' }}>
             {solutionPackages.map((pkg, idx) => (
+              <ScrollReveal key={idx} animation="fade-up" delay={idx * 100}>
+                <div 
+                  className="product-showcase-card"
+                  style={{ height: '100%', justifyContent: 'space-between' }}
+                >
+                  <div>
+                    <div className="image-wrapper" style={{ height: '200px' }}>
+                      <img src={pkg.image} alt={pkg.title} />
+                      <span 
+                        style={{
+                          position: 'absolute',
+                          top: '12px',
+                          left: '12px',
+                          padding: '4px 12px',
+                          borderRadius: '9999px',
+                          backgroundColor: 'rgba(10, 26, 58, 0.88)',
+                          color: '#ffffff',
+                          fontSize: '0.725rem',
+                          fontWeight: 600,
+                          backdropFilter: 'blur(8px)',
+                          border: '1px solid rgba(255, 255, 255, 0.2)'
+                        }}
+                      >
+                        {pkg.badge}
+                      </span>
+                    </div>
+
+                    <div style={{ padding: '2rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.85rem' }}>
+                        <div style={{ padding: '0.5rem', borderRadius: '0.65rem', backgroundColor: 'var(--paper)', border: '1px solid var(--line)' }}>
+                          {pkg.icon}
+                        </div>
+                        <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--ink)' }}>
+                          {pkg.title}
+                        </h3>
+                      </div>
+
+                      <p style={{ fontSize: '0.925rem', lineHeight: 1.65, color: 'var(--slate)', marginBottom: '1.5rem' }}>
+                        {pkg.desc}
+                      </p>
+
+                      <div style={{ borderTop: '1px solid var(--line)', paddingTop: '1.25rem', marginBottom: '1.25rem' }}>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '0.65rem' }}>
+                          Key Architecture Features
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          {pkg.features.map((f, i) => (
+                            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--slate)', lineHeight: 1.5 }}>
+                              <CheckCircle2 size={16} color="var(--royal)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                              <span>{f}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div style={{ backgroundColor: 'var(--paper)', padding: '0.85rem 1rem', borderRadius: '0.75rem', fontSize: '0.825rem', color: 'var(--slate)' }}>
+                        <strong style={{ color: 'var(--ink)' }}>Ideal for:</strong> {pkg.idealFor}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ padding: '0 2rem 2rem' }}>
+                    <Link to="/contact" className="btn-royal btn-shimmer" style={{ width: '100%', padding: '0.75rem 1rem', fontSize: '0.875rem' }}>
+                      Deploy this Solution <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PARTNER ECOSYSTEM */}
+      <PartnerMarquee />
+
+      {/* ENTERPRISE COMMAND SECTION */}
+      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+        <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.16 }} />
+        <div className="container-custom" style={{ position: 'relative', zIndex: 1 }}>
+          <div 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '3.5rem',
+              alignItems: 'center'
+            }}
+          >
+            <ScrollReveal animation="fade-up">
+              <span className="badge-tag" style={{ color: 'var(--sky)' }}>
+                <Zap size={14} color="var(--sky)" /> HIGH-SPEED ROUTING
+              </span>
+              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+                Resilient infrastructure built for millions of daily transactions
+              </h2>
+              <p style={{ fontSize: '1.05rem', color: 'rgba(255, 255, 255, 0.75)', lineHeight: 1.7, marginTop: '1rem' }}>
+                Our enterprise multi-bank switch dynamically balances traffic between ICICI, HDFC, Axis, SBI, and certified payment aggregators, providing real-time failover if any single rail experiences downtime.
+              </p>
+              <div style={{ marginTop: '2rem', display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                <div style={{ padding: '1rem 1.25rem', borderRadius: '0.85rem', backgroundColor: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--gold-soft)' }}>99.98%</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.7)' }}>Platform Switch Uptime</div>
+                </div>
+                <div style={{ padding: '1rem 1.25rem', borderRadius: '0.85rem', backgroundColor: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#4ade80' }}>&lt; 250ms</div>
+                  <div style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.7)' }}>Average Switch Latency</div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal animation="fade-up" delay={200}>
               <div 
-                key={idx} 
-                className="feature-card" 
-                style={{ 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  justifyContent: 'space-between',
-                  padding: '2.25rem'
+                style={{
+                  borderRadius: '1.5rem',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.7)'
                 }}
               >
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-                    <div style={{ height: '3rem', width: '3rem', borderRadius: '0.75rem', backgroundColor: 'rgba(22, 86, 214, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      {pkg.icon}
-                    </div>
-                    <span className="font-data" style={{ fontSize: '0.75rem', padding: '0.25rem 0.65rem', borderRadius: '9999px', backgroundColor: 'var(--paper)', color: 'var(--royal)', fontWeight: 600 }}>
-                      {pkg.badge}
-                    </span>
-                  </div>
-
-                  <h3 style={{ fontSize: '1.35rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.75rem' }}>
-                    {pkg.title}
-                  </h3>
-
-                  <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'var(--slate)', marginBottom: '1.5rem' }}>
-                    {pkg.desc}
-                  </p>
-
-                  <h4 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--ink)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.85rem', fontFamily: 'var(--font-data)' }}>
-                    Included Features
-                  </h4>
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem', marginBottom: '1.5rem' }}>
-                    {pkg.features.map((feat, fIdx) => (
-                      <li key={fIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.875rem', color: 'var(--slate)', lineHeight: 1.5 }}>
-                        <CheckCircle2 size={16} color="var(--royal)" style={{ shrink: 0, marginTop: '0.15rem' }} />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div style={{ paddingTop: '1.25rem', borderTop: '1px solid var(--paper-dim)' }}>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--slate-dim)', marginBottom: '0.85rem' }}>
-                    <strong>Ideal for:</strong> {pkg.idealFor}
-                  </div>
-                  <Link 
-                    to="/contact" 
-                    className="btn-royal"
-                    style={{ width: '100%', justifyContent: 'center', fontSize: '0.875rem' }}
-                  >
-                    Deploy Solution <ArrowRight size={15} />
-                  </Link>
-                </div>
+                <img 
+                  src="/images/solutions/enterprise-hub.jpg" 
+                  alt="Rhizobee enterprise fintech switch command center" 
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
               </div>
-            ))}
+            </ScrollReveal>
           </div>
         </div>
       </section>
-
-      {/* SECURITY & BANKING BACKING */}
-      <section style={{ backgroundColor: 'var(--paper)', paddingTop: '6rem', paddingBottom: '6rem' }}>
-        <div className="container-custom">
-          <div style={{ maxWidth: '42rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
-            <span className="badge-tag" style={{ justifyContent: 'center' }}>
-              <span className="badge-dot" />
-              Institutional Security
-            </span>
-            <h2 style={{ fontSize: '2.35rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
-              Solutions backed by regulated banking partners
-            </h2>
-            <p style={{ fontSize: '1rem', color: 'var(--slate)', marginTop: '0.75rem' }}>
-              Enterprise grade encryption, zero trust routing, and real-time fraud mitigation on every rupee.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
-            {[
-              {
-                icon: <Lock size={22} color="var(--royal)" />,
-                title: 'PCI-DSS Compliant Rails',
-                desc: 'All sensitive card data is stored and handled within Level 1 certified token vaults.'
-              },
-              {
-                icon: <ShieldCheck size={22} color="var(--gold)" />,
-                title: 'RBI Tokenization & 2FA',
-                desc: 'Compliant with all Reserve Bank of India mandates on recurring mandates and device binding.'
-              },
-              {
-                icon: <Cpu size={22} color="var(--royal)" />,
-                title: 'Automated Fraud Engine',
-                desc: 'Machine-learning heuristics detecting velocity anomalies and stolen credential usage.'
-              },
-              {
-                icon: <BarChart2 size={22} color="var(--gold)" />,
-                title: 'Consolidated Ledgers',
-                desc: 'T+1 or Instant settlements with clear breakdowns of MDR, GST, and net merchant balances.'
-              }
-            ].map((sec, idx) => (
-              <div key={idx} className="feature-card">
-                <div style={{ marginBottom: '1rem' }}>
-                  {sec.icon}
-                </div>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.5rem' }}>
-                  {sec.title}
-                </h3>
-                <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--slate)' }}>
-                  {sec.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* PARTNER MARQUEE */}
-      <PartnerMarquee 
-        title="Backed by leading banks and payment aggregators" 
-        subtitle="Our architecture interfaces directly with national clearing houses and payment aggregators."
-      />
 
       {/* CTA */}
-      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', padding: '5.5rem 1.25rem', textAlign: 'center' }}>
-        <div style={{ maxWidth: '40rem', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 600, letterSpacing: '-0.02em' }}>
-            Not sure which solution fits your business?
-          </h2>
-          <p style={{ marginTop: '0.85rem', color: 'rgba(255, 255, 255, 0.7)', fontSize: '1rem', lineHeight: 1.6 }}>
-            Our payment solution architects will assess your point of sale, web traffic, or disbursement needs.
-          </p>
-          <div style={{ marginTop: '2rem' }}>
-            <Link to="/contact" className="btn-royal" style={{ padding: '0.85rem 2rem', fontSize: '1rem' }}>
-              Schedule Technical Consultation <ArrowRight size={16} />
-            </Link>
-          </div>
+      <section style={{ backgroundColor: 'var(--paper)', padding: '6rem 1.25rem', textAlign: 'center', borderTop: '1px solid var(--line)' }}>
+        <div style={{ maxWidth: '42rem', margin: '0 auto' }}>
+          <ScrollReveal animation="fade-up">
+            <span className="badge-tag" style={{ justifyContent: 'center' }}>
+              <Sparkles size={14} color="var(--royal)" /> BESPOKE ARCHITECTURE
+            </span>
+            <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.025em', marginTop: '0.75rem' }}>
+              Have unique checkout requirements?
+            </h2>
+            <p style={{ marginTop: '0.85rem', color: 'var(--slate)', fontSize: '1.05rem', lineHeight: 1.65 }}>
+              Our payment engineers design custom API wrappers, batch settlement structures, and white-labeled terminal solutions.
+            </p>
+            <div style={{ marginTop: '2.25rem' }}>
+              <Link to="/contact" className="btn-royal btn-shimmer" style={{ padding: '0.95rem 2.25rem', fontSize: '1rem' }}>
+                Schedule Architecture Review <ArrowRight size={16} />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>
