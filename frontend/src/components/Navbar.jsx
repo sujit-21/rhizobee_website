@@ -36,15 +36,22 @@ export default function Navbar({ onOpenContactModal }) {
 
   return (
     <header 
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? 'shadow-sm backdrop-blur-md' : 'backdrop-blur-sm'
-      }`}
+      className="navbar-sticky"
       style={{ 
+        position: 'sticky',
+        top: 0,
+        left: 0,
+        right: 0,
+        width: '100%',
+        zIndex: 1000,
         backgroundColor: scrolled 
-          ? (isDark ? 'rgba(11, 17, 32, 0.94)' : 'rgba(255, 255, 255, 0.92)') 
-          : (isDark ? 'rgba(11, 17, 32, 0.82)' : 'rgba(255, 255, 255, 0.8)'),
-        borderBottom: `1px solid ${isDark ? '#1e293b' : 'var(--line)'}`,
-        transition: 'background-color 0.25s ease, border-color 0.25s ease'
+          ? (isDark ? 'rgba(5, 12, 30, 0.95)' : 'rgba(255, 255, 255, 0.95)') 
+          : (isDark ? 'rgba(5, 12, 30, 0.88)' : 'rgba(255, 255, 255, 0.88)'),
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'var(--line)'}`,
+        boxShadow: scrolled ? '0 4px 20px -2px rgba(0, 0, 0, 0.08)' : 'none',
+        transition: 'background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease'
       }}
     >
       <div 

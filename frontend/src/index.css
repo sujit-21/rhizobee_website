@@ -432,6 +432,15 @@ h1, h2, h3, h4, h5, h6, .font-display {
   border: 1px solid var(--line);
 }
 
+/* Fixed & Sticky Navbar */
+.navbar-sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  width: 100% !important;
+}
+
 /* Custom UI Components & Helpers */
 .container-custom {
   max-width: 80rem;
