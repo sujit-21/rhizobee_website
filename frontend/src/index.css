@@ -280,6 +280,77 @@ h1, h2, h3, h4, h5, h6, .font-display {
   }
 }
 
+/* Figma Auto-Moving Infinite Ribbon */
+.auto-moving-ribbon {
+  --ribbon-fade: clamp(30px, 8vw, 120px);
+  mask-image: linear-gradient(to right, transparent, black var(--ribbon-fade), black calc(100% - var(--ribbon-fade)), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black var(--ribbon-fade), black calc(100% - var(--ribbon-fade)), transparent);
+}
+
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: figmaRibbonMove 26s linear infinite;
+}
+
+.auto-moving-ribbon:hover .ribbon-track {
+  animation-play-state: paused;
+}
+
+@keyframes figmaRibbonMove {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Figma Animated Border Beam (Orbiting Light Beam) */
+@keyframes borderBeamRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.border-beam-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.75rem;
+}
+
+.border-beam-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 80deg,
+    var(--sky) 140deg,
+    var(--gold-soft) 180deg,
+    transparent 220deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 6s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.border-beam-card-inner {
+  position: relative;
+  z-index: 1;
+  background-color: var(--ink);
+  border-radius: calc(1.75rem - 2px);
+  margin: 2px;
+}
+
 /* Modern Fintech Interactive Card Styles */
 .fintech-card-interactive {
   background-color: var(--card-bg, #ffffff);

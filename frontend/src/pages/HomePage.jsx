@@ -30,6 +30,7 @@ import ZoompeBanner from '../components/ZoompeBanner';
 import FaqAccordion from '../components/FaqAccordion';
 import AnimatedCounter from '../components/AnimatedCounter';
 import ScrollReveal from '../components/ScrollReveal';
+import LivePaymentTicker from '../components/LivePaymentTicker';
 
 export default function HomePage() {
   const defaultTestimonials = [
@@ -324,78 +325,81 @@ export default function HomePage() {
                   <span>0.3s Voice Trigger</span>
                 </div>
 
-                {/* Main Hero Hardware Photo Frame */}
+                {/* Main Hero Hardware Photo Frame with Figma Border Beam */}
                 <div 
+                  className="border-beam-card"
                   style={{
-                    position: 'relative',
-                    borderRadius: '1.75rem',
-                    overflow: 'hidden',
-                    border: '1px solid rgba(255, 255, 255, 0.16)',
-                    background: 'linear-gradient(145deg, rgba(20, 42, 82, 0.8) 0%, rgba(10, 26, 58, 0.95) 100%)',
-                    boxShadow: '0 30px 70px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-                    padding: '12px'
+                    boxShadow: '0 30px 70px -15px rgba(0, 0, 0, 0.75), 0 0 35px rgba(14, 165, 233, 0.25)'
                   }}
                 >
-                  <div style={{ borderRadius: '1.25rem', overflow: 'hidden', position: 'relative' }}>
-                    <img 
-                      src="/images/home/hero-hardware.jpg" 
-                      alt="Rhizobee Smart Payment Hardware - 4G Soundbox, Android POS Terminal and QR Code Standee" 
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        display: 'block',
-                        objectFit: 'cover',
-                        maxHeight: '380px'
-                      }}
-                    />
-
-                    {/* Gradient Overlay for Sleek Contrast */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        inset: 0,
-                        background: 'linear-gradient(to top, rgba(10, 26, 58, 0.85) 0%, rgba(10, 26, 58, 0.1) 40%, transparent 100%)',
-                        pointerEvents: 'none'
-                      }}
-                    />
-
-                    {/* Overlay Label inside Photo */}
-                    <div 
-                      style={{
-                        position: 'absolute',
-                        bottom: '14px',
-                        left: '16px',
-                        right: '16px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        color: '#ffffff'
-                      }}
-                    >
-                      <div>
-                        <div style={{ fontSize: '0.875rem', fontWeight: 700, letterSpacing: '-0.01em' }}>
-                          Rhizobee Flagship Counter Suite
-                        </div>
-                        <div style={{ fontSize: '0.725rem', color: 'rgba(255, 255, 255, 0.75)' }}>
-                          Soundbox 4G • Android POS • Dynamic QR Standee
-                        </div>
-                      </div>
-                      <span 
+                  <div 
+                    className="border-beam-card-inner"
+                    style={{
+                      background: 'linear-gradient(145deg, rgba(20, 42, 82, 0.85) 0%, rgba(5, 12, 30, 0.98) 100%)',
+                      padding: '12px'
+                    }}
+                  >
+                    <div style={{ borderRadius: '1.25rem', overflow: 'hidden', position: 'relative' }}>
+                      <img 
+                        src="/images/home/hero-hardware.jpg" 
+                        alt="Rhizobee Smart Payment Hardware - 4G Soundbox, Android POS Terminal and QR Code Standee" 
                         style={{
-                          fontSize: '0.72rem',
-                          fontWeight: 600,
-                          backgroundColor: 'rgba(34, 197, 94, 0.25)',
-                          border: '1px solid rgba(34, 197, 94, 0.5)',
-                          color: '#4ade80',
-                          padding: '4px 10px',
-                          borderRadius: '9999px',
+                          width: '100%',
+                          height: 'auto',
+                          display: 'block',
+                          objectFit: 'cover',
+                          maxHeight: '380px'
+                        }}
+                      />
+
+                      {/* Gradient Overlay for Sleek Contrast */}
+                      <div 
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          background: 'linear-gradient(to top, rgba(5, 12, 30, 0.88) 0%, rgba(5, 12, 30, 0.1) 40%, transparent 100%)',
+                          pointerEvents: 'none'
+                        }}
+                      />
+
+                      {/* Overlay Label inside Photo */}
+                      <div 
+                        style={{
+                          position: 'absolute',
+                          bottom: '14px',
+                          left: '16px',
+                          right: '16px',
                           display: 'flex',
                           alignItems: 'center',
-                          gap: '4px'
+                          justifyContent: 'space-between',
+                          color: '#ffffff'
                         }}
                       >
-                        <span className="beacon-pulse-green" /> Live
-                      </span>
+                        <div>
+                          <div style={{ fontSize: '0.875rem', fontWeight: 700, letterSpacing: '-0.01em' }}>
+                            Rhizobee Flagship Counter Suite
+                          </div>
+                          <div style={{ fontSize: '0.725rem', color: 'rgba(255, 255, 255, 0.75)' }}>
+                            Soundbox 4G • Android POS • Dynamic QR Standee
+                          </div>
+                        </div>
+                        <span 
+                          style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 600,
+                            backgroundColor: 'rgba(34, 197, 94, 0.25)',
+                            border: '1px solid rgba(34, 197, 94, 0.5)',
+                            color: '#4ade80',
+                            padding: '4px 10px',
+                            borderRadius: '9999px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}
+                        >
+                          <span className="beacon-pulse-green" /> Live
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -413,7 +417,7 @@ export default function HomePage() {
                     gap: '8px',
                     padding: '8px 14px',
                     borderRadius: '9999px',
-                    backgroundColor: 'rgba(10, 26, 58, 0.95)',
+                    backgroundColor: 'rgba(5, 12, 30, 0.95)',
                     border: '1px solid rgba(217, 164, 65, 0.5)',
                     backdropFilter: 'blur(12px)',
                     boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(217, 164, 65, 0.3)',
@@ -432,6 +436,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ========================================================
+          AUTO-MOVING LIVE PAYMENT & TRANSACTION TICKER (FIGMA)
+          ======================================================== */}
+      <LivePaymentTicker />
 
       {/* ========================================================
           2. PARTNER MARQUEE WITH REAL ACCREDITED PARTNER LOGOS
