@@ -51,8 +51,8 @@ export default function LivePaymentTicker() {
           display: 'flex',
           justifyContent: 'center',
           padding: '0.75rem 1rem',
-          backgroundColor: 'rgba(5, 12, 30, 0.95)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+          backgroundColor: '#ffedd5',
+          borderBottom: '1px solid #fed7aa'
         }}
       >
         <div 
@@ -62,28 +62,27 @@ export default function LivePaymentTicker() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '10px',
-            padding: '6px 16px',
+            padding: '6px 18px',
             borderRadius: '9999px',
-            backgroundColor: 'rgba(29, 78, 216, 0.15)',
-            border: '1px solid rgba(56, 189, 248, 0.35)',
-            backdropFilter: 'blur(10px)',
+            backgroundColor: '#ffffff',
+            border: '1px solid #fed7aa',
             fontSize: '0.8rem',
-            color: '#ffffff',
-            boxShadow: '0 4px 15px rgba(29, 78, 216, 0.25)',
+            color: '#1c1917',
+            boxShadow: '0 2px 10px rgba(251, 146, 60, 0.12)',
             transition: 'all 0.3s ease'
           }}
         >
-          <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#4ade80', fontWeight: 700 }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#10b981', fontWeight: 700 }}>
             <span className="beacon-pulse-green" />
             LIVE VERIFIED:
           </span>
-          <span style={{ color: '#fde68a', fontWeight: 700, fontFamily: 'var(--font-data)' }}>
+          <span style={{ color: '#c2410c', fontWeight: 800, fontFamily: 'var(--font-data)' }}>
             {currentTx.amount}
           </span>
-          <span style={{ color: 'rgba(255, 255, 255, 0.85)' }}>
+          <span style={{ color: '#44403c', fontWeight: 600 }}>
             via {currentTx.method}
           </span>
-          <span style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.75rem' }}>
+          <span style={{ color: '#78716c', fontSize: '0.75rem' }}>
             • {currentTx.city} ({currentTx.time})
           </span>
         </div>
@@ -93,8 +92,8 @@ export default function LivePaymentTicker() {
       <div 
         className="auto-moving-ribbon"
         style={{
-          backgroundColor: 'var(--ink)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          backgroundColor: '#fff7ed',
+          borderBottom: '1px solid #fed7aa',
           padding: '0.75rem 0',
           position: 'relative',
           overflow: 'hidden'
@@ -112,7 +111,7 @@ export default function LivePaymentTicker() {
                   alignItems: 'center',
                   gap: '8px',
                   padding: '0 24px',
-                  color: 'rgba(255, 255, 255, 0.88)',
+                  color: '#44403c',
                   fontSize: '0.825rem',
                   fontWeight: 600,
                   whiteSpace: 'nowrap'
@@ -126,13 +125,13 @@ export default function LivePaymentTicker() {
                     width: '24px',
                     height: '24px',
                     borderRadius: '9999px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.08)'
+                    backgroundColor: 'rgba(251, 146, 60, 0.14)'
                   }}
                 >
                   <Icon size={14} color={item.color} />
                 </span>
                 <span>{item.text}</span>
-                <span style={{ color: 'rgba(255, 255, 255, 0.25)', marginLeft: '12px' }}>•</span>
+                <span style={{ color: '#fed7aa', marginLeft: '12px' }}>•</span>
               </div>
             );
           })}

@@ -1,20 +1,22 @@
 :root {
-  /* Official Sovereign Fintech Palette - Emerald & Mint Edition */
-  --ink: #04140f;           /* Deep Emerald Obsidian - Institutional, Authoritative */
-  --ink-soft: #0a251d;      /* Deep Forest Tint */
-  --royal: #059669;         /* Banking Sovereign Emerald Green */
-  --royal-dark: #047857;    /* Deep Forest Authority */
-  --sky: #10b981;           /* Vibrant Mint / Jade - High-Tech Accent */
-  --mint: #34d399;          /* Electric Neon Mint */
-  --gold: #d97706;          /* Rich Sovereign Gold */
-  --gold-soft: #f59e0b;     /* Champagne Gold Highlight */
-  --paper: #f8fafc;         /* Pure Porcelain Surface */
-  --paper-dim: #f0fdf4;     /* Soft Mint-Tinted Alabaster */
-  --slate: #475569;         /* Neutral Slate for readability */
-  --slate-dim: #64748b;     /* Muted Subtitles */
-  --line: #e2e8f0;          /* Crisp Hairline Border */
+  /* Warm Sovereign Fintech Palette - Peach & Cream Edition */
+  --ink: #1c1917;           /* Text: Deep Warm Charcoal / Espresso (#1C1917) */
+  --ink-soft: #292524;      /* Deep Stone Charcoal */
+  --royal: #fb923c;         /* Peach: Vibrant Primary Accent (#FB923C) */
+  --royal-dark: #ea580c;    /* Deep Tangerine / Terracotta */
+  --sky: #ea580c;           /* Warm Dynamic Accent */
+  --mint: #10b981;          /* Success Green: Trust & Verified (#10B981) */
+  --gold: #f59e0b;          /* Gold: Premium Accents (#F59E0B) */
+  --gold-soft: #fbbf24;     /* Light Amber Gold */
+  --peach: #fb923c;         /* Peach (#FB923C) */
+  --coral-soft: #fee2e2;    /* Soft Coral: Badge Fill & Accents (#FEE2E2) */
+  --paper: #fff7ed;         /* Background: Warm Cream Canvas (#FFF7ED) */
+  --paper-dim: #ffedd5;     /* Warm Cream Tint */
+  --slate: #57534e;         /* Neutral Stone for Readable Body Text */
+  --slate-dim: #78716c;     /* Muted Subtitles */
+  --line: #fed7aa;          /* Subtle Warm Peach Border */
   --card-bg: #ffffff;       /* Pure White Card Canvas */
-  --card-border: #e2e8f0;
+  --card-border: #fed7aa;
 
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -69,25 +71,25 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 /* Background patterns */
 .lattice-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.18) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.18) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
 .lattice-bg-light {
-  background-image: radial-gradient(circle at 1px 1px, rgba(16, 185, 129, 0.08) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(251, 146, 60, 0.12) 1px, transparent 0);
   background-size: 24px 24px;
 }
 
 /* Gradients */
 .text-gradient {
-  background: linear-gradient(135deg, var(--sky) 0%, var(--gold-soft) 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 55%, #f59e0b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-royal {
-  background: linear-gradient(135deg, var(--royal) 0%, var(--sky) 100%);
+  background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -790,23 +792,76 @@ h1, h2, h3, h4, h5, h6, .font-display {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
 }
 
-/* Elevated Stats Card */
+/* Elevated Stats Card with Staggered Levitation & Holographic Glare */
 .stat-card-elevated {
-  padding: 2rem 1.5rem;
+  padding: 2.25rem 1.5rem;
   border-radius: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(145deg, rgba(28, 25, 23, 0.85) 0%, rgba(18, 16, 15, 0.95) 100%);
   text-align: center;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 158, 11, 0.06);
+}
+
+/* Staggered Floating Wave Animation */
+.stat-card-float-0 {
+  animation: statFloatWave 4.8s ease-in-out infinite 0s;
+}
+
+.stat-card-float-1 {
+  animation: statFloatWave 4.8s ease-in-out infinite 0.6s;
+}
+
+.stat-card-float-2 {
+  animation: statFloatWave 4.8s ease-in-out infinite 1.2s;
+}
+
+.stat-card-float-3 {
+  animation: statFloatWave 4.8s ease-in-out infinite 1.8s;
+}
+
+.stat-card-float-4 {
+  animation: statFloatWave 4.8s ease-in-out infinite 2.4s;
+}
+
+@keyframes statFloatWave {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Holographic Shimmer Glare */
+.stat-card-elevated::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -80%;
+  width: 50%;
+  height: 220%;
+  background: linear-gradient(60deg, transparent 20%, rgba(251, 146, 60, 0.12) 50%, rgba(245, 158, 11, 0.22) 55%, transparent 70%);
+  transform: rotate(25deg);
+  transition: all 0.85s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.stat-card-elevated:hover::after {
+  left: 140%;
+  opacity: 1;
 }
 
 .stat-card-elevated:hover {
-  transform: translateY(-5px);
-  border-color: rgba(217, 164, 65, 0.45);
-  background-color: rgba(255, 255, 255, 0.07);
-  box-shadow: 0 18px 36px -8px rgba(0, 0, 0, 0.6), 0 0 24px -4px rgba(217, 164, 65, 0.25);
+  transform: translateY(-12px) scale(1.02) !important;
+  border-color: rgba(251, 146, 60, 0.6) !important;
+  background: linear-gradient(145deg, rgba(38, 33, 30, 0.95) 0%, rgba(24, 21, 19, 0.98) 100%) !important;
+  box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.7), 0 0 26px rgba(245, 158, 11, 0.28) !important;
 }
 
 /* Elevated Testimonial Card */
@@ -982,20 +1037,21 @@ h1, h2, h3, h4, h5, h6, .font-display {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 9999px;
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background-color: #ffffff;
+  border: 1px solid #fed7aa;
   font-size: 0.775rem;
   font-weight: 600;
-  color: #ffffff;
-  backdrop-filter: blur(8px);
+  color: #1c1917;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   transition: all 0.25s ease;
 }
 
 .network-badge-pill:hover {
-  background-color: rgba(255, 255, 255, 0.16);
-  border-color: rgba(63, 169, 245, 0.5);
+  background-color: #fee2e2;
+  border-color: #fb923c;
+  color: #c2410c;
   transform: translateY(-2px);
 }
 
@@ -1041,15 +1097,15 @@ h1, h2, h3, h4, h5, h6, .font-display {
   background-color: var(--royal);
   color: #ffffff;
   border-radius: 9999px;
-  font-weight: 600;
-  padding: 0.625rem 1.25rem;
+  font-weight: 700;
+  padding: 0.625rem 1.35rem;
   font-size: 0.875rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   transition: all 0.2s ease-in-out;
-  box-shadow: 0 2px 6px 0 rgba(29, 78, 216, 0.28);
+  box-shadow: 0 4px 14px 0 rgba(251, 146, 60, 0.38);
   text-decoration: none;
   border: 1px solid transparent;
   cursor: pointer;
@@ -1059,17 +1115,17 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .btn-royal:hover {
   background-color: var(--royal-dark);
-  box-shadow: 0 6px 16px 0 rgba(29, 78, 216, 0.42);
+  box-shadow: 0 6px 20px 0 rgba(234, 88, 12, 0.45);
   transform: translateY(-1px);
 }
 
-.btn-outline-white {
-  background-color: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+.btn-outline-dark {
+  background-color: #ffffff;
+  color: #1c1917;
+  border: 1px solid #fed7aa;
   border-radius: 9999px;
   font-weight: 600;
-  padding: 0.625rem 1.25rem;
+  padding: 0.625rem 1.35rem;
   font-size: 0.875rem;
   display: inline-flex;
   align-items: center;
@@ -1078,11 +1134,38 @@ h1, h2, h3, h4, h5, h6, .font-display {
   transition: all 0.2s ease-in-out;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-outline-dark:hover {
+  border-color: #fb923c;
+  background-color: #fee2e2;
+  color: #c2410c;
+  transform: translateY(-1px);
+}
+
+.btn-outline-white {
+  background-color: #ffffff;
+  color: #1c1917;
+  border: 1px solid #fed7aa;
+  border-radius: 9999px;
+  font-weight: 600;
+  padding: 0.625rem 1.35rem;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
 }
 
 .btn-outline-white:hover {
-  border-color: rgba(255, 255, 255, 0.6);
-  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #fb923c;
+  background-color: #fee2e2;
+  color: #c2410c;
   transform: translateY(-1px);
 }
 
@@ -1597,6 +1680,7 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 8px;
 }
@@ -1607,11 +1691,11 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 }
 
 .orbit-core-title {
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: #ffffff;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 @media (min-width: 1280px) {
@@ -2229,6 +2313,7 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   width: 100%;
   display: block;
   letter-spacing: -0.025em;
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
 }
 
 @media (max-width: 991px) {

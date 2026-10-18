@@ -45,8 +45,8 @@ export default function Navbar({ onOpenContactModal }) {
         width: '100%',
         zIndex: 1000,
         backgroundColor: scrolled 
-          ? (isDark ? 'rgba(5, 12, 30, 0.95)' : 'rgba(255, 255, 255, 0.95)') 
-          : (isDark ? 'rgba(5, 12, 30, 0.88)' : 'rgba(255, 255, 255, 0.88)'),
+          ? (isDark ? 'rgba(5, 12, 30, 0.95)' : 'rgba(255, 247, 237, 0.95)') 
+          : (isDark ? 'rgba(5, 12, 30, 0.88)' : 'rgba(255, 247, 237, 0.88)'),
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         borderBottom: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'var(--line)'}`,

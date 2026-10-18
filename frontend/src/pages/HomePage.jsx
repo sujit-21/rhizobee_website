@@ -97,25 +97,7 @@ export default function HomePage() {
       alt: 'Rhizobee Flagship Counter Suite - Soundbox 4G, Android POS Terminal and QR Standee',
       title: 'Rhizobee Flagship Counter Suite',
       subtitle: 'Soundbox 4G • Android POS • Dynamic QR Standee',
-      tag: 'ALL-IN-ONE COUNTER SUITE',
-      card1: {
-        thumb: '/images/home/product-soundbox.jpg',
-        title: '4G Voice Alert',
-        icon: <Volume2 size={12} color="var(--sky)" />,
-        value: '₹ 250.00 Received',
-        sub: '0.3s Instant Voice Trigger',
-        hasWave: true,
-        isGold: false
-      },
-      card2: {
-        thumb: '/images/home/product-pos.jpg',
-        title: 'Android POS',
-        icon: <CreditCard size={12} color="#fbbf24" />,
-        badge: 'NFC Active',
-        value: 'Tap & Pay Contactless',
-        sub: '< 0.8s Superfast EMV Auth',
-        isGold: true
-      }
+      tag: 'ALL-IN-ONE COUNTER SUITE'
     },
     {
       id: 'soundbox',
@@ -125,25 +107,7 @@ export default function HomePage() {
       alt: 'Rhizobee 4G Smart Voice Soundbox with instant bilingual announcements',
       title: '4G Smart Voice Soundbox',
       subtitle: 'High-Decibel Speaker • Hindi, English & 9 Regional Languages',
-      tag: 'AUDIO CONFIRMATION',
-      card1: {
-        thumb: '/images/home/hero-hardware.jpg',
-        title: 'Multi-lingual Voice',
-        icon: <Volume2 size={12} color="var(--sky)" />,
-        value: '₹ 500.00 Received',
-        sub: 'Multi-lingual Voice Trigger',
-        hasWave: true,
-        isGold: false
-      },
-      card2: {
-        thumb: '/images/home/product-cards.jpg',
-        title: 'Dual 4G + 2G Auto',
-        icon: <Wifi size={12} color="#fbbf24" />,
-        badge: '7-Day Battery',
-        value: 'Always-On Cellular',
-        sub: 'Auto SIM Network Roaming',
-        isGold: true
-      }
+      tag: 'AUDIO CONFIRMATION'
     },
     {
       id: 'pos',
@@ -153,25 +117,7 @@ export default function HomePage() {
       alt: 'Rhizobee Smart Handheld Android POS Terminal with thermal receipt printer',
       title: 'Smart Android POS Terminal',
       subtitle: 'Contactless Tap & Pay • Thermal Printer • All Cards & UPI',
-      tag: 'EMV & TAP-TO-PAY',
-      card1: {
-        thumb: '/images/home/product-soundbox.jpg',
-        title: 'Contactless EMV',
-        icon: <CreditCard size={12} color="var(--sky)" />,
-        value: 'RuPay • Visa • Mastercard',
-        sub: 'Bank-Grade AES 256 Encryption',
-        hasWave: false,
-        isGold: false
-      },
-      card2: {
-        thumb: '/images/home/retail-merchant.jpg',
-        title: 'High Speed Auth',
-        icon: <Zap size={12} color="#fbbf24" />,
-        badge: 'T+0 Credit',
-        value: '< 0.8s Auth Speed',
-        sub: 'Direct Bank Settlement',
-        isGold: true
-      }
+      tag: 'EMV & TAP-TO-PAY'
     },
     {
       id: 'qr',
@@ -181,25 +127,7 @@ export default function HomePage() {
       alt: 'Dynamic QR Standee and All Payment Cards Ecosystem',
       title: 'Dynamic Counter Standee & QR Rails',
       subtitle: 'Dynamic BharatQR • Multi-Bank Routing • 0% MDR for Small Merchants',
-      tag: 'BHARATQR 2.0',
-      card1: {
-        thumb: '/images/home/product-pos.jpg',
-        title: 'Dynamic BharatQR',
-        icon: <QrCode size={12} color="var(--sky)" />,
-        value: '99.99% Uptime SLA',
-        sub: 'Google Pay • PhonePe • Paytm',
-        hasWave: true,
-        isGold: false
-      },
-      card2: {
-        thumb: '/images/home/hero-hardware.jpg',
-        title: 'Acrylic Standee',
-        icon: <ShieldCheck size={12} color="#fbbf24" />,
-        badge: 'Durable',
-        value: 'Scratch-Resistant',
-        sub: 'Tamper-Proof Hologram',
-        isGold: true
-      }
+      tag: 'BHARATQR 2.0'
     }
   ];
 
@@ -428,10 +356,10 @@ export default function HomePage() {
       {/* ========================================================
           1. HERO SECTION WITH REAL HARDWARE PHOTO & NETWORK BADGES
           ======================================================== */}
-      <section style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '2.25rem', paddingBottom: '3.5rem' }}>
-        <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.28 }} aria-hidden="true" />
+      <section style={{ position: 'relative', overflow: 'hidden', backgroundColor: '#fff7ed', color: '#1c1917', paddingTop: '2.25rem', paddingBottom: '3.5rem' }}>
+        <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.4 }} aria-hidden="true" />
         
-        {/* Animated Gradient Glow Orbs */}
+        {/* Animated Gradient Glow Orbs in Warm Peach & Soft Coral */}
         <div 
           className="animate-glow-pulse"
           style={{
@@ -441,7 +369,7 @@ export default function HomePage() {
             height: '34rem',
             width: '34rem',
             borderRadius: '9999px',
-            backgroundColor: 'rgba(16, 185, 129, 0.35)',
+            backgroundColor: 'rgba(251, 146, 60, 0.16)',
             filter: 'blur(100px)',
             pointerEvents: 'none'
           }}
@@ -456,7 +384,7 @@ export default function HomePage() {
             height: '24rem',
             width: '24rem',
             borderRadius: '9999px',
-            backgroundColor: 'rgba(217, 164, 65, 0.2)',
+            backgroundColor: 'rgba(254, 226, 226, 0.65)',
             filter: 'blur(95px)',
             animationDelay: '2.5s',
             pointerEvents: 'none'
@@ -475,24 +403,24 @@ export default function HomePage() {
                   gap: '8px',
                   padding: '6px 14px',
                   borderRadius: '9999px',
-                  backgroundColor: 'rgba(16, 185, 129, 0.18)',
-                  border: '1px solid rgba(16, 185, 129, 0.35)',
+                  backgroundColor: '#fee2e2',
+                  border: '1px solid rgba(251, 146, 60, 0.35)',
                   backdropFilter: 'blur(8px)',
                   marginBottom: '1.25rem'
                 }}
               >
-                <span className="beacon-pulse-royal" />
-                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--sky)', letterSpacing: '0.04em' }}>
+                <span className="beacon-pulse-green" />
+                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#c2410c', letterSpacing: '0.04em' }}>
                   Fintech &amp; Digital Payment Solutions
                 </span>
               </div>
 
               <h1 className="hero-main-title">
-                <span className="hero-title-line">Secure payments.</span>
+                <span className="hero-title-line" style={{ color: '#1c1917' }}>Secure payments.</span>
                 <span className="hero-title-line text-gradient">Smart solutions.</span>
               </h1>
 
-              <p style={{ marginTop: '1.5rem', fontSize: '1.125rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)', maxWidth: '36rem' }}>
+              <p style={{ marginTop: '1.5rem', fontSize: '1.125rem', lineHeight: 1.7, color: '#57534e', maxWidth: '36rem' }}>
                 Rhizobee Innovations equips small business owners, retail shops, MSMEs, and enterprises with next-generation digital payment hardware and cloud rails — Soundbox 4G, smart POS terminals, dynamic QR standees, and online gateways built in synergy with India’s leading banks.
               </p>
 
@@ -500,20 +428,20 @@ export default function HomePage() {
                 <Link to="/contact" className="btn-royal btn-shimmer hero-cta-btn">
                   Talk to Our Team <ArrowRight size={16} />
                 </Link>
-                <Link to="/services" className="btn-outline-white btn-shimmer hero-cta-btn">
+                <Link to="/services" className="btn-outline-dark btn-shimmer hero-cta-btn">
                   Explore Products &amp; Devices
                 </Link>
               </div>
 
               {/* Supported Payment Networks Badges */}
-              <div style={{ marginTop: '2.75rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.12)' }}>
-                <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255, 255, 255, 0.6)', marginBottom: '0.85rem', fontWeight: 600 }}>
+              <div style={{ marginTop: '2.75rem', paddingTop: '1.5rem', borderTop: '1px solid #fed7aa' }}>
+                <div style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#78716c', marginBottom: '0.85rem', fontWeight: 600 }}>
                   Supported Payment Rails &amp; Standards
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                   {paymentNetworks.map((net, i) => (
                     <span key={i} className="network-badge-pill">
-                      <span style={{ width: '6px', height: '6px', borderRadius: '9999px', backgroundColor: '#22c55e' }} />
+                      <span style={{ width: '6px', height: '6px', borderRadius: '9999px', backgroundColor: '#10b981' }} />
                       {net.name}
                     </span>
                   ))}
@@ -531,14 +459,16 @@ export default function HomePage() {
                 <div 
                   className="border-beam-card"
                   style={{
-                    boxShadow: '0 35px 85px -15px rgba(0, 0, 0, 0.88), 0 0 50px rgba(16, 185, 129, 0.35)',
+                    boxShadow: '0 25px 65px -15px rgba(251, 146, 60, 0.22), 0 10px 30px rgba(0, 0, 0, 0.08)',
                     width: '100%'
                   }}
                 >
                   <div 
                     className="border-beam-card-inner"
                     style={{
-                      background: 'linear-gradient(145deg, rgba(7, 34, 27, 0.94) 0%, rgba(4, 19, 14, 0.98) 100%)',
+                      background: '#ffffff',
+                      border: '1px solid #fed7aa',
+                      borderRadius: '1.5rem',
                       padding: '14px',
                       width: '100%'
                     }}
@@ -591,63 +521,6 @@ export default function HomePage() {
                             >
                               <ChevronRight size={18} />
                             </button>
-
-                            {/* Inside Box Card 1: Dynamic Top-Left Card with Picture & Animations */}
-                            <div className={`figma-inside-card ${activeSlide.card1.isGold ? 'figma-inside-card-gold' : ''}`} style={{ top: '16px', left: '16px' }}>
-                              <img 
-                                src={activeSlide.card1.thumb} 
-                                alt={activeSlide.card1.title} 
-                                className="figma-inside-thumb" 
-                              />
-                              <div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--sky)' }}>
-                                    {activeSlide.card1.icon} {activeSlide.card1.title}
-                                  </span>
-                                  {activeSlide.card1.hasWave && (
-                                    <div style={{ display: 'flex', alignItems: 'flex-end', gap: '2px', height: '12px' }}>
-                                      <span className="audio-wave-bar" style={{ animationDelay: '0s', height: '6px' }} />
-                                      <span className="audio-wave-bar" style={{ animationDelay: '0.2s', height: '12px' }} />
-                                      <span className="audio-wave-bar" style={{ animationDelay: '0.4s', height: '8px' }} />
-                                      <span className="audio-wave-bar" style={{ animationDelay: '0.1s', height: '13px' }} />
-                                    </div>
-                                  )}
-                                </div>
-                                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#4ade80', marginTop: '1px' }}>
-                                  {activeSlide.card1.value}
-                                </div>
-                                <div style={{ fontSize: '0.66rem', color: 'rgba(255, 255, 255, 0.72)' }}>
-                                  {activeSlide.card1.sub}
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Inside Box Card 2: Dynamic Top-Right Card with Picture & Tag */}
-                            <div className={`figma-inside-card ${activeSlide.card2.isGold ? 'figma-inside-card-gold' : ''}`} style={{ top: '16px', right: '16px' }}>
-                              <img 
-                                src={activeSlide.card2.thumb} 
-                                alt={activeSlide.card2.title} 
-                                className="figma-inside-thumb" 
-                              />
-                              <div>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#fbbf24' }}>
-                                    {activeSlide.card2.icon} {activeSlide.card2.title}
-                                  </span>
-                                  {activeSlide.card2.badge && (
-                                    <span style={{ fontSize: '0.6rem', padding: '1px 5px', borderRadius: '4px', backgroundColor: 'rgba(34, 197, 94, 0.2)', color: '#4ade80', fontWeight: 600, border: '1px solid rgba(34, 197, 94, 0.4)' }}>
-                                      {activeSlide.card2.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginTop: '1px' }}>
-                                  {activeSlide.card2.value}
-                                </div>
-                                <div style={{ fontSize: '0.66rem', color: 'rgba(255, 255, 255, 0.72)' }}>
-                                  {activeSlide.card2.sub}
-                                </div>
-                              </div>
-                            </div>
 
                             {/* Inside Box Bottom Overlay - Top Info Row & Bottom Thumbnail Navigation */}
                             <div 
@@ -758,7 +631,7 @@ export default function HomePage() {
       {/* ========================================================
           3. HARDWARE & DIGITAL PRODUCT GALLERY (REAL PHOTOS)
           ======================================================== */}
-      <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
+      <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)', position: 'relative', overflow: 'hidden' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
             <div style={{ maxWidth: '100%', textAlign: 'left', marginBottom: '3.5rem' }}>
@@ -777,7 +650,7 @@ export default function HomePage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
             {/* Card 1: 4G Audio Soundbox */}
-            <ScrollReveal animation="fade-up" delay={0}>
+            <ScrollReveal animation="slide-left" delay={0} duration={700}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/product-soundbox.jpg" alt="Rhizobee 4G Smart Voice Soundbox with instant bilingual announcements" />
@@ -805,7 +678,7 @@ export default function HomePage() {
                       4G Smart Audio Soundbox
                     </h3>
                     <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '1.25rem' }}>
-                      Instant high-decibel audio confirmation for every UPI QR transaction in English, Hindi &amp; regional languages. Zero fraud, zero counter disputes.
+                       Instant high-decibel audio confirmation for every UPI QR transaction in English, Hindi &amp; regional languages. Zero fraud, zero counter disputes.
                     </p>
                   </div>
                   <div>
@@ -823,7 +696,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             {/* Card 2: Smart Android POS Machine */}
-            <ScrollReveal animation="fade-up" delay={120}>
+            <ScrollReveal animation="slide-left" delay={160} duration={700}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/product-pos.jpg" alt="Rhizobee Smart Handheld Android POS Machine with thermal receipt printer" />
@@ -869,7 +742,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             {/* Card 3: Retail Merchant Storefront */}
-            <ScrollReveal animation="fade-up" delay={240}>
+            <ScrollReveal animation="slide-left" delay={320} duration={700}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/retail-merchant.jpg" alt="Retail merchant store counter with QR standee and voice soundbox" />
@@ -915,7 +788,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             {/* Card 4: Corporate PPI Wallets & Smart Cards */}
-            <ScrollReveal animation="fade-up" delay={360}>
+            <ScrollReveal animation="slide-left" delay={480} duration={700}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/product-cards.jpg" alt="Prepaid corporate smart cards and digital wallet interface" />
@@ -1146,20 +1019,20 @@ export default function HomePage() {
       {/* ========================================================
           7. INFRASTRUCTURE METRICS & STATS WITH ANIMATED COUNTERS
           ======================================================== */}
-      <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
-        <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.16 }} />
+      <section style={{ backgroundColor: '#181513', color: '#ffffff', paddingTop: '6rem', paddingBottom: '6.5rem', position: 'relative', overflow: 'hidden' }}>
+        <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.18 }} />
         
-        {/* Ambient backlight glow */}
+        {/* Ambient Warm Amber & Peach backlight glow */}
         <div 
           style={{
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '600px',
-            height: '300px',
-            background: 'radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%)',
-            filter: 'blur(70px)',
+            width: '650px',
+            height: '350px',
+            background: 'radial-gradient(circle, rgba(251, 146, 60, 0.2) 0%, rgba(245, 158, 11, 0.12) 40%, transparent 70%)',
+            filter: 'blur(80px)',
             pointerEvents: 'none'
           }}
         />
@@ -1167,7 +1040,7 @@ export default function HomePage() {
         <div className="container-custom" style={{ position: 'relative', zIndex: 1 }}>
           <ScrollReveal animation="fade-up">
             <div style={{ textAlign: 'left', maxWidth: '100%', marginBottom: '3.5rem' }}>
-              <span className="badge-tag" style={{ color: 'var(--sky)' }}>
+              <span className="badge-tag" style={{ color: 'var(--royal)' }}>
                 <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
                 INFRASTRUCTURE &amp; SCALE
               </span>
@@ -1189,14 +1062,14 @@ export default function HomePage() {
               { stat: '19,000+', label: 'Pin Codes Served', desc: 'Pan-India merchant distribution' }
             ].map((item, idx) => (
               <ScrollReveal key={idx} animation="scale" delay={idx * 100}>
-                <div className="stat-card-elevated">
-                  <div className="font-data" style={{ fontSize: '2.35rem', fontWeight: 700, color: 'var(--gold-soft)', letterSpacing: '-0.02em' }}>
+                <div className={`stat-card-elevated stat-card-float-${idx}`}>
+                  <div className="font-data" style={{ fontSize: '2.35rem', fontWeight: 700, color: '#fbbf24', letterSpacing: '-0.02em' }}>
                     <AnimatedCounter value={item.stat} />
                   </div>
                   <div style={{ fontSize: '1.05rem', fontWeight: 600, color: '#ffffff', marginTop: '0.5rem' }}>
                     {item.label}
                   </div>
-                  <div style={{ fontSize: '0.825rem', color: 'rgba(255, 255, 255, 0.65)', marginTop: '0.4rem', lineHeight: 1.45 }}>
+                  <div style={{ fontSize: '0.825rem', color: 'rgba(255, 255, 255, 0.68)', marginTop: '0.4rem', lineHeight: 1.45 }}>
                     {item.desc}
                   </div>
                 </div>
@@ -1328,8 +1201,6 @@ export default function HomePage() {
                     <div className="orbit-core-inner">
                       <span className="beacon-pulse-royal orbit-core-dot" />
                       <span className="orbit-core-title">RHIZOBEE</span>
-                      <span className="orbit-core-sub">CORE HUB</span>
-                      <span className="orbit-core-badge">1 Unified Stack</span>
                     </div>
                   </div>
 
@@ -1470,15 +1341,21 @@ export default function HomePage() {
       <section style={{ backgroundColor: 'var(--paper-dim)', paddingTop: '6rem', paddingBottom: '6.5rem', position: 'relative', overflow: 'hidden' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ textAlign: 'center', maxWidth: '38rem', margin: '0 auto 3.5rem auto' }}>
+            <div style={{ textAlign: 'center', maxWidth: '56rem', margin: '0 auto 3.5rem auto', width: '100%' }}>
               <span className="badge-tag">
                 <span className="badge-dot" />
                 CLIENT VOICES &amp; ENDORSEMENTS
               </span>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.025em', marginTop: '0.75rem' }}>
+              <h2 
+                className="heading-single-line"
+                style={{ fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.025em', marginTop: '0.75rem' }}
+              >
                 What our clients say about working with us
               </h2>
-              <p style={{ fontSize: '1.05rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.6rem' }}>
+              <p 
+                className="subheading-balanced"
+                style={{ fontSize: '1.05rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.6rem', maxWidth: '38rem' }}
+              >
                 Trusted by retail merchants, distribution partners, and enterprise founders across India.
               </p>
             </div>

@@ -40,9 +40,9 @@ export default function ScrollReveal({
       case 'scale':
         return 'scale(0.94)';
       case 'slide-left':
-        return 'translateX(32px)';
+        return 'translateX(52px)';
       case 'slide-right':
-        return 'translateX(-32px)';
+        return 'translateX(-52px)';
       default:
         return 'translateY(24px)';
     }
