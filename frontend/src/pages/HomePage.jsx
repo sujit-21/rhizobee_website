@@ -23,7 +23,8 @@ import {
   Wifi,
   Radio,
   Check,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft
 } from 'lucide-react';
 import PartnerMarquee from '../components/PartnerMarquee';
 import ZoompeBanner from '../components/ZoompeBanner';
@@ -64,6 +65,167 @@ export default function HomePage() {
   const [testimonials, setTestimonials] = useState(defaultTestimonials);
   const [metrics, setMetrics] = useState(defaultMetrics);
   const [solutionCategory, setSolutionCategory] = useState('all');
+  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
+  const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
+
+  // Auto-slide testimonials every 3 seconds
+  useEffect(() => {
+    if (!testimonials || testimonials.length <= 1 || isTestimonialPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentTestimonialIndex(prev => (prev + 1) % testimonials.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [testimonials, isTestimonialPaused]);
+
+  const handleNextTestimonial = () => {
+    setCurrentTestimonialIndex(prev => (prev + 1) % testimonials.length);
+  };
+
+  const handlePrevTestimonial = () => {
+    setCurrentTestimonialIndex(prev => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  // Hero hardware slides configuration with pictures & animated widgets
+  const heroHardwareSlides = [
+    {
+      id: 'suite',
+      thumbLabel: 'Flagship Suite',
+      thumbImg: '/images/home/hero-hardware.jpg',
+      image: '/images/home/hero-hardware.jpg',
+      alt: 'Rhizobee Flagship Counter Suite - Soundbox 4G, Android POS Terminal and QR Standee',
+      title: 'Rhizobee Flagship Counter Suite',
+      subtitle: 'Soundbox 4G • Android POS • Dynamic QR Standee',
+      tag: 'ALL-IN-ONE COUNTER SUITE',
+      card1: {
+        thumb: '/images/home/product-soundbox.jpg',
+        title: '4G Voice Alert',
+        icon: <Volume2 size={12} color="var(--sky)" />,
+        value: '₹ 250.00 Received',
+        sub: '0.3s Instant Voice Trigger',
+        hasWave: true,
+        isGold: false
+      },
+      card2: {
+        thumb: '/images/home/product-pos.jpg',
+        title: 'Android POS',
+        icon: <CreditCard size={12} color="#fbbf24" />,
+        badge: 'NFC Active',
+        value: 'Tap & Pay Contactless',
+        sub: '< 0.8s Superfast EMV Auth',
+        isGold: true
+      }
+    },
+    {
+      id: 'soundbox',
+      thumbLabel: '4G Soundbox',
+      thumbImg: '/images/home/product-soundbox.jpg',
+      image: '/images/home/product-soundbox.jpg',
+      alt: 'Rhizobee 4G Smart Voice Soundbox with instant bilingual announcements',
+      title: '4G Smart Voice Soundbox',
+      subtitle: 'High-Decibel Speaker • Hindi, English & 9 Regional Languages',
+      tag: 'AUDIO CONFIRMATION',
+      card1: {
+        thumb: '/images/home/hero-hardware.jpg',
+        title: 'Multi-lingual Voice',
+        icon: <Volume2 size={12} color="var(--sky)" />,
+        value: '₹ 500.00 Received',
+        sub: 'Multi-lingual Voice Trigger',
+        hasWave: true,
+        isGold: false
+      },
+      card2: {
+        thumb: '/images/home/product-cards.jpg',
+        title: 'Dual 4G + 2G Auto',
+        icon: <Wifi size={12} color="#fbbf24" />,
+        badge: '7-Day Battery',
+        value: 'Always-On Cellular',
+        sub: 'Auto SIM Network Roaming',
+        isGold: true
+      }
+    },
+    {
+      id: 'pos',
+      thumbLabel: 'Android POS',
+      thumbImg: '/images/home/product-pos.jpg',
+      image: '/images/home/product-pos.jpg',
+      alt: 'Rhizobee Smart Handheld Android POS Terminal with thermal receipt printer',
+      title: 'Smart Android POS Terminal',
+      subtitle: 'Contactless Tap & Pay • Thermal Printer • All Cards & UPI',
+      tag: 'EMV & TAP-TO-PAY',
+      card1: {
+        thumb: '/images/home/product-soundbox.jpg',
+        title: 'Contactless EMV',
+        icon: <CreditCard size={12} color="var(--sky)" />,
+        value: 'RuPay • Visa • Mastercard',
+        sub: 'Bank-Grade AES 256 Encryption',
+        hasWave: false,
+        isGold: false
+      },
+      card2: {
+        thumb: '/images/home/retail-merchant.jpg',
+        title: 'High Speed Auth',
+        icon: <Zap size={12} color="#fbbf24" />,
+        badge: 'T+0 Credit',
+        value: '< 0.8s Auth Speed',
+        sub: 'Direct Bank Settlement',
+        isGold: true
+      }
+    },
+    {
+      id: 'qr',
+      thumbLabel: 'BharatQR & Cards',
+      thumbImg: '/images/home/product-cards.jpg',
+      image: '/images/home/product-cards.jpg',
+      alt: 'Dynamic QR Standee and All Payment Cards Ecosystem',
+      title: 'Dynamic Counter Standee & QR Rails',
+      subtitle: 'Dynamic BharatQR • Multi-Bank Routing • 0% MDR for Small Merchants',
+      tag: 'BHARATQR 2.0',
+      card1: {
+        thumb: '/images/home/product-pos.jpg',
+        title: 'Dynamic BharatQR',
+        icon: <QrCode size={12} color="var(--sky)" />,
+        value: '99.99% Uptime SLA',
+        sub: 'Google Pay • PhonePe • Paytm',
+        hasWave: true,
+        isGold: false
+      },
+      card2: {
+        thumb: '/images/home/hero-hardware.jpg',
+        title: 'Acrylic Standee',
+        icon: <ShieldCheck size={12} color="#fbbf24" />,
+        badge: 'Durable',
+        value: 'Scratch-Resistant',
+        sub: 'Tamper-Proof Hologram',
+        isGold: true
+      }
+    }
+  ];
+
+  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+  const [isHeroSlidePaused, setIsHeroSlidePaused] = useState(false);
+
+  // Auto-slide hero hardware box every 3 seconds
+  useEffect(() => {
+    if (isHeroSlidePaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentHeroSlide(prev => (prev + 1) % heroHardwareSlides.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isHeroSlidePaused, heroHardwareSlides.length]);
+
+  const handleNextHeroSlide = (e) => {
+    if (e) e.stopPropagation();
+    setCurrentHeroSlide(prev => (prev + 1) % heroHardwareSlides.length);
+  };
+
+  const handlePrevHeroSlide = (e) => {
+    if (e) e.stopPropagation();
+    setCurrentHeroSlide(prev => (prev - 1 + heroHardwareSlides.length) % heroHardwareSlides.length);
+  };
 
   useEffect(() => {
     fetch('/api/content?tab=home&section=testimonials&status=active')
@@ -148,36 +310,108 @@ export default function HomePage() {
 
   const businessStages = [
     {
+      id: 'small-biz',
       role: 'Small Business Owners',
-      icon: <Store size={22} color="var(--gold)" />,
+      shortName: 'Small Biz',
+      tagline: 'Kiranas, Retail Outlets & Pharmacies',
+      icon: <Store size={24} color="#fbbf24" />,
+      accentColor: '#fbbf24',
+      metric: 'Instant Onboarding',
       desc: 'Single-counter kiranas, retail shops, and pharmacies looking for instant QR standees, Soundbox audio confirmations, and affordable POS machines.',
-      metric: 'Instant Onboarding'
+      hardware: ['Soundbox 4G', 'Dynamic BharatQR Standee', '4G Sound Hub'],
+      kpis: [
+        { label: 'Voice Trigger', val: '< 0.3s' },
+        { label: 'Setup Time', val: '5 Mins' },
+        { label: 'UPI Settlement', val: 'Real-time T+0' }
+      ]
     },
     {
+      id: 'smes',
       role: 'SMEs',
-      icon: <Store size={22} color="var(--royal)" />,
+      shortName: 'SMEs & Outlets',
+      tagline: 'Multi-Store Retailers & Fast Chains',
+      icon: <Store size={24} color="var(--sky)" />,
+      accentColor: 'var(--sky)',
+      metric: 'Auto T+1 Batching',
       desc: 'Fast-growing retailers, multi-brand outlets, and distributors requiring integrated payment terminals, automated day-end batch settlements, and GST invoicing.',
-      metric: 'Auto T+1 Batching'
+      hardware: ['Smart Android POS', 'Thermal Printer', 'Store Web Portal'],
+      kpis: [
+        { label: 'Card Auth Speed', val: '< 0.8s' },
+        { label: 'Settlement Window', val: 'T+1 06:00 AM' },
+        { label: 'Cellular Rails', val: 'Dual SIM 4G' }
+      ]
     },
     {
+      id: 'msmes',
       role: 'MSMEs',
-      icon: <Briefcase size={22} color="var(--sky)" />,
+      shortName: 'MSMEs & Hubs',
+      tagline: 'Manufacturing, Traders & Supply Hubs',
+      icon: <Briefcase size={24} color="#38bdf8" />,
+      accentColor: '#38bdf8',
+      metric: 'Bulk Payout APIs',
       desc: 'Manufacturing hubs, vendors, and regional traders requiring online payment gateway links, vendor payout systems, and reliable banking reconciliation.',
-      metric: 'Bulk Payout APIs'
+      hardware: ['Bulk Payout Engine', 'Escrow Gateway', 'Vendor Webhooks'],
+      kpis: [
+        { label: 'Routing SLA', val: '99.99%' },
+        { label: 'Payout Latency', val: 'Sub-second' },
+        { label: 'Reconciliation', val: 'Automated GST' }
+      ]
     },
     {
+      id: 'enterprises',
       role: 'Enterprises',
-      icon: <Building2 size={22} color="var(--royal)" />,
+      shortName: 'Enterprises',
+      tagline: 'Omnichannel Conglomerates & Store Networks',
+      icon: <Building2 size={24} color="#34d399" />,
+      accentColor: '#34d399',
+      metric: 'Custom Dedicated Switch',
       desc: 'Omnichannel brands and nationwide store networks requiring scalable switch routing, sub-merchant management, API-driven refunds, and customized SLAs.',
-      metric: 'Custom Dedicated Switch'
+      hardware: ['Enterprise Switch', 'ERP/SAP Connector', 'Sub-Merchant Engine'],
+      kpis: [
+        { label: 'Peak Capacity', val: '10,000 TPS' },
+        { label: 'Switch Latency', val: '18ms' },
+        { label: 'Availability', val: '99.999% SLA' }
+      ]
     },
     {
+      id: 'corporates',
       role: 'Corporates',
-      icon: <Users2 size={22} color="var(--gold)" />,
+      shortName: 'Corporates',
+      tagline: 'Institutions, Tech Parks & HR Divisions',
+      icon: <Users2 size={24} color="#f59e0b" />,
+      accentColor: '#f59e0b',
+      metric: 'Enterprise Multi-Entity',
       desc: 'Large organizations requiring automated bulk vendor disbursements, employee meal & wellness prepaid wallets, and festive brand gift card programs.',
-      metric: 'Enterprise Multi-Entity'
+      hardware: ['PPI Digital Wallets', 'Expense Cards', '200+ Brand Vouchers'],
+      kpis: [
+        { label: 'Brand Vouchers', val: '200+ Catalog' },
+        { label: 'Allowance Flow', val: 'Tax-Compliant' },
+        { label: 'Audit Security', val: 'PCI-DSS L1' }
+      ]
     }
   ];
+
+  const orbitCoordinates = [
+    { x: 50, y: 12 },     // Node 0: Top (Small Business)
+    { x: 86.1, y: 38.3 }, // Node 1: Top-Right (SMEs)
+    { x: 72.3, y: 80.7 }, // Node 2: Bottom-Right (MSMEs)
+    { x: 27.7, y: 80.7 }, // Node 3: Bottom-Left (Enterprises)
+    { x: 13.9, y: 38.3 }  // Node 4: Top-Left (Corporates)
+  ];
+
+  const [activeStageIndex, setActiveStageIndex] = useState(0);
+  const [isStagePaused, setIsStagePaused] = useState(false);
+
+  // Auto-cycle through circular business stages every 3.5 seconds
+  useEffect(() => {
+    if (isStagePaused) return;
+
+    const interval = setInterval(() => {
+      setActiveStageIndex(prev => (prev + 1) % businessStages.length);
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isStagePaused, businessStages.length]);
 
   // Verified payment networks supported
   const paymentNetworks = [
@@ -194,7 +428,7 @@ export default function HomePage() {
       {/* ========================================================
           1. HERO SECTION WITH REAL HARDWARE PHOTO & NETWORK BADGES
           ======================================================== */}
-      <section style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6.5rem', paddingBottom: '7rem' }}>
+      <section style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '2.25rem', paddingBottom: '3.5rem' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.28 }} aria-hidden="true" />
         
         {/* Animated Gradient Glow Orbs */}
@@ -207,7 +441,7 @@ export default function HomePage() {
             height: '34rem',
             width: '34rem',
             borderRadius: '9999px',
-            backgroundColor: 'rgba(22, 86, 214, 0.4)',
+            backgroundColor: 'rgba(16, 185, 129, 0.35)',
             filter: 'blur(100px)',
             pointerEvents: 'none'
           }}
@@ -230,15 +464,8 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="container-custom" style={{ position: 'relative', zIndex: 2 }}>
-          <div 
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '3.5rem',
-              alignItems: 'center'
-            }}
-          >
+        <div className="hero-container-wide" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="hero-two-column-grid">
             {/* Left Copy */}
             <ScrollReveal animation="fade-up" duration={700}>
               <div 
@@ -248,8 +475,8 @@ export default function HomePage() {
                   gap: '8px',
                   padding: '6px 14px',
                   borderRadius: '9999px',
-                  backgroundColor: 'rgba(22, 86, 214, 0.18)',
-                  border: '1px solid rgba(63, 169, 245, 0.35)',
+                  backgroundColor: 'rgba(16, 185, 129, 0.18)',
+                  border: '1px solid rgba(16, 185, 129, 0.35)',
                   backdropFilter: 'blur(8px)',
                   marginBottom: '1.25rem'
                 }}
@@ -260,20 +487,20 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <h1 style={{ fontSize: '3.4rem', fontWeight: 700, lineHeight: 1.12, letterSpacing: '-0.035em', marginTop: '0.5rem' }}>
-                Secure payments.{' '}
-                <span className="text-gradient">Smart solutions.</span>
+              <h1 className="hero-main-title">
+                <span className="hero-title-line">Secure payments.</span>
+                <span className="hero-title-line text-gradient">Smart solutions.</span>
               </h1>
 
               <p style={{ marginTop: '1.5rem', fontSize: '1.125rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)', maxWidth: '36rem' }}>
                 Rhizobee Innovations equips small business owners, retail shops, MSMEs, and enterprises with next-generation digital payment hardware and cloud rails — Soundbox 4G, smart POS terminals, dynamic QR standees, and online gateways built in synergy with India’s leading banks.
               </p>
 
-              <div style={{ marginTop: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-                <Link to="/contact" className="btn-royal btn-shimmer" style={{ padding: '0.9rem 1.85rem', fontSize: '0.975rem' }}>
+              <div className="hero-cta-button-group">
+                <Link to="/contact" className="btn-royal btn-shimmer hero-cta-btn">
                   Talk to Our Team <ArrowRight size={16} />
                 </Link>
-                <Link to="/services" className="btn-outline-white btn-shimmer" style={{ padding: '0.9rem 1.85rem', fontSize: '0.975rem' }}>
+                <Link to="/services" className="btn-outline-white btn-shimmer hero-cta-btn">
                   Explore Products &amp; Devices
                 </Link>
               </div>
@@ -294,142 +521,223 @@ export default function HomePage() {
               </div>
             </ScrollReveal>
 
-            {/* Right Hero Product Photo Showcase with Floating Badges */}
-            <ScrollReveal animation="fade-up" delay={200} duration={800}>
-              <div style={{ position: 'relative' }}>
-                {/* Floating Top Badge */}
-                <div 
-                  className="animate-float"
-                  style={{
-                    position: 'absolute',
-                    top: '-18px',
-                    right: '12px',
-                    zIndex: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '8px 14px',
-                    borderRadius: '9999px',
-                    backgroundColor: 'rgba(10, 26, 58, 0.92)',
-                    border: '1px solid rgba(63, 169, 245, 0.4)',
-                    backdropFilter: 'blur(12px)',
-                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(22, 86, 214, 0.3)',
-                    color: '#ffffff',
-                    fontSize: '0.8rem',
-                    fontWeight: 600
-                  }}
-                >
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '9999px', backgroundColor: 'rgba(34, 197, 94, 0.25)' }}>
-                    <Zap size={13} color="#22c55e" />
-                  </span>
-                  <span>0.3s Voice Trigger</span>
-                </div>
-
-                {/* Main Hero Hardware Photo Frame with Figma Border Beam */}
+            {/* Right Hero Product Photo Showcase - Maximized Width & Length with 3-Second Auto-Slide */}
+            <ScrollReveal animation="fade-up" delay={200} duration={800} style={{ width: '100%' }}>
+              <div 
+                className="hero-hardware-wrapper"
+                onMouseEnter={() => setIsHeroSlidePaused(true)}
+                onMouseLeave={() => setIsHeroSlidePaused(false)}
+              >
                 <div 
                   className="border-beam-card"
                   style={{
-                    boxShadow: '0 30px 70px -15px rgba(0, 0, 0, 0.75), 0 0 35px rgba(14, 165, 233, 0.25)'
+                    boxShadow: '0 35px 85px -15px rgba(0, 0, 0, 0.88), 0 0 50px rgba(16, 185, 129, 0.35)',
+                    width: '100%'
                   }}
                 >
                   <div 
                     className="border-beam-card-inner"
                     style={{
-                      background: 'linear-gradient(145deg, rgba(20, 42, 82, 0.85) 0%, rgba(5, 12, 30, 0.98) 100%)',
-                      padding: '12px'
+                      background: 'linear-gradient(145deg, rgba(7, 34, 27, 0.94) 0%, rgba(4, 19, 14, 0.98) 100%)',
+                      padding: '14px',
+                      width: '100%'
                     }}
                   >
-                    <div style={{ borderRadius: '1.25rem', overflow: 'hidden', position: 'relative' }}>
-                      <img 
-                        src="/images/home/hero-hardware.jpg" 
-                        alt="Rhizobee Smart Payment Hardware - 4G Soundbox, Android POS Terminal and QR Code Standee" 
-                        style={{
-                          width: '100%',
-                          height: 'auto',
-                          display: 'block',
-                          objectFit: 'cover',
-                          maxHeight: '380px'
-                        }}
-                      />
-
-                      {/* Gradient Overlay for Sleek Contrast */}
-                      <div 
-                        style={{
-                          position: 'absolute',
-                          inset: 0,
-                          background: 'linear-gradient(to top, rgba(5, 12, 30, 0.88) 0%, rgba(5, 12, 30, 0.1) 40%, transparent 100%)',
-                          pointerEvents: 'none'
-                        }}
-                      />
-
-                      {/* Overlay Label inside Photo */}
-                      <div 
-                        style={{
-                          position: 'absolute',
-                          bottom: '14px',
-                          left: '16px',
-                          right: '16px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          color: '#ffffff'
-                        }}
-                      >
-                        <div>
-                          <div style={{ fontSize: '0.875rem', fontWeight: 700, letterSpacing: '-0.01em' }}>
-                            Rhizobee Flagship Counter Suite
-                          </div>
-                          <div style={{ fontSize: '0.725rem', color: 'rgba(255, 255, 255, 0.75)' }}>
-                            Soundbox 4G • Android POS • Dynamic QR Standee
-                          </div>
-                        </div>
-                        <span 
-                          style={{
-                            fontSize: '0.72rem',
-                            fontWeight: 600,
-                            backgroundColor: 'rgba(34, 197, 94, 0.25)',
-                            border: '1px solid rgba(34, 197, 94, 0.5)',
-                            color: '#4ade80',
-                            padding: '4px 10px',
-                            borderRadius: '9999px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px'
-                          }}
-                        >
-                          <span className="beacon-pulse-green" /> Live
-                        </span>
+                    <div style={{ borderRadius: '1.35rem', overflow: 'hidden', position: 'relative', width: '100%' }}>
+                      {/* 3-Second Active Progress Bar inside Box */}
+                      <div className="hero-slide-progress-track">
+                        <div 
+                          key={currentHeroSlide}
+                          className="hero-slide-progress-fill"
+                          style={{ animationPlayState: isHeroSlidePaused ? 'paused' : 'running' }}
+                        />
                       </div>
+
+                      {/* Main Sliding Hardware Image & Dynamic Cards */}
+                      {(() => {
+                        const activeSlide = heroHardwareSlides[currentHeroSlide] || heroHardwareSlides[0];
+                        return (
+                          <div key={activeSlide.id} className="hero-slide-image-animate" style={{ position: 'relative' }}>
+                            <img 
+                              src={activeSlide.image} 
+                              alt={activeSlide.alt} 
+                              className="hero-hardware-img"
+                            />
+
+                            {/* Gradient Overlay for Sleek Contrast */}
+                            <div 
+                              style={{
+                                position: 'absolute',
+                                inset: 0,
+                                background: 'linear-gradient(to top, rgba(5, 12, 30, 0.95) 0%, rgba(5, 12, 30, 0.2) 45%, rgba(5, 12, 30, 0.45) 100%)',
+                                pointerEvents: 'none'
+                              }}
+                            />
+
+                            {/* Inside Box Navigation Arrows */}
+                            <button 
+                              type="button" 
+                              onClick={handlePrevHeroSlide}
+                              className="hero-slide-arrow-btn hero-slide-arrow-prev"
+                              aria-label="Previous hardware slide"
+                            >
+                              <ChevronLeft size={18} />
+                            </button>
+                            <button 
+                              type="button" 
+                              onClick={handleNextHeroSlide}
+                              className="hero-slide-arrow-btn hero-slide-arrow-next"
+                              aria-label="Next hardware slide"
+                            >
+                              <ChevronRight size={18} />
+                            </button>
+
+                            {/* Inside Box Card 1: Dynamic Top-Left Card with Picture & Animations */}
+                            <div className={`figma-inside-card ${activeSlide.card1.isGold ? 'figma-inside-card-gold' : ''}`} style={{ top: '16px', left: '16px' }}>
+                              <img 
+                                src={activeSlide.card1.thumb} 
+                                alt={activeSlide.card1.title} 
+                                className="figma-inside-thumb" 
+                              />
+                              <div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--sky)' }}>
+                                    {activeSlide.card1.icon} {activeSlide.card1.title}
+                                  </span>
+                                  {activeSlide.card1.hasWave && (
+                                    <div style={{ display: 'flex', alignItems: 'flex-end', gap: '2px', height: '12px' }}>
+                                      <span className="audio-wave-bar" style={{ animationDelay: '0s', height: '6px' }} />
+                                      <span className="audio-wave-bar" style={{ animationDelay: '0.2s', height: '12px' }} />
+                                      <span className="audio-wave-bar" style={{ animationDelay: '0.4s', height: '8px' }} />
+                                      <span className="audio-wave-bar" style={{ animationDelay: '0.1s', height: '13px' }} />
+                                    </div>
+                                  )}
+                                </div>
+                                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#4ade80', marginTop: '1px' }}>
+                                  {activeSlide.card1.value}
+                                </div>
+                                <div style={{ fontSize: '0.66rem', color: 'rgba(255, 255, 255, 0.72)' }}>
+                                  {activeSlide.card1.sub}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Inside Box Card 2: Dynamic Top-Right Card with Picture & Tag */}
+                            <div className={`figma-inside-card ${activeSlide.card2.isGold ? 'figma-inside-card-gold' : ''}`} style={{ top: '16px', right: '16px' }}>
+                              <img 
+                                src={activeSlide.card2.thumb} 
+                                alt={activeSlide.card2.title} 
+                                className="figma-inside-thumb" 
+                              />
+                              <div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#fbbf24' }}>
+                                    {activeSlide.card2.icon} {activeSlide.card2.title}
+                                  </span>
+                                  {activeSlide.card2.badge && (
+                                    <span style={{ fontSize: '0.6rem', padding: '1px 5px', borderRadius: '4px', backgroundColor: 'rgba(34, 197, 94, 0.2)', color: '#4ade80', fontWeight: 600, border: '1px solid rgba(34, 197, 94, 0.4)' }}>
+                                      {activeSlide.card2.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginTop: '1px' }}>
+                                  {activeSlide.card2.value}
+                                </div>
+                                <div style={{ fontSize: '0.66rem', color: 'rgba(255, 255, 255, 0.72)' }}>
+                                  {activeSlide.card2.sub}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Inside Box Bottom Overlay - Top Info Row & Bottom Thumbnail Navigation */}
+                            <div 
+                              style={{
+                                position: 'absolute',
+                                bottom: '14px',
+                                left: '16px',
+                                right: '16px',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '10px',
+                                zIndex: 10
+                              }}
+                            >
+                              {/* Row 1: Title & Tag on Left, Compliance Badge on Right */}
+                              <div 
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'space-between',
+                                  flexWrap: 'wrap',
+                                  gap: '8px'
+                                }}
+                              >
+                                <div>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                                    <span style={{ fontSize: '1.05rem', fontWeight: 700, letterSpacing: '-0.015em', color: '#ffffff', lineHeight: 1.2 }}>
+                                      {activeSlide.title}
+                                    </span>
+                                    <span style={{ fontSize: '0.62rem', padding: '2px 7px', borderRadius: '5px', background: 'rgba(14, 165, 233, 0.22)', color: 'var(--sky)', border: '1px solid rgba(14, 165, 233, 0.4)', fontWeight: 600 }}>
+                                      {activeSlide.tag}
+                                    </span>
+                                  </div>
+                                  <div style={{ fontSize: '0.74rem', color: 'rgba(255, 255, 255, 0.75)', marginTop: '2px' }}>
+                                    {activeSlide.subtitle}
+                                  </div>
+                                </div>
+
+                                {/* 100% RBI & PCI-DSS Compliant badge */}
+                                <div 
+                                  style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '6px',
+                                    padding: '4px 11px',
+                                    borderRadius: '9999px',
+                                    backgroundColor: 'rgba(5, 12, 30, 0.9)',
+                                    border: '1px solid rgba(217, 164, 65, 0.55)',
+                                    backdropFilter: 'blur(10px)',
+                                    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(217, 164, 65, 0.25)',
+                                    color: '#ffffff',
+                                    fontSize: '0.72rem',
+                                    fontWeight: 600,
+                                    whiteSpace: 'nowrap'
+                                  }}
+                                >
+                                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '9999px', backgroundColor: 'rgba(217, 164, 65, 0.25)' }}>
+                                    <ShieldCheck size={11} color="#fbbf24" />
+                                  </span>
+                                  <span>100% RBI &amp; PCI-DSS Level 1 Compliant</span>
+                                </div>
+                              </div>
+
+                              {/* Row 2: 4 Sliding Picture Preview Cards Centered inside Box */}
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                <div className="hero-slide-thumbs-row">
+                                  {heroHardwareSlides.map((slide, slideIdx) => (
+                                    <button
+                                      key={slide.id}
+                                      type="button"
+                                      onClick={() => setCurrentHeroSlide(slideIdx)}
+                                      className={`hero-thumb-btn ${slideIdx === currentHeroSlide ? 'active' : ''}`}
+                                      aria-label={`Show ${slide.thumbLabel}`}
+                                    >
+                                      <img 
+                                        src={slide.thumbImg} 
+                                        alt={slide.thumbLabel} 
+                                        className="hero-thumb-img" 
+                                      />
+                                      <span className="hero-thumb-text">{slide.thumbLabel}</span>
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })()}
                     </div>
                   </div>
-                </div>
-
-                {/* Floating Bottom Left Badge */}
-                <div 
-                  className="animate-float-slow"
-                  style={{
-                    position: 'absolute',
-                    bottom: '-18px',
-                    left: '12px',
-                    zIndex: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '8px 14px',
-                    borderRadius: '9999px',
-                    backgroundColor: 'rgba(5, 12, 30, 0.95)',
-                    border: '1px solid rgba(217, 164, 65, 0.5)',
-                    backdropFilter: 'blur(12px)',
-                    boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(217, 164, 65, 0.3)',
-                    color: '#ffffff',
-                    fontSize: '0.8rem',
-                    fontWeight: 600
-                  }}
-                >
-                  <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '9999px', backgroundColor: 'rgba(217, 164, 65, 0.25)' }}>
-                    <ShieldCheck size={14} color="#fbbf24" />
-                  </span>
-                  <span>100% RBI &amp; PCI-DSS Level 1 Compliant</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -850,7 +1158,7 @@ export default function HomePage() {
             transform: 'translate(-50%, -50%)',
             width: '600px',
             height: '300px',
-            background: 'radial-gradient(circle, rgba(22, 86, 214, 0.2) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%)',
             filter: 'blur(70px)',
             pointerEvents: 'none'
           }}
@@ -899,126 +1207,423 @@ export default function HomePage() {
       </section>
 
       {/* ========================================================
-          8. BUILT FOR EVERY STAGE OF BUSINESS
+          8. BUILT FOR EVERY STAGE OF BUSINESS - FIGMA ANIMATED CIRCULAR ECOSYSTEM
           ======================================================== */}
-      <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
-        <div className="container-custom">
+      <section id="who-we-serve-orbit" style={{ backgroundColor: 'var(--ink)', color: '#ffffff', paddingTop: '6rem', paddingBottom: '6.5rem', position: 'relative', overflow: 'hidden' }}>
+        <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.2 }} aria-hidden="true" />
+        
+        {/* Ambient Backlight Glow Orbs */}
+        <div 
+          className="animate-glow-pulse"
+          style={{
+            position: 'absolute',
+            left: '15%',
+            top: '25%',
+            height: '26rem',
+            width: '26rem',
+            borderRadius: '9999px',
+            backgroundColor: 'rgba(16, 185, 129, 0.25)',
+            filter: 'blur(95px)',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+        <div 
+          className="animate-glow-pulse"
+          style={{
+            position: 'absolute',
+            right: '15%',
+            bottom: '20%',
+            height: '22rem',
+            width: '22rem',
+            borderRadius: '9999px',
+            backgroundColor: 'rgba(217, 164, 65, 0.16)',
+            filter: 'blur(90px)',
+            animationDelay: '2.5s',
+            pointerEvents: 'none'
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="container-custom ecosystem-container-wide" style={{ position: 'relative', zIndex: 2 }}>
           <ScrollReveal animation="fade-up">
-            <div style={{ maxWidth: '100%', textAlign: 'left', marginBottom: '3.5rem' }}>
-              <span className="badge-tag">
-                <span className="badge-dot" />
-                WHO WE SERVE
-              </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
-                Built for every stage of business
+            <div className="ecosystem-heading-wrap">
+              <div 
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '6px 16px',
+                  borderRadius: '9999px',
+                  backgroundColor: 'rgba(16, 185, 129, 0.18)',
+                  border: '1px solid rgba(16, 185, 129, 0.35)',
+                  backdropFilter: 'blur(8px)',
+                  marginBottom: '1rem'
+                }}
+              >
+                <span className="beacon-pulse-royal" />
+                <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--sky)', letterSpacing: '0.05em' }}>
+                  WHO WE SERVE • FIGMA CIRCULAR ECOSYSTEM
+                </span>
+              </div>
+              <h2 className="ecosystem-main-title">
+                Built for every <span className="text-gradient">stage of business</span>
               </h2>
-              <p style={{ fontSize: '1.05rem', color: 'var(--slate)', lineHeight: 1.65, marginTop: '0.5rem', maxWidth: '38rem' }}>
-                Whether you need single-terminal simplicity or complex multi-entity settlement architectures.
+              <p className="ecosystem-main-desc">
+                From single-counter kiranas to multi-entity enterprise conglomerates — our unified payment technology stack orbits around your exact operational scale.
               </p>
             </div>
           </ScrollReveal>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.75rem' }}>
-            {businessStages.map((stage, idx) => (
-              <ScrollReveal key={idx} animation="fade-up" delay={idx * 100}>
-                <div className="fintech-card-interactive" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-                      <div className="icon-box-hover" style={{ padding: '0.6rem', borderRadius: '0.75rem', backgroundColor: 'var(--paper)' }}>
-                        {stage.icon}
+          {/* Figma Circular Orbit Ecosystem Grid */}
+          <div className="figma-ecosystem-grid">
+            {/* Left Column: The Animated Orbit Circle System */}
+            <ScrollReveal animation="fade-up" duration={700}>
+              <div 
+                className="orbit-circle-wrapper"
+                onMouseEnter={() => setIsStagePaused(true)}
+                onMouseLeave={() => setIsStagePaused(false)}
+              >
+                <div className="orbit-circle-system">
+                  {/* Outer Dashed Orbit Ring */}
+                  <div className="orbit-ring-outer" />
+                  
+                  {/* Middle Orbit Path */}
+                  <div className="orbit-ring-middle" />
+                  
+                  {/* Pulsing Concentric Radar Rings */}
+                  <div className="orbit-radar-pulse pulse-1" />
+                  <div className="orbit-radar-pulse pulse-2" />
+                  <div className="orbit-radar-pulse pulse-3" />
+
+                  {/* SVG Active Connecting Laser Line */}
+                  <svg className="orbit-laser-svg" viewBox="0 0 100 100">
+                    <defs>
+                      <linearGradient id="orbitLaserGrad" x1="50%" y1="50%" x2={`${orbitCoordinates[activeStageIndex].x}%`} y2={`${orbitCoordinates[activeStageIndex].y}%`}>
+                        <stop offset="0%" stopColor="var(--sky)" stopOpacity="0.9" />
+                        <stop offset="100%" stopColor="#fbbf24" stopOpacity="1" />
+                      </linearGradient>
+                    </defs>
+                    <line 
+                      x1="50" 
+                      y1="50" 
+                      x2={orbitCoordinates[activeStageIndex].x} 
+                      y2={orbitCoordinates[activeStageIndex].y} 
+                      stroke="url(#orbitLaserGrad)" 
+                      strokeWidth="2.5" 
+                      strokeDasharray="4 2"
+                      className="orbit-active-laser-line"
+                    />
+                    <circle 
+                      cx={orbitCoordinates[activeStageIndex].x} 
+                      cy={orbitCoordinates[activeStageIndex].y} 
+                      r="4" 
+                      fill="#fbbf24" 
+                      style={{ filter: 'drop-shadow(0 0 8px #fbbf24)' }}
+                    />
+                  </svg>
+
+                  {/* Center Core Hub Disc */}
+                  <div className="orbit-core-hub">
+                    <div className="orbit-core-inner">
+                      <span className="beacon-pulse-royal orbit-core-dot" />
+                      <span className="orbit-core-title">RHIZOBEE</span>
+                      <span className="orbit-core-sub">CORE HUB</span>
+                      <span className="orbit-core-badge">1 Unified Stack</span>
+                    </div>
+                  </div>
+
+                  {/* 5 Orbital Stage Nodes */}
+                  {businessStages.map((stage, idx) => {
+                    const coord = orbitCoordinates[idx];
+                    const isActive = idx === activeStageIndex;
+                    return (
+                      <button
+                        key={stage.id}
+                        type="button"
+                        onClick={() => setActiveStageIndex(idx)}
+                        className={`orbit-node-btn ${isActive ? 'active' : ''}`}
+                        style={{
+                          left: `${coord.x}%`,
+                          top: `${coord.y}%`
+                        }}
+                        aria-label={`Select ${stage.role}`}
+                      >
+                        <div className="orbit-node-icon">
+                          {stage.icon}
+                        </div>
+                        <span className="orbit-node-label">{stage.shortName}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Right Column: Active Stage Feature Card Showcase */}
+            <ScrollReveal animation="fade-up" delay={150} duration={800}>
+              {(() => {
+                const currentStage = businessStages[activeStageIndex] || businessStages[0];
+                return (
+                  <div 
+                    key={currentStage.id} 
+                    className="orbit-showcase-card"
+                    onMouseEnter={() => setIsStagePaused(true)}
+                    onMouseLeave={() => setIsStagePaused(false)}
+                  >
+                    {/* Top Row: Icon + Metric Tag */}
+                    <div className="orbit-card-header">
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                        <div 
+                          className="orbit-card-icon-wrap"
+                          style={{ 
+                            border: `1.5px solid ${currentStage.accentColor}`,
+                            boxShadow: `0 0 24px ${currentStage.accentColor}38`
+                          }}
+                        >
+                          {currentStage.icon}
+                        </div>
+                        <div>
+                          <div className="orbit-card-tagline" style={{ color: currentStage.accentColor }}>
+                            {currentStage.tagline}
+                          </div>
+                          <h3 className="orbit-card-title">
+                            {currentStage.role}
+                          </h3>
+                        </div>
                       </div>
-                      <span style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--royal)', fontFamily: 'var(--font-data)' }}>
-                        {stage.metric}
+
+                      <span className="orbit-card-metric-badge">
+                        {currentStage.metric}
                       </span>
                     </div>
 
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '0.65rem' }}>
-                      {stage.role}
-                    </h3>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.65, color: 'var(--slate)' }}>
-                      {stage.desc}
+                    <p className="orbit-card-desc">
+                      {currentStage.desc}
                     </p>
+
+                    {/* Dedicated Hardware & Digital Rails */}
+                    <div style={{ marginBottom: '1.5rem' }}>
+                      <div className="orbit-card-hw-title">
+                        Tailored Payment Hardware &amp; Cloud Stack
+                      </div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                        {currentStage.hardware.map((hw, i) => (
+                          <span key={i} className="orbit-spec-chip">
+                            <span style={{ width: '6px', height: '6px', borderRadius: '9999px', backgroundColor: currentStage.accentColor }} />
+                            {hw}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* 3 KPI Metrics Grid */}
+                    <div className="orbit-kpi-grid">
+                      {currentStage.kpis.map((kpi, kIdx) => (
+                        <div key={kIdx} className="orbit-kpi-box">
+                          <div className="orbit-kpi-label">
+                            {kpi.label}
+                          </div>
+                          <div className="orbit-kpi-val">
+                            {kpi.val}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bottom Action & Circular Stage Indicators */}
+                    <div className="orbit-card-footer">
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        {businessStages.map((_, dotI) => (
+                          <button
+                            key={dotI}
+                            type="button"
+                            onClick={() => setActiveStageIndex(dotI)}
+                            className="orbit-dot-nav-btn"
+                            style={{
+                              width: dotI === activeStageIndex ? '28px' : '8px',
+                              backgroundColor: dotI === activeStageIndex ? 'var(--sky)' : 'rgba(255, 255, 255, 0.3)'
+                            }}
+                            aria-label={`Jump to stage ${dotI + 1}`}
+                          />
+                        ))}
+                      </div>
+
+                      <Link 
+                        to="/contact" 
+                        className="btn-royal btn-shimmer orbit-card-cta"
+                      >
+                        Explore Solution for {currentStage.shortName} <ArrowRight size={16} />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                );
+              })()}
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
       {/* ========================================================
-          9. TESTIMONIALS WITH ELEVATED CLIENT CARDS
+          9. TESTIMONIALS SLIDER - SINGLE FORM (3-SECOND AUTO SLIDE)
           ======================================================== */}
-      <section style={{ backgroundColor: 'var(--paper-dim)', paddingTop: '6rem', paddingBottom: '6rem' }}>
+      <section style={{ backgroundColor: 'var(--paper-dim)', paddingTop: '6rem', paddingBottom: '6.5rem', position: 'relative', overflow: 'hidden' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ textAlign: 'left', maxWidth: '100%', marginBottom: '3.5rem' }}>
+            <div style={{ textAlign: 'center', maxWidth: '38rem', margin: '0 auto 3.5rem auto' }}>
               <span className="badge-tag">
                 <span className="badge-dot" />
-                CLIENT VOICES
+                CLIENT VOICES &amp; ENDORSEMENTS
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.025em', marginTop: '0.75rem' }}>
                 What our clients say about working with us
               </h2>
-              <p style={{ fontSize: '1.05rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.5rem' }}>
-                Trusted by merchants, distributors, and enterprise founders across India.
+              <p style={{ fontSize: '1.05rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.6rem' }}>
+                Trusted by retail merchants, distribution partners, and enterprise founders across India.
               </p>
             </div>
           </ScrollReveal>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.75rem' }}>
-            {testimonials.map((t, idx) => (
-              <ScrollReveal key={t._id || idx} animation="fade-up" delay={idx * 150}>
-                <div className="testimonial-card-elevated" style={{ height: '100%' }}>
-                  {/* Subtle quote icon watermark in top corner */}
-                  <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', opacity: 0.1, pointerEvents: 'none' }}>
-                    <Quote size={40} color="var(--royal)" />
-                  </div>
+          {/* Single Form Slider Container */}
+          <div className="testimonial-single-slider-wrapper">
+            <div 
+              className="testimonial-slide-card"
+              onMouseEnter={() => setIsTestimonialPaused(true)}
+              onMouseLeave={() => setIsTestimonialPaused(false)}
+            >
+              {/* 3-Second Active Progress Bar */}
+              <div className="testimonial-progress-bar-track">
+                <div 
+                  key={currentTestimonialIndex}
+                  className="testimonial-progress-bar-fill"
+                  style={{ animationPlayState: isTestimonialPaused ? 'paused' : 'running' }}
+                />
+              </div>
 
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', marginBottom: '1.25rem' }}>
-                      {[...Array(t.extraData?.rating || 5)].map((_, i) => (
-                        <Star key={i} size={16} fill="#f59e0b" color="#f59e0b" />
-                      ))}
+              {/* Watermark Quote Icon */}
+              <div style={{ position: 'absolute', top: '2rem', right: '2.5rem', opacity: 0.08, pointerEvents: 'none' }}>
+                <Quote size={84} color="var(--royal)" />
+              </div>
+
+              {/* Active Testimonial Content with Smooth Fade/Slide */}
+              {testimonials && testimonials.length > 0 && (() => {
+                const current = testimonials[currentTestimonialIndex] || testimonials[0];
+                return (
+                  <div 
+                    key={current._id || currentTestimonialIndex}
+                    className="testimonial-slide-animate"
+                  >
+                    {/* Rating Stars & Slide Counter */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.75rem', position: 'relative', zIndex: 2 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                        {[...Array(current.extraData?.rating || 5)].map((_, i) => (
+                          <Star key={i} size={18} fill="#f59e0b" color="#f59e0b" />
+                        ))}
+                        <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--slate-dim)', marginLeft: '8px' }}>
+                          5.0 Rating
+                        </span>
+                      </div>
+
+                      <div className="font-data" style={{ fontSize: '0.8rem', color: 'var(--slate)', backgroundColor: 'var(--paper-dim)', padding: '4px 12px', borderRadius: '9999px', border: '1px solid var(--line)', fontWeight: 600 }}>
+                        {String(currentTestimonialIndex + 1).padStart(2, '0')} / {String(testimonials.length).padStart(2, '0')}
+                      </div>
                     </div>
-                    <p style={{ fontSize: '0.975rem', lineHeight: 1.7, color: 'var(--slate)', fontStyle: 'italic', marginBottom: '1.75rem', position: 'relative', zIndex: 1 }}>
-                      "{t.description || t.quote}"
+
+                    {/* Main Testimonial Quote */}
+                    <p style={{ fontSize: '1.25rem', lineHeight: 1.8, color: 'var(--ink)', fontStyle: 'italic', fontWeight: 500, minHeight: '5.5rem', marginBottom: '2.25rem', position: 'relative', zIndex: 2 }}>
+                      "{current.description || current.quote}"
                     </p>
-                  </div>
 
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', borderTop: '1px solid var(--line)', paddingTop: '1.25rem' }}>
-                    {/* Author Initial Avatar Ring */}
-                    <div 
-                      style={{
-                        width: '42px',
-                        height: '42px',
-                        borderRadius: '9999px',
-                        background: 'linear-gradient(135deg, var(--royal) 0%, var(--sky) 100%)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: '#ffffff',
-                        fontWeight: 700,
-                        fontSize: '0.95rem',
-                        flexShrink: 0,
-                        boxShadow: '0 4px 10px rgba(22, 86, 214, 0.25)'
-                      }}
-                    >
-                      {(t.title || t.author || 'M').charAt(0).toUpperCase()}
-                    </div>
+                    {/* Author Details and Verification Badge */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid var(--line)', paddingTop: '1.5rem', flexWrap: 'wrap', gap: '1rem', position: 'relative', zIndex: 2 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                        {/* Author Avatar with Initial */}
+                        <div 
+                          style={{
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '9999px',
+                            background: 'linear-gradient(135deg, var(--royal) 0%, var(--sky) 100%)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#ffffff',
+                            fontWeight: 700,
+                            fontSize: '1.15rem',
+                            flexShrink: 0,
+                            boxShadow: '0 6px 16px rgba(22, 86, 214, 0.28)'
+                          }}
+                        >
+                          {(current.title || current.author || 'M').charAt(0).toUpperCase()}
+                        </div>
 
-                    <div>
-                      <div style={{ fontWeight: 700, color: 'var(--ink)', fontSize: '0.975rem' }}>
-                        {t.title || t.author}
+                        <div>
+                          <div style={{ fontWeight: 700, color: 'var(--ink)', fontSize: '1.05rem', letterSpacing: '-0.01em' }}>
+                            {current.title || current.author}
+                          </div>
+                          <div style={{ fontSize: '0.85rem', color: 'var(--slate-dim)', marginTop: '0.2rem' }}>
+                            {current.subtitle || current.role}
+                          </div>
+                        </div>
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--slate-dim)', marginTop: '0.15rem' }}>
-                        {t.subtitle || t.role}
+
+                      {/* Verified Merchant Partner Chip */}
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '9999px', backgroundColor: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.25)', color: '#16a34a', fontSize: '0.78rem', fontWeight: 600 }}>
+                        <CheckCircle2 size={14} color="#16a34a" /> Verified Client Review
                       </div>
                     </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                );
+              })()}
+            </div>
+
+            {/* Slider Controls Bar: Previous, Dots, Next, Pause Hint */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem', padding: '0 0.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <button
+                  type="button"
+                  onClick={handlePrevTestimonial}
+                  className="testimonial-nav-btn"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextTestimonial}
+                  className="testimonial-nav-btn"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+
+              {/* Pagination Dots */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                {testimonials.map((_, dotIdx) => (
+                  <button
+                    key={dotIdx}
+                    type="button"
+                    onClick={() => setCurrentTestimonialIndex(dotIdx)}
+                    className={`testimonial-dot-btn ${dotIdx === currentTestimonialIndex ? 'active' : ''}`}
+                    aria-label={`Go to slide ${dotIdx + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Status Indicator */}
+              <div style={{ fontSize: '0.78rem', color: 'var(--slate-dim)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span 
+                  style={{
+                    width: '7px',
+                    height: '7px',
+                    borderRadius: '9999px',
+                    backgroundColor: isTestimonialPaused ? '#f59e0b' : '#22c55e'
+                  }} 
+                />
+                <span>{isTestimonialPaused ? 'Slide Paused (Hovered)' : 'Auto-sliding 3s'}</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1042,7 +1647,7 @@ export default function HomePage() {
             width: '28rem',
             height: '28rem',
             borderRadius: '9999px',
-            backgroundColor: 'rgba(22, 86, 214, 0.25)',
+            backgroundColor: 'rgba(16, 185, 129, 0.25)',
             filter: 'blur(90px)',
             pointerEvents: 'none'
           }}

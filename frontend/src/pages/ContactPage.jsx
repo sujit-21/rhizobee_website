@@ -90,18 +90,24 @@ export default function ContactPage() {
           }} 
         />
 
-        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '50rem', textAlign: 'center' }}>
+        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '76rem', textAlign: 'center' }}>
           <ScrollReveal animation="fade-up">
             <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--sky)' }}>
               <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
               Contact Rhizobee
             </span>
 
-            <h1 style={{ fontSize: '3.3rem', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.15 }}>
+            <h1 
+              className="heading-single-line"
+              style={{ fontSize: 'clamp(1.65rem, 3.1vw, 3rem)', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.2 }}
+            >
               Let's get your business <span className="text-gradient">accepting payments</span>
             </h1>
 
-            <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)' }}>
+            <p 
+              className="subheading-balanced"
+              style={{ marginTop: '1.25rem', fontSize: 'clamp(0.95rem, 1.5vw, 1.12rem)', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)', maxWidth: '62rem' }}
+            >
               Whether you need a payment gateway, QR code standee, soundbox, POS device, or PPI wallet solution, tell us about your business. Our payment specialists respond within one business day.
             </p>
           </ScrollReveal>

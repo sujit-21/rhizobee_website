@@ -244,12 +244,15 @@ export default function CareersPage() {
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ maxWidth: '42rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
+            <div style={{ maxWidth: '68rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
               <span className="badge-tag" style={{ justifyContent: 'center' }}>
                 <span className="badge-dot" />
                 HOW WE OPERATE
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+              <h2 
+                className="heading-single-line"
+                style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.35rem)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+              >
                 Values that guide how we build and scale
               </h2>
             </div>
@@ -279,15 +282,21 @@ export default function CareersPage() {
       <section id="open-positions" style={{ backgroundColor: 'var(--paper)', paddingTop: '6rem', paddingBottom: '6rem' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ maxWidth: '42rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
+            <div style={{ maxWidth: '68rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
               <span className="badge-tag" style={{ justifyContent: 'center' }}>
                 <span className="badge-dot" />
                 CURRENT OPPORTUNITIES
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+              <h2 
+                className="heading-single-line"
+                style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.35rem)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+              >
                 Join our growing team
               </h2>
-              <p style={{ fontSize: '1.05rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.5rem' }}>
+              <p 
+                className="subheading-balanced subheading-single-line-desktop"
+                style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.5rem', maxWidth: '68rem', margin: '0.5rem auto 0' }}
+              >
                 We're always looking for ambitious individuals eager to make an impact in India's digital payments journey.
               </p>
             </div>

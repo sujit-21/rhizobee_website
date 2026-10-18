@@ -259,12 +259,15 @@ export default function AboutPage() {
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ maxWidth: '46rem', margin: '0 auto 4rem', textAlign: 'center' }}>
+            <div style={{ maxWidth: '72rem', margin: '0 auto 4rem', textAlign: 'center' }}>
               <span className="badge-tag" style={{ justifyContent: 'center' }}>
                 <span className="badge-dot" />
                 Our Purpose
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+              <h2 
+                className="heading-single-line"
+                style={{ fontSize: 'clamp(1.35rem, 2.4vw, 2.35rem)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+              >
                 Built to bridge merchants, enterprises, and financial institutions
               </h2>
             </div>
@@ -306,12 +309,15 @@ export default function AboutPage() {
       <section style={{ backgroundColor: 'var(--paper)', paddingTop: '6rem', paddingBottom: '6rem' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ maxWidth: '42rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
+            <div style={{ maxWidth: '68rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
               <span className="badge-tag" style={{ justifyContent: 'center' }}>
                 <span className="badge-dot" />
                 Guiding Philosophy
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+              <h2 
+                className="heading-single-line"
+                style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.35rem)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+              >
                 The principles behind how we work
               </h2>
             </div>
@@ -347,12 +353,15 @@ export default function AboutPage() {
       <section style={{ backgroundColor: '#ffffff', paddingTop: '6rem', paddingBottom: '6rem', borderBottom: '1px solid var(--line)' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ maxWidth: '42rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
+            <div style={{ maxWidth: '68rem', margin: '0 auto 3.5rem', textAlign: 'center' }}>
               <span className="badge-tag" style={{ justifyContent: 'center' }}>
                 <span className="badge-dot" />
                 Merchant Advantage
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+              <h2 
+                className="heading-single-line"
+                style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.35rem)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+              >
                 Why merchants and corporates choose to grow with us
               </h2>
             </div>
@@ -378,15 +387,21 @@ export default function AboutPage() {
       {/* CTA */}
       <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', padding: '6rem 1.25rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.2 }} />
-        <div style={{ maxWidth: '42rem', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: '68rem', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <ScrollReveal animation="fade-up">
             <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--gold)' }}>
               <Sparkles size={14} color="var(--gold)" /> PARTNER WITH US
             </span>
-            <h2 style={{ fontSize: '2.4rem', fontWeight: 700, letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+            <h2 
+              className="heading-single-line"
+              style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.35rem)', fontWeight: 700, letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+            >
               Want to know if we're the right payments partner for you?
             </h2>
-            <p style={{ marginTop: '0.85rem', color: 'rgba(255, 255, 255, 0.78)', fontSize: '1.05rem', lineHeight: 1.65 }}>
+            <p 
+              className="subheading-balanced subheading-single-line-desktop"
+              style={{ marginTop: '0.85rem', color: 'rgba(255, 255, 255, 0.78)', fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', lineHeight: 1.65, maxWidth: '58rem' }}
+            >
               Our team will walk you through customized commercial terms, terminal options, and integration timelines.
             </p>
             <div style={{ marginTop: '2.25rem' }}>

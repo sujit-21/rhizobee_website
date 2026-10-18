@@ -165,18 +165,24 @@ export default function ServicesPage() {
           }} 
         />
 
-        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '52rem', textAlign: 'center' }}>
+        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '76rem', textAlign: 'center' }}>
           <ScrollReveal animation="fade-up">
             <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--sky)' }}>
               <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
               End-to-End Payment Solutions
             </span>
 
-            <h1 style={{ fontSize: '3.4rem', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.15 }}>
+            <h1 
+              className="heading-single-line"
+              style={{ fontSize: 'clamp(1.65rem, 3.1vw, 3rem)', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.2 }}
+            >
               Hardware, software, and distribution <span className="text-gradient">all in one place</span>
             </h1>
 
-            <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)' }}>
+            <p 
+              className="subheading-balanced"
+              style={{ marginTop: '1.25rem', fontSize: 'clamp(0.95rem, 1.6vw, 1.12rem)', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)', maxWidth: '58rem' }}
+            >
               From physical counter terminals and 4G voice soundboxes to online payment gateways and PPI wallets, explore our complete catalog of digital financial technology.
             </p>
 
@@ -309,12 +315,15 @@ export default function ServicesPage() {
       <section style={{ backgroundColor: 'var(--paper-dim)', paddingTop: '6rem', paddingBottom: '6rem', borderTop: '1px solid var(--line)' }}>
         <div className="container-custom">
           <ScrollReveal animation="fade-up">
-            <div style={{ maxWidth: '42rem', margin: '0 auto 4rem', textAlign: 'center' }}>
+            <div style={{ maxWidth: '68rem', margin: '0 auto 4rem', textAlign: 'center' }}>
               <span className="badge-tag" style={{ justifyContent: 'center' }}>
                 <span className="badge-dot" />
                 HOW IT WORKS
               </span>
-              <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+              <h2 
+                className="heading-single-line"
+                style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.35rem)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+              >
                 From consultation to live transactions in 4 steps
               </h2>
             </div>
@@ -349,15 +358,21 @@ export default function ServicesPage() {
       {/* CTA */}
       <section style={{ backgroundColor: 'var(--ink)', color: '#ffffff', padding: '6rem 1.25rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="lattice-bg" style={{ position: 'absolute', inset: 0, opacity: 0.2 }} />
-        <div style={{ maxWidth: '42rem', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: '68rem', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <ScrollReveal animation="fade-up">
             <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--gold)' }}>
               <Sparkles size={14} color="var(--gold)" /> START TODAY
             </span>
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '-0.025em', marginTop: '0.75rem' }}>
+            <h2 
+              className="heading-single-line"
+              style={{ fontSize: 'clamp(1.45rem, 2.6vw, 2.45rem)', fontWeight: 700, letterSpacing: '-0.025em', marginTop: '0.75rem' }}
+            >
               Ready to modernize your counter checkouts?
             </h2>
-            <p style={{ marginTop: '0.85rem', color: 'rgba(255, 255, 255, 0.78)', fontSize: '1.05rem', lineHeight: 1.65 }}>
+            <p 
+              className="subheading-balanced subheading-single-line-desktop"
+              style={{ marginTop: '0.85rem', color: 'rgba(255, 255, 255, 0.78)', fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', lineHeight: 1.65, maxWidth: '58rem' }}
+            >
               Talk to our product specialists to choose the right devices, commercial terms, and settlement schedules.
             </p>
             <div style={{ marginTop: '2.25rem' }}>

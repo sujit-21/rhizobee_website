@@ -101,18 +101,24 @@ export default function SolutionsPage() {
           }} 
         />
 
-        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '50rem', textAlign: 'center' }}>
+        <div className="container-custom" style={{ position: 'relative', zIndex: 2, maxWidth: '76rem', textAlign: 'center' }}>
           <ScrollReveal animation="fade-up">
             <span className="badge-tag" style={{ justifyContent: 'center', color: 'var(--sky)' }}>
               <span className="badge-dot" style={{ backgroundColor: 'var(--gold)' }} />
               Integrated Payment Architecture
             </span>
 
-            <h1 style={{ fontSize: '3.3rem', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.15 }}>
+            <h1 
+              className="heading-single-line"
+              style={{ fontSize: 'clamp(1.65rem, 3.1vw, 3rem)', fontWeight: 700, letterSpacing: '-0.03em', marginTop: '1rem', lineHeight: 1.2 }}
+            >
               The complete payment solution, <span className="text-gradient">one merchant relationship</span>
             </h1>
 
-            <p style={{ marginTop: '1.25rem', fontSize: '1.15rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)' }}>
+            <p 
+              className="subheading-balanced"
+              style={{ marginTop: '1.25rem', fontSize: 'clamp(0.95rem, 1.5vw, 1.12rem)', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.78)', maxWidth: '62rem' }}
+            >
               We bring all payment modalities — soundboxes, POS terminals, dynamic QR, payment gateways, and enterprise switches — together into a unified, high-reliability architecture.
             </p>
 
@@ -262,15 +268,21 @@ export default function SolutionsPage() {
 
       {/* CTA */}
       <section style={{ backgroundColor: 'var(--paper)', padding: '6rem 1.25rem', textAlign: 'center', borderTop: '1px solid var(--line)' }}>
-        <div style={{ maxWidth: '42rem', margin: '0 auto' }}>
+        <div style={{ maxWidth: '68rem', margin: '0 auto' }}>
           <ScrollReveal animation="fade-up">
             <span className="badge-tag" style={{ justifyContent: 'center' }}>
               <Sparkles size={14} color="var(--royal)" /> BESPOKE ARCHITECTURE
             </span>
-            <h2 style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.025em', marginTop: '0.75rem' }}>
+            <h2 
+              className="heading-single-line"
+              style={{ fontSize: 'clamp(1.45rem, 2.6vw, 2.45rem)', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.025em', marginTop: '0.75rem' }}
+            >
               Have unique checkout requirements?
             </h2>
-            <p style={{ marginTop: '0.85rem', color: 'var(--slate)', fontSize: '1.05rem', lineHeight: 1.65 }}>
+            <p 
+              className="subheading-balanced subheading-single-line-desktop"
+              style={{ marginTop: '0.85rem', color: 'var(--slate)', fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', lineHeight: 1.65, maxWidth: '58rem' }}
+            >
               Our payment engineers design custom API wrappers, batch settlement structures, and white-labeled terminal solutions.
             </p>
             <div style={{ marginTop: '2.25rem' }}>

@@ -21,16 +21,23 @@ export default function PartnerMarquee({ title = "Our Payments Partners", subtit
   return (
     <section aria-labelledby="payment-partners-heading" style={{ overflow: 'hidden', backgroundColor: '#ffffff', paddingTop: '4rem', paddingBottom: '3.5rem', borderBottom: '1px solid var(--line)' }}>
       <div className="container-custom">
-        <div style={{ maxWidth: '42rem', margin: '0 auto', textAlign: 'center', marginBottom: '2.5rem' }}>
+        <div style={{ maxWidth: '68rem', margin: '0 auto', textAlign: 'center', marginBottom: '2.5rem' }}>
           <span className="badge-tag" style={{ justifyContent: 'center' }}>
             <span className="badge-dot" />
             Trusted Ecosystem
           </span>
-          <h2 id="payment-partners-heading" style={{ fontSize: '2.25rem', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}>
+          <h2 
+            id="payment-partners-heading" 
+            className="heading-single-line"
+            style={{ fontSize: 'clamp(1.4rem, 2.5vw, 2.25rem)', fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em', marginTop: '0.75rem' }}
+          >
             {title}
           </h2>
           {subtitle && (
-            <p style={{ fontSize: '1rem', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.75rem' }}>
+            <p 
+              className="subheading-balanced subheading-single-line-desktop"
+              style={{ fontSize: 'clamp(0.95rem, 1.4vw, 1.05rem)', color: 'var(--slate)', lineHeight: 1.6, marginTop: '0.75rem', maxWidth: '60rem' }}
+            >
               {subtitle}
             </p>
           )}
