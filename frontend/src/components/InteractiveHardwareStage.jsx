@@ -190,7 +190,7 @@ export default function InteractiveHardwareStage() {
           }}
         />
 
-        {/* Dynamic Automatic RGB Color-Changing Circles Overlay - Solid Crisp Vector Layer */}
+        {/* Dynamic Automatic Clockwise Orbiting Cyan RGB Beam Overlay across all 67 circles */}
         <svg
           viewBox="0 0 1024 564"
           style={{
@@ -203,11 +203,16 @@ export default function InteractiveHardwareStage() {
             zIndex: 6
           }}
         >
-          {ecosystemCircles.map(([cx, cy, rx, ry, isCyan], idx) => {
-            // Distance from center (512, 280) for concentric radial wave
-            const dist = Math.sqrt((cx - 512) ** 2 + (cy - 280) ** 2);
-            // Cohesive ripple delay so all circles transform together with a smooth outward flow
-            const delay = ((dist / 500) * 0.9).toFixed(2);
+          {ecosystemCircles.map(([cx, cy, rx, ry], idx) => {
+            // Center of the stage orbit
+            const center = { x: 512, y: 280 };
+            // Calculate angle around center (-PI to +PI)
+            const phi = Math.atan2(cy - center.y, cx - center.x);
+            // Clockwise normalized progress from 0 to 1
+            const normAngle = ((phi % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+            const orbitProgress = normAngle / (2 * Math.PI);
+            // 6-second continuous orbit wave
+            const delay = (orbitProgress * 6).toFixed(2);
 
             return (
               <ellipse
@@ -218,8 +223,7 @@ export default function InteractiveHardwareStage() {
                 ry={ry + 2}
                 className="dynamic-ecosystem-circle"
                 style={{
-                  animationDelay: `-${delay}s`,
-                  opacity: 0.92
+                  animationDelay: `-${delay}s`
                 }}
               />
             );
@@ -478,24 +482,50 @@ export default function InteractiveHardwareStage() {
           }
         }
 
-        @keyframes circleRgbCycle {
+        @keyframes orbitingBeamGlow {
           0% {
-            fill: #f59e0b;
+            fill: #f4c187;
+            opacity: 0.95;
+            filter: drop-shadow(0 2px 4px rgba(244, 193, 135, 0.2));
+            transform: scale(1);
           }
-          33.33% {
-            fill: #7c3aed;
+          8% {
+            fill: #22d3ee;
+            opacity: 1;
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.85));
+            transform: scale(1.06);
           }
-          66.66% {
+          16% {
             fill: #06b6d4;
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.65));
+            transform: scale(1.03);
+          }
+          24% {
+            fill: #a78bfa;
+            opacity: 0.95;
+            filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.45));
+            transform: scale(1);
+          }
+          34% {
+            fill: #f4c187;
+            opacity: 0.95;
+            filter: drop-shadow(0 2px 4px rgba(244, 193, 135, 0.2));
+            transform: scale(1);
           }
           100% {
-            fill: #f59e0b;
+            fill: #f4c187;
+            opacity: 0.95;
+            filter: drop-shadow(0 2px 4px rgba(244, 193, 135, 0.2));
+            transform: scale(1);
           }
         }
 
         .dynamic-ecosystem-circle {
-          animation: circleRgbCycle 6s ease-in-out infinite;
-          will-change: fill;
+          animation: orbitingBeamGlow 6s ease-in-out infinite;
+          transform-box: fill-box;
+          transform-origin: center;
+          will-change: fill, filter, transform;
         }
 
         @media (max-width: 768px) {
