@@ -1120,7 +1120,7 @@ export default function HomePage() {
 
         <div className="container-custom ecosystem-container-wide" style={{ position: 'relative', zIndex: 2 }}>
           <ScrollReveal animation="fade-up">
-            <div className="ecosystem-heading-wrap">
+            <div className="ecosystem-heading-wrap" style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <div 
                 style={{
                   display: 'inline-flex',
@@ -1136,13 +1136,13 @@ export default function HomePage() {
               >
                 <span className="beacon-pulse-royal" />
                 <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--sky)', letterSpacing: '0.05em' }}>
-                  WHO WE SERVE • FIGMA CIRCULAR ECOSYSTEM
+                  WHO WE SERVE
                 </span>
               </div>
-              <h2 className="ecosystem-main-title">
+              <h2 className="heading-single-line ecosystem-main-title">
                 Built for every <span className="text-gradient">stage of business</span>
               </h2>
-              <p className="ecosystem-main-desc">
+              <p className="subheading-balanced ecosystem-main-desc" style={{ maxWidth: '50rem', margin: '0.75rem auto 0', color: 'rgba(255, 255, 255, 0.75)', fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)', lineHeight: 1.6 }}>
                 From single-counter kiranas to multi-entity enterprise conglomerates — our unified payment technology stack orbits around your exact operational scale.
               </p>
             </div>

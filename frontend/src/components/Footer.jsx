@@ -46,7 +46,7 @@ export default function Footer() {
           }}
         >
           {/* Brand Info */}
-          <div style={{ maxWidth: '22rem' }}>
+          <div className="footer-brand-col" style={{ maxWidth: '22rem' }}>
             <Link to="/" style={{ display: 'inline-block', marginBottom: '1.25rem', textDecoration: 'none' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <span style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
@@ -54,7 +54,7 @@ export default function Footer() {
                 </span>
               </div>
             </Link>
-            <p style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '1.25rem' }}>
+            <p className="footer-brand-desc" style={{ fontSize: '0.875rem', lineHeight: 1.6, color: 'var(--slate)', marginBottom: '1.25rem' }}>
               Rhizobee Innovations Private Limited delivers secure digital payment solutions — payment gateway, QR, soundbox, POS, and PPI wallets — for businesses of every size, in partnership with leading banks and payment aggregators.
             </p>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.75rem', backgroundColor: 'var(--paper)', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 600, color: 'var(--royal)', border: '1px solid var(--line)' }}>
@@ -64,11 +64,11 @@ export default function Footer() {
           </div>
 
           {/* Company Links */}
-          <div>
+          <div className="footer-links-col">
             <h4 style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '1.25rem', fontFamily: 'var(--font-data)' }}>
               Company
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', padding: 0 }}>
+            <ul className="footer-links-list">
               {[
                 { label: 'Home', path: '/' },
                 { label: 'About Us', path: '/about' },
@@ -78,14 +78,14 @@ export default function Footer() {
                 { label: 'Careers', path: '/careers' },
                 { label: 'Contact', path: '/contact' },
                 { label: 'Retailer Portal (Zoompe)', external: 'https://www.zoompe.in' }
-              ].map((item, idx) => (
-                <li key={idx}>
+              ].map((item, idx, arr) => (
+                <li key={idx} className="footer-links-item">
                   {item.external ? (
                     <a
                       href={item.external}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ fontSize: '0.875rem', color: 'var(--slate)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.25rem', transition: 'color 0.2s' }}
+                      className="footer-link-anchor"
                       onMouseEnter={(e) => e.currentTarget.style.color = 'var(--royal)'}
                       onMouseLeave={(e) => e.currentTarget.style.color = 'var(--slate)'}
                     >
@@ -94,12 +94,15 @@ export default function Footer() {
                   ) : (
                     <Link
                       to={item.path}
-                      style={{ fontSize: '0.875rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}
+                      className="footer-link-anchor"
                       onMouseEnter={(e) => e.currentTarget.style.color = 'var(--royal)'}
                       onMouseLeave={(e) => e.currentTarget.style.color = 'var(--slate)'}
                     >
                       {item.label}
                     </Link>
+                  )}
+                  {idx < arr.length - 1 && (
+                    <span className="footer-link-separator" aria-hidden="true">|</span>
                   )}
                 </li>
               ))}
@@ -107,11 +110,11 @@ export default function Footer() {
           </div>
 
           {/* Services Links */}
-          <div>
+          <div className="footer-links-col">
             <h4 style={{ fontSize: '0.9rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)', marginBottom: '1.25rem', fontFamily: 'var(--font-data)' }}>
               Payment Services
             </h4>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.65rem', padding: 0 }}>
+            <ul className="footer-links-list">
               {[
                 'Payment Gateway Solutions',
                 'QR Code Payments',
@@ -121,16 +124,19 @@ export default function Footer() {
                 'Brand Gift Vouchers & Gift Cards',
                 'Payment Switch Architecture',
                 'AePS & Micro ATM Solutions'
-              ].map((service, idx) => (
-                <li key={idx}>
+              ].map((service, idx, arr) => (
+                <li key={idx} className="footer-links-item">
                   <Link
                     to="/services"
-                    style={{ fontSize: '0.875rem', color: 'var(--slate)', textDecoration: 'none', transition: 'color 0.2s' }}
+                    className="footer-link-anchor"
                     onMouseEnter={(e) => e.currentTarget.style.color = 'var(--royal)'}
                     onMouseLeave={(e) => e.currentTarget.style.color = 'var(--slate)'}
                   >
                     {service}
                   </Link>
+                  {idx < arr.length - 1 && (
+                    <span className="footer-link-separator" aria-hidden="true">|</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -261,6 +267,69 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Responsive Footer Links Styling: Vertical on Desktop/Laptop, Horizontal with | on Smartphones */}
+      <style>{`
+        .footer-links-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 0.65rem;
+          padding: 0;
+          margin: 0;
+        }
+        .footer-links-item {
+          display: flex;
+          align-items: center;
+        }
+        .footer-link-anchor {
+          font-size: 0.875rem;
+          color: var(--slate);
+          text-decoration: none;
+          transition: color 0.2s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.25rem;
+          line-height: 1.45;
+        }
+        .footer-link-separator {
+          display: none;
+        }
+
+        @media (max-width: 768px) {
+          .footer-brand-col {
+            max-width: 100% !important;
+          }
+          .footer-brand-desc {
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.65;
+          }
+          .footer-links-col {
+            width: 100%;
+          }
+          .footer-links-list {
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.35rem 0;
+            line-height: 1.75;
+          }
+          .footer-links-item {
+            display: inline-flex;
+            align-items: center;
+          }
+          .footer-link-separator {
+            display: inline-block;
+            margin: 0 0.55rem;
+            color: var(--line, #cbd5e1);
+            font-weight: 300;
+            font-size: 0.85rem;
+            user-select: none;
+            opacity: 0.85;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
