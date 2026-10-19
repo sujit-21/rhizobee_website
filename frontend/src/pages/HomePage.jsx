@@ -32,6 +32,7 @@ import FaqAccordion from '../components/FaqAccordion';
 import AnimatedCounter from '../components/AnimatedCounter';
 import ScrollReveal from '../components/ScrollReveal';
 import LivePaymentTicker from '../components/LivePaymentTicker';
+import InteractiveHardwareStage from '../components/InteractiveHardwareStage';
 
 export default function HomePage() {
   const defaultTestimonials = [
@@ -646,6 +647,11 @@ export default function HomePage() {
                 Purpose-built fintech terminals, audio verification soundboxes, and digital wallet solutions engineered for fast checkouts and high customer trust.
               </p>
             </div>
+          </ScrollReveal>
+
+          {/* Interactive 3D Floating Hardware Ecosystem Stage */}
+          <ScrollReveal animation="fade-up" delay={80} duration={700}>
+            <InteractiveHardwareStage />
           </ScrollReveal>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
