@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus } from 'lucide-react';
+import { particleDots } from './formattedDots';
 
 export default function InteractiveHardwareStage() {
   const [activeDevice, setActiveDevice] = useState('pos'); // 'pod', 'soundbox', 'pos', 'qr'
@@ -17,155 +18,6 @@ export default function InteractiveHardwareStage() {
     }, 4500);
     return () => clearInterval(interval);
   }, [isHovered]);
-
-  // Particle dots data for the PhonePe-style elliptical surrounding wave
-  // Multi-layered concentric orbital cloud with enlarged isometric oval dimensions
-  const particleDots = [
-    // =========================================================================
-    // 1. LEFT WING & SMART POD SWARM (Dense peach/gold/amber cluster - see crop)
-    // =========================================================================
-    // Outer-most arc
-    { cx: 92,  cy: 220, rx: 24, ry: 14, color: '#fb923c', delay: '0s',    dur: '3.2s', opacity: 0.85 },
-    { cx: 88,  cy: 268, rx: 25, ry: 14, color: '#f97316', delay: '0.4s',  dur: '2.8s', opacity: 0.90 },
-    { cx: 104, cy: 315, rx: 23, ry: 13, color: '#fed7aa', delay: '0.8s',  dur: '3.5s', opacity: 0.85 },
-    { cx: 112, cy: 172, rx: 22, ry: 13, color: '#fdba74', delay: '1.2s',  dur: '3.1s', opacity: 0.88 },
-    { cx: 130, cy: 360, rx: 24, ry: 14, color: '#fb923c', delay: '0.6s',  dur: '3.6s', opacity: 0.85 },
-    { cx: 105, cy: 132, rx: 20, ry: 12, color: '#fed7aa', delay: '1.5s',  dur: '3.3s', opacity: 0.80 },
-    { cx: 78,  cy: 238, rx: 21, ry: 12, color: '#fba76a', delay: '0.2s',  dur: '3.0s', opacity: 0.78 },
-    { cx: 96,  cy: 352, rx: 22, ry: 13, color: '#f59e0b', delay: '1.0s',  dur: '3.4s', opacity: 0.82 },
-
-    // Mid-outer arc
-    { cx: 138, cy: 212, rx: 24, ry: 14, color: '#f97316', delay: '0.3s',  dur: '3.4s', opacity: 0.90 },
-    { cx: 134, cy: 258, rx: 26, ry: 15, color: '#fb923c', delay: '0.7s',  dur: '3.0s', opacity: 0.92 },
-    { cx: 142, cy: 302, rx: 23, ry: 13, color: '#fed7aa', delay: '1.1s',  dur: '3.7s', opacity: 0.88 },
-    { cx: 152, cy: 164, rx: 24, ry: 14, color: '#f59e0b', delay: '0.5s',  dur: '2.9s', opacity: 0.88 },
-    { cx: 168, cy: 345, rx: 25, ry: 14, color: '#f97316', delay: '1.3s',  dur: '3.5s', opacity: 0.85 },
-    { cx: 172, cy: 126, rx: 21, ry: 12, color: '#fdba74', delay: '0.9s',  dur: '3.2s', opacity: 0.82 },
-    { cx: 162, cy: 382, rx: 23, ry: 13, color: '#fed7aa', delay: '0.4s',  dur: '3.3s', opacity: 0.80 },
-
-    // Mid-inner arc
-    { cx: 184, cy: 202, rx: 22, ry: 13, color: '#fed7aa', delay: '0.1s',  dur: '3.6s', opacity: 0.88 },
-    { cx: 178, cy: 246, rx: 25, ry: 14, color: '#f59e0b', delay: '1.2s',  dur: '3.1s', opacity: 0.92 },
-    { cx: 188, cy: 288, rx: 23, ry: 13, color: '#fb923c', delay: '0.6s',  dur: '3.4s', opacity: 0.88 },
-    { cx: 202, cy: 332, rx: 24, ry: 14, color: '#fed7aa', delay: '1.4s',  dur: '3.0s', opacity: 0.85 },
-    { cx: 212, cy: 152, rx: 23, ry: 13, color: '#fb923c', delay: '0.8s',  dur: '3.3s', opacity: 0.88 },
-    { cx: 208, cy: 108, rx: 20, ry: 12, color: '#f59e0b', delay: '0.3s',  dur: '3.5s', opacity: 0.82 },
-
-    // Inner orbiting arc
-    { cx: 228, cy: 230, rx: 21, ry: 12, color: '#fdba74', delay: '1.0s',  dur: '2.9s', opacity: 0.85 },
-    { cx: 234, cy: 272, rx: 24, ry: 14, color: '#f97316', delay: '0.4s',  dur: '3.4s', opacity: 0.90 },
-    { cx: 244, cy: 314, rx: 22, ry: 13, color: '#f59e0b', delay: '1.3s',  dur: '3.1s', opacity: 0.88 },
-    { cx: 248, cy: 188, rx: 20, ry: 12, color: '#fed7aa', delay: '0.7s',  dur: '3.6s', opacity: 0.82 },
-    { cx: 254, cy: 136, rx: 22, ry: 13, color: '#fb923c', delay: '0.2s',  dur: '3.2s', opacity: 0.85 },
-
-    // =========================================================================
-    // 2. TOP-LEFT TO TOP (Leading up towards SmartSpeaker)
-    // =========================================================================
-    { cx: 272, cy: 85,  rx: 23, ry: 13, color: '#fed7aa', delay: '0.5s',  dur: '3.3s', opacity: 0.85 },
-    { cx: 320, cy: 68,  rx: 25, ry: 14, color: '#fb923c', delay: '1.1s',  dur: '3.0s', opacity: 0.90 },
-    { cx: 370, cy: 56,  rx: 22, ry: 13, color: '#f59e0b', delay: '0.3s',  dur: '3.7s', opacity: 0.88 },
-    { cx: 420, cy: 48,  rx: 24, ry: 14, color: '#fed7aa', delay: '1.4s',  dur: '3.2s', opacity: 0.85 },
-    { cx: 468, cy: 48,  rx: 25, ry: 14, color: '#fb923c', delay: '0.8s',  dur: '3.5s', opacity: 0.90 },
-
-    { cx: 302, cy: 112, rx: 21, ry: 12, color: '#f59e0b', delay: '0.2s',  dur: '2.8s', opacity: 0.82 },
-    { cx: 352, cy: 94,  rx: 24, ry: 14, color: '#fdba74', delay: '0.9s',  dur: '3.6s', opacity: 0.88 },
-    { cx: 402, cy: 84,  rx: 22, ry: 13, color: '#fed7aa', delay: '1.5s',  dur: '3.1s', opacity: 0.85 },
-    { cx: 448, cy: 80,  rx: 25, ry: 14, color: '#f97316', delay: '0.6s',  dur: '3.3s', opacity: 0.90 },
-
-    { cx: 334, cy: 138, rx: 19, ry: 11, color: '#fed7aa', delay: '1.2s',  dur: '3.4s', opacity: 0.80 },
-    { cx: 382, cy: 122, rx: 21, ry: 12, color: '#fb923c', delay: '0.4s',  dur: '2.9s', opacity: 0.85 },
-    { cx: 432, cy: 114, rx: 20, ry: 12, color: '#f59e0b', delay: '1.0s',  dur: '3.5s', opacity: 0.82 },
-
-    // =========================================================================
-    // 3. TOP TO TOP-RIGHT (Transitioning to mint/teal/cyan)
-    // =========================================================================
-    { cx: 518, cy: 54,  rx: 24, ry: 14, color: '#6ee7b7', delay: '0.3s',  dur: '3.3s', opacity: 0.88 },
-    { cx: 568, cy: 68,  rx: 25, ry: 14, color: '#38bdf8', delay: '0.9s',  dur: '2.9s', opacity: 0.90 },
-    { cx: 618, cy: 88,  rx: 23, ry: 13, color: '#a7f3d0', delay: '1.4s',  dur: '3.6s', opacity: 0.85 },
-    { cx: 668, cy: 115, rx: 24, ry: 14, color: '#38bdf8', delay: '0.6s',  dur: '3.1s', opacity: 0.88 },
-
-    { cx: 498, cy: 85,  rx: 22, ry: 13, color: '#a7f3d0', delay: '1.2s',  dur: '3.4s', opacity: 0.82 },
-    { cx: 548, cy: 98,  rx: 24, ry: 14, color: '#6ee7b7', delay: '0.5s',  dur: '3.0s', opacity: 0.88 },
-    { cx: 598, cy: 118, rx: 23, ry: 13, color: '#38bdf8', delay: '1.1s',  dur: '3.7s', opacity: 0.88 },
-    { cx: 642, cy: 145, rx: 22, ry: 13, color: '#5eead4', delay: '0.2s',  dur: '3.2s', opacity: 0.85 },
-
-    { cx: 482, cy: 116, rx: 19, ry: 11, color: '#6ee7b7', delay: '0.8s',  dur: '3.5s', opacity: 0.80 },
-    { cx: 528, cy: 130, rx: 21, ry: 12, color: '#bae6fd', delay: '1.3s',  dur: '2.8s', opacity: 0.85 },
-    { cx: 574, cy: 148, rx: 20, ry: 12, color: '#a7f3d0', delay: '0.4s',  dur: '3.3s', opacity: 0.82 },
-
-    // =========================================================================
-    // 4. RIGHT WING & EDC MACHINE SWARM (Mint, teal, sky-blue, cyan cluster)
-    // =========================================================================
-    // Outer-most arc
-    { cx: 712, cy: 150, rx: 23, ry: 13, color: '#38bdf8', delay: '0.1s',  dur: '3.2s', opacity: 0.85 },
-    { cx: 752, cy: 192, rx: 25, ry: 14, color: '#6ee7b7', delay: '0.7s',  dur: '3.6s', opacity: 0.90 },
-    { cx: 778, cy: 236, rx: 26, ry: 15, color: '#38bdf8', delay: '1.2s',  dur: '2.9s', opacity: 0.92 },
-    { cx: 782, cy: 282, rx: 24, ry: 14, color: '#a7f3d0', delay: '0.5s',  dur: '3.4s', opacity: 0.88 },
-    { cx: 768, cy: 326, rx: 25, ry: 14, color: '#38bdf8', delay: '1.0s',  dur: '3.1s', opacity: 0.90 },
-    { cx: 738, cy: 366, rx: 23, ry: 13, color: '#5eead4', delay: '0.3s',  dur: '3.5s', opacity: 0.85 },
-    { cx: 808, cy: 222, rx: 20, ry: 12, color: '#38bdf8', delay: '0.9s',  dur: '3.3s', opacity: 0.78 },
-    { cx: 804, cy: 268, rx: 21, ry: 12, color: '#6ee7b7', delay: '1.4s',  dur: '2.8s', opacity: 0.80 },
-    { cx: 784, cy: 312, rx: 19, ry: 11, color: '#38bdf8', delay: '0.6s',  dur: '3.7s', opacity: 0.78 },
-
-    // Mid-outer arc
-    { cx: 688, cy: 176, rx: 21, ry: 12, color: '#a7f3d0', delay: '0.8s',  dur: '3.0s', opacity: 0.82 },
-    { cx: 722, cy: 216, rx: 24, ry: 14, color: '#5eead4', delay: '0.2s',  dur: '3.5s', opacity: 0.88 },
-    { cx: 742, cy: 262, rx: 25, ry: 14, color: '#38bdf8', delay: '1.3s',  dur: '3.2s', opacity: 0.92 },
-    { cx: 732, cy: 306, rx: 22, ry: 13, color: '#6ee7b7', delay: '0.4s',  dur: '3.7s', opacity: 0.85 },
-    { cx: 708, cy: 346, rx: 24, ry: 14, color: '#2dd4bf', delay: '1.1s',  dur: '2.9s', opacity: 0.88 },
-
-    // Mid-inner arc
-    { cx: 662, cy: 202, rx: 20, ry: 12, color: '#bae6fd', delay: '0.6s',  dur: '3.3s', opacity: 0.82 },
-    { cx: 692, cy: 246, rx: 23, ry: 13, color: '#6ee7b7', delay: '1.5s',  dur: '3.0s', opacity: 0.88 },
-    { cx: 688, cy: 292, rx: 21, ry: 12, color: '#38bdf8', delay: '0.3s',  dur: '3.6s', opacity: 0.85 },
-    { cx: 668, cy: 332, rx: 23, ry: 13, color: '#a7f3d0', delay: '0.9s',  dur: '3.1s', opacity: 0.85 },
-
-    // Inner orbiting arc
-    { cx: 638, cy: 232, rx: 19, ry: 11, color: '#5eead4', delay: '0.5s',  dur: '3.4s', opacity: 0.80 },
-    { cx: 648, cy: 276, rx: 22, ry: 13, color: '#38bdf8', delay: '1.2s',  dur: '2.8s', opacity: 0.85 },
-    { cx: 632, cy: 318, rx: 20, ry: 12, color: '#6ee7b7', delay: '0.7s',  dur: '3.5s', opacity: 0.82 },
-
-    // =========================================================================
-    // 5. BOTTOM-RIGHT TO BOTTOM (Transitioning from cyan/teal to gold/peach)
-    // =========================================================================
-    { cx: 702, cy: 396, rx: 24, ry: 14, color: '#f59e0b', delay: '0.2s',  dur: '3.2s', opacity: 0.88 },
-    { cx: 656, cy: 422, rx: 26, ry: 15, color: '#fb923c', delay: '0.8s',  dur: '3.6s', opacity: 0.92 },
-    { cx: 606, cy: 442, rx: 23, ry: 13, color: '#f97316', delay: '1.4s',  dur: '2.9s', opacity: 0.90 },
-    { cx: 556, cy: 454, rx: 25, ry: 14, color: '#fed7aa', delay: '0.5s',  dur: '3.4s', opacity: 0.88 },
-    { cx: 506, cy: 460, rx: 24, ry: 14, color: '#f59e0b', delay: '1.1s',  dur: '3.1s', opacity: 0.88 },
-    { cx: 728, cy: 406, rx: 21, ry: 12, color: '#f59e0b', delay: '0.4s',  dur: '3.5s', opacity: 0.80 },
-    { cx: 674, cy: 446, rx: 22, ry: 13, color: '#fb923c', delay: '1.0s',  dur: '3.0s', opacity: 0.82 },
-
-    { cx: 658, cy: 372, rx: 22, ry: 13, color: '#2dd4bf', delay: '0.7s',  dur: '3.3s', opacity: 0.85 },
-    { cx: 618, cy: 396, rx: 24, ry: 14, color: '#f59e0b', delay: '0.1s',  dur: '3.7s', opacity: 0.88 },
-    { cx: 574, cy: 416, rx: 25, ry: 14, color: '#fb923c', delay: '1.3s',  dur: '3.0s', opacity: 0.90 },
-    { cx: 524, cy: 430, rx: 23, ry: 13, color: '#fed7aa', delay: '0.6s',  dur: '3.5s', opacity: 0.85 },
-
-    { cx: 614, cy: 352, rx: 19, ry: 11, color: '#6ee7b7', delay: '1.2s',  dur: '3.1s', opacity: 0.80 },
-    { cx: 578, cy: 376, rx: 21, ry: 12, color: '#f59e0b', delay: '0.3s',  dur: '3.4s', opacity: 0.82 },
-    { cx: 534, cy: 396, rx: 20, ry: 12, color: '#fb923c', delay: '0.9s',  dur: '2.8s', opacity: 0.85 },
-
-    // =========================================================================
-    // 6. BOTTOM & QR CODE AREA (Rich amber/peach/orange stream)
-    // =========================================================================
-    { cx: 456, cy: 462, rx: 25, ry: 14, color: '#fb923c', delay: '0.2s',  dur: '3.3s', opacity: 0.90 },
-    { cx: 406, cy: 458, rx: 24, ry: 14, color: '#f59e0b', delay: '0.8s',  dur: '2.9s', opacity: 0.88 },
-    { cx: 356, cy: 446, rx: 26, ry: 15, color: '#f97316', delay: '1.4s',  dur: '3.6s', opacity: 0.92 },
-    { cx: 306, cy: 426, rx: 23, ry: 13, color: '#fed7aa', delay: '0.5s',  dur: '3.1s', opacity: 0.88 },
-    { cx: 258, cy: 400, rx: 25, ry: 14, color: '#fb923c', delay: '1.1s',  dur: '3.5s', opacity: 0.90 },
-    { cx: 208, cy: 412, rx: 23, ry: 13, color: '#fb923c', delay: '0.7s',  dur: '3.2s', opacity: 0.85 },
-
-    { cx: 476, cy: 432, rx: 22, ry: 13, color: '#fed7aa', delay: '0.4s',  dur: '3.2s', opacity: 0.85 },
-    { cx: 432, cy: 428, rx: 24, ry: 14, color: '#fb923c', delay: '1.0s',  dur: '3.7s', opacity: 0.90 },
-    { cx: 386, cy: 418, rx: 23, ry: 13, color: '#f59e0b', delay: '0.3s',  dur: '3.0s', opacity: 0.88 },
-    { cx: 338, cy: 402, rx: 25, ry: 14, color: '#f97316', delay: '1.2s',  dur: '3.4s', opacity: 0.90 },
-    { cx: 294, cy: 376, rx: 22, ry: 13, color: '#fed7aa', delay: '0.6s',  dur: '2.8s', opacity: 0.85 },
-
-    { cx: 450, cy: 396, rx: 20, ry: 12, color: '#f59e0b', delay: '0.9s',  dur: '3.5s', opacity: 0.82 },
-    { cx: 408, cy: 390, rx: 22, ry: 13, color: '#fed7aa', delay: '0.1s',  dur: '3.1s', opacity: 0.85 },
-    { cx: 364, cy: 376, rx: 21, ry: 12, color: '#fb923c', delay: '1.3s',  dur: '3.3s', opacity: 0.88 },
-    { cx: 322, cy: 356, rx: 20, ry: 12, color: '#f59e0b', delay: '0.5s',  dur: '3.6s', opacity: 0.82 }
-  ];
 
   return (
     <div 
@@ -195,9 +47,9 @@ export default function InteractiveHardwareStage() {
           justifyContent: 'center'
         }}
       >
-        {/* SVG Elliptical Particle Wave Field */}
+        {/* SVG Elliptical Particle Wave Field (Expanded Circumference 1000x550) */}
         <svg 
-          viewBox="0 0 900 500" 
+          viewBox="0 0 1000 550" 
           preserveAspectRatio="xMidYMid meet"
           style={{
             position: 'absolute',
@@ -209,63 +61,128 @@ export default function InteractiveHardwareStage() {
           }}
         >
           <defs>
+            {/* Color 1: Warm Orange / Peach / Amber 3D RGB Gradient */}
+            <linearGradient id="rgbGradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fef08a" />
+              <stop offset="30%" stopColor="#fb923c" />
+              <stop offset="100%" stopColor="#ea580c" />
+            </linearGradient>
+
+            {/* Color 2: Vibrant Mint / Emerald / Seafoam 3D RGB Gradient */}
+            <linearGradient id="rgbGradMint" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#a7f3d0" />
+              <stop offset="35%" stopColor="#34d399" />
+              <stop offset="100%" stopColor="#059669" />
+            </linearGradient>
+
+            {/* Color 3: Electric Cyan / Sky Blue 3D RGB Gradient */}
+            <linearGradient id="rgbGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#bae6fd" />
+              <stop offset="35%" stopColor="#38bdf8" />
+              <stop offset="100%" stopColor="#0284c7" />
+            </linearGradient>
+
+            {/* Multi-RGB Tri-Color Prism Fusion (Orange -> Mint -> Cyan) */}
+            <linearGradient id="rgbGradPrism" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fb923c" />
+              <stop offset="48%" stopColor="#34d399" />
+              <stop offset="100%" stopColor="#38bdf8" />
+            </linearGradient>
+
+            {/* Subtle RGB Soft Ambient Glow Filter */}
+            <filter id="rgbDotGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="2" stdDeviation="2.5" floodColor="#f97316" floodOpacity="0.22" />
+            </filter>
+
+            {/* Dynamic Orbital Line Guide Gradient across the 3 RGB spectrums */}
             <linearGradient id="orbitLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#fb923c" stopOpacity="0.32" />
-              <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.20" />
+              <stop offset="50%" stopColor="#34d399" stopOpacity="0.25" />
               <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.32" />
             </linearGradient>
           </defs>
 
-          {/* Isometric Perspective Oval Guide Paths (Triple Concentric) */}
+          {/* Isometric Perspective Oval Guide Paths (Expanded Circumference) */}
           <ellipse 
-            cx="450" 
-            cy="250" 
-            rx="365" 
-            ry="198" 
+            cx="500" 
+            cy="275" 
+            rx="455" 
+            ry="250" 
             fill="none" 
             stroke="url(#orbitLineGrad)" 
             strokeWidth="1.5" 
             strokeDasharray="6 8"
-            opacity="0.45"
-          />
-          <ellipse 
-            cx="450" 
-            cy="250" 
-            rx="295" 
-            ry="155" 
-            fill="none" 
-            stroke="rgba(251, 146, 60, 0.16)" 
-            strokeWidth="1.2"
-            strokeDasharray="5 7"
             opacity="0.35"
           />
           <ellipse 
-            cx="450" 
-            cy="250" 
-            rx="225" 
-            ry="120" 
+            cx="500" 
+            cy="275" 
+            rx="375" 
+            ry="205" 
             fill="none" 
-            stroke="rgba(251, 146, 60, 0.10)" 
-            strokeWidth="1"
-            strokeDasharray="4 6"
+            stroke="url(#orbitLineGrad)" 
+            strokeWidth="1.2" 
+            strokeDasharray="5 7"
             opacity="0.25"
           />
+          <ellipse 
+            cx="500" 
+            cy="275" 
+            rx="285" 
+            ry="155" 
+            fill="none" 
+            stroke="rgba(251, 146, 60, 0.16)" 
+            strokeWidth="1"
+            strokeDasharray="4 6"
+            opacity="0.20"
+          />
+          <ellipse 
+            cx="500" 
+            cy="275" 
+            rx="195" 
+            ry="105" 
+            fill="none" 
+            stroke="rgba(56, 189, 248, 0.14)" 
+            strokeWidth="1"
+            strokeDasharray="3 5"
+            opacity="0.18"
+          />
 
-          {/* Render All 100+ Particle Wave Isometric Dots */}
+          {/* Render All Particle Wave Isometric Dots:
+              - Sized Small in Center to Big at Circumference
+              - Clean Spacing / Zero Touching between dots
+              - Strict Box Exclusion (Never touches hardware units)
+              - 3-Color RGB Gradient & Glass Specular Highlights
+          */}
           {particleDots.map((dot, i) => (
-            <ellipse
-              key={i}
-              cx={dot.cx}
-              cy={dot.cy}
-              rx={dot.rx}
-              ry={dot.ry}
-              fill={dot.color}
-              opacity={dot.opacity || 0.88}
-              style={{
-                animation: `stageDotBreath ${dot.dur} ease-in-out infinite alternate ${dot.delay}`,
-                transformOrigin: `${dot.cx}px ${dot.cy}px`
-              }}
-            />
+            <g key={i} style={{ transformOrigin: `${dot.cx}px ${dot.cy}px` }}>
+              {/* Main Glowing 3D Glass Pill */}
+              <ellipse
+                cx={dot.cx}
+                cy={dot.cy}
+                rx={dot.rx}
+                ry={dot.ry}
+                fill={dot.grad || dot.fallback}
+                stroke="rgba(255, 255, 255, 0.65)"
+                strokeWidth="1"
+                opacity="0.92"
+                filter="url(#rgbDotGlow)"
+                style={{
+                  animation: `stageDotBreath ${dot.dur} ease-in-out infinite alternate ${dot.delay}`,
+                  transformOrigin: `${dot.cx}px ${dot.cy}px`
+                }}
+              />
+              {/* 3D Specular Highlight pill for luminous RGB depth */}
+              <ellipse
+                cx={dot.cx - dot.rx * 0.22}
+                cy={dot.cy - dot.ry * 0.25}
+                rx={dot.rx * 0.35}
+                ry={dot.ry * 0.32}
+                fill="#ffffff"
+                opacity="0.5"
+                style={{ pointerEvents: 'none' }}
+              />
+            </g>
           ))}
         </svg>
 
