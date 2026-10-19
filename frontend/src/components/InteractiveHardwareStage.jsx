@@ -77,6 +77,26 @@ export default function InteractiveHardwareStage() {
     }
   };
 
+  // Master 64 small circles extracted from the ecosystem artwork: [cx, cy, rx, ry, isCyan]
+  const ecosystemCircles = [
+    [297.9,42.7,23.5,13.5,0],[369.1,59.1,20,11.5,0],[737.9,65.6,23.5,13.5,0],[676.7,73.1,16,11.5,0],
+    [213,76.7,23.5,13.5,0],[287.4,83.2,21,12.5,0],[347.8,95,18.5,10.5,0],[820.4,105.4,23,13.5,0],
+    [759.1,108.9,21,12.5,0],[685.2,108.8,18.5,11,0],[212.4,121.9,21,12.5,0],[266.6,117.7,13.5,7,0],
+    [140.3,126.2,23.5,13.5,0],[754.9,145.1,18.5,10.5,0],[824.9,149.7,20.5,12,0],[891.7,161.4,23.5,13.5,0],
+    [211.5,163.3,14.5,10.5,0],[155.9,172.4,21,12,0],[91.1,187.2,23.5,13.5,0],[805.2,185.7,18.5,11,0],
+    [877.3,204,21,12.5,0],[180.7,208,18.5,10.5,0],[930.7,225.4,23.5,14,0],[128.1,226.5,21,12,0],
+    [841.2,235.7,18.5,11,0],[74,249.9,23.5,13.5,0],[166.3,259.2,18.5,10.5,0],[899.3,263,21,12.5,0],
+    [124.2,285.9,21,12.5,0],[851,287.4,18.5,11,0],[943.4,290.3,24,14,0],[176.4,309.9,18.5,10.5,0],
+    [84.8,316.5,23.5,14,0],[897.6,321.1,22,12.5,0],[838.2,337.1,18.5,10.5,0],[147.6,342.7,21,12,0],
+    [926.6,354.9,23,13.5,0],[209,359.1,18.5,10.5,0],[125,377.8,23.5,13.5,0],[869.5,376.9,21,12.5,0],
+    [801.2,383.8,18.5,10.5,0],[196.2,396.2,21,12.5,0],[265.4,402.6,18.5,11,0],[880,411.4,23.5,14,0],
+    [747.2,421.4,18.5,11,0],[816.4,423.5,21,12,0],[191.6,433.2,23.5,13.5,0],[331.6,434.8,18,10.5,0],
+    [270.3,441.3,21,12,0],[683.8,448.5,11.5,9,0],[808.4,461.2,24,13.5,0],[414.4,460.1,18,10.5,1],
+    [742.4,462.6,21,12,0],[589.8,466,18.5,10.5,1],[502.5,468.7,18.5,10.5,1],[339.2,468.3,9,8,0],
+    [284.2,477.1,23.5,13.5,0],[649.7,487.1,21,12.5,1],[451.4,494.5,21,12,1],[724,493.6,14.5,11.5,0],
+    [552.9,497.8,21.5,12.5,1],[382.6,505.1,23,13.5,1],[609.2,516.3,23.5,13.5,1],[496.9,521.3,23.5,13.5,1]
+  ];
+
   return (
     <div 
       className="hardware-stage-ecosystem-wrapper"
@@ -114,6 +134,42 @@ export default function InteractiveHardwareStage() {
             pointerEvents: 'none'
           }}
         />
+
+        {/* Dynamic Automatic RGB Color-Changing Circles Overlay */}
+        <svg
+          viewBox="0 0 1024 564"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+            mixBlendMode: 'color',
+            zIndex: 6
+          }}
+        >
+          {ecosystemCircles.map(([cx, cy, rx, ry, isCyan], idx) => {
+            // Distance from center (512, 280) for concentric radial wave
+            const dist = Math.sqrt((cx - 512) ** 2 + (cy - 280) ** 2);
+            // Staggered delay: outer circles lag inner circles creating center-to-circumference wave
+            const delay = ((dist / 450) * 2.8 + (isCyan ? 2.0 : 0)).toFixed(2);
+
+            return (
+              <ellipse
+                key={idx}
+                cx={cx}
+                cy={cy}
+                rx={rx + 1.2}
+                ry={ry + 1.2}
+                className="dynamic-ecosystem-circle"
+                style={{
+                  animationDelay: `-${delay}s`
+                }}
+              />
+            );
+          })}
+        </svg>
 
         {/* Interactive Hotspot Buttons Overlay at Exact Button Positions */}
         {Object.entries(deviceData).map(([key, device]) => {
@@ -365,6 +421,26 @@ export default function InteractiveHardwareStage() {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+
+        @keyframes circleRgbCycle {
+          0% {
+            fill: #f59e0b;
+          }
+          33.33% {
+            fill: #7c3aed;
+          }
+          66.66% {
+            fill: #06b6d4;
+          }
+          100% {
+            fill: #f59e0b;
+          }
+        }
+
+        .dynamic-ecosystem-circle {
+          animation: circleRgbCycle 6s ease-in-out infinite;
+          will-change: fill;
         }
 
         @media (max-width: 768px) {
