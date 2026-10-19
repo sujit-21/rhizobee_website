@@ -177,6 +177,18 @@ export default function InteractiveHardwareStage() {
     [943.8, 230.1, 25.0, 14.5]
   ];
 
+  // Sort concentric rings clockwise starting from 12 o'clock (top center) for smooth sequential blinking
+  const centerOrbit = { x: 512, y: 280 };
+  const getClockwiseAngle = (c) => {
+    const phi = Math.atan2(c[1] - centerOrbit.y, c[0] - centerOrbit.x);
+    return ((phi + Math.PI / 2) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+  };
+
+  const ring2 = ecosystemCircles.filter(c => c[2] <= 19.5).sort((a, b) => getClockwiseAngle(a) - getClockwiseAngle(b));
+  const ring3 = ecosystemCircles.filter(c => c[2] > 19.5 && c[2] <= 23.0).sort((a, b) => getClockwiseAngle(a) - getClockwiseAngle(b));
+  const ring4 = ecosystemCircles.filter(c => c[2] > 23.0).sort((a, b) => getClockwiseAngle(a) - getClockwiseAngle(b));
+  const sortedEcosystemRings = [ring4, ring3, ring2];
+
   return (
     <div 
       className="hardware-stage-ecosystem-wrapper"
@@ -215,7 +227,7 @@ export default function InteractiveHardwareStage() {
           }}
         />
 
-        {/* Dynamic Automatic Clockwise Orbiting 3-Color RGB Wave across all concentric circles */}
+        {/* Dynamic Automatic Clockwise Sequential One-by-One Blue and White Blinking Circles */}
         <svg
           viewBox="0 0 1024 564"
           style={{
@@ -229,30 +241,28 @@ export default function InteractiveHardwareStage() {
             overflow: 'visible'
           }}
         >
-          {ecosystemCircles.map(([cx, cy, rx, ry], idx) => {
-            // Center of the stage orbit
-            const center = { x: 512, y: 280 };
-            // Calculate angle around center (-PI to +PI)
-            const phi = Math.atan2(cy - center.y, cx - center.x);
-            // Clockwise normalized progress from 0 to 1
-            const normAngle = ((phi % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-            const orbitProgress = normAngle / (2 * Math.PI);
-            // Continuous clockwise orbit wave with pre-warmed negative delay
-            const delay = -(orbitProgress * 6).toFixed(2);
+          {sortedEcosystemRings.map((ring, ringIdx) => {
+            const count = ring.length;
+            const duration = 4.0; // 4s loop for smooth, continuous clockwise circuit
+            return ring.map(([cx, cy, rx, ry], idx) => {
+              // Alternating blue and white nodes around the ring
+              const isBlue = idx % 2 === 0;
+              const delay = -(idx * (duration / count)).toFixed(3);
 
-            return (
-              <ellipse
-                key={idx}
-                cx={cx}
-                cy={cy}
-                rx={rx}
-                ry={ry}
-                className="dynamic-ecosystem-circle"
-                style={{
-                  animationDelay: `${delay}s`
-                }}
-              />
-            );
+              return (
+                <ellipse
+                  key={`${ringIdx}-${idx}`}
+                  cx={cx}
+                  cy={cy}
+                  rx={rx}
+                  ry={ry}
+                  className={isBlue ? 'dynamic-circle-blue' : 'dynamic-circle-white'}
+                  style={{
+                    animationDelay: `${delay}s`
+                  }}
+                />
+              );
+            });
           })}
         </svg>
 
@@ -508,32 +518,82 @@ export default function InteractiveHardwareStage() {
           }
         }
 
-        @keyframes orbitingBeamGlow {
-          0% {
-            fill: #f4c187;
-            opacity: 0.96;
-            filter: drop-shadow(0 2px 5px rgba(244, 193, 135, 0.4));
+        /* Pattern 1: Blue node blink - sharp, crisp electric blue flash with brilliant white core */
+        @keyframes blinkBlueNode {
+          0%, 100% {
+            fill: rgba(224, 242, 254, 0.85);
+            stroke: #0284c7;
+            stroke-width: 1.5px;
+            filter: drop-shadow(0 1px 3px rgba(2, 132, 199, 0.15));
           }
-          33% {
-            fill: #22d3ee;
-            opacity: 1;
-            filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.65));
+          2% {
+            fill: #0284c7;
+            stroke: #38bdf8;
+            stroke-width: 2.2px;
+            filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.95)) drop-shadow(0 0 18px rgba(2, 132, 199, 0.8));
           }
-          66% {
-            fill: #a855f7;
-            opacity: 0.98;
-            filter: drop-shadow(0 0 7px rgba(168, 85, 247, 0.55));
+          4% {
+            fill: #ffffff;
+            stroke: #0284c7;
+            stroke-width: 2.8px;
+            filter: drop-shadow(0 0 14px #ffffff) drop-shadow(0 0 22px rgba(14, 165, 233, 0.95));
           }
-          100% {
-            fill: #f4c187;
-            opacity: 0.96;
-            filter: drop-shadow(0 2px 5px rgba(244, 193, 135, 0.4));
+          6% {
+            fill: #38bdf8;
+            stroke: #0284c7;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+          }
+          8% {
+            fill: rgba(224, 242, 254, 0.85);
+            stroke: #0284c7;
+            stroke-width: 1.5px;
+            filter: drop-shadow(0 1px 3px rgba(2, 132, 199, 0.15));
           }
         }
 
-        .dynamic-ecosystem-circle {
-          animation: orbitingBeamGlow 6s ease-in-out infinite;
-          will-change: fill, filter;
+        /* Pattern 2: White node blink - sharp, brilliant pure white flash with electric blue aura */
+        @keyframes blinkWhiteNode {
+          0%, 100% {
+            fill: #ffffff;
+            stroke: #38bdf8;
+            stroke-width: 1.5px;
+            filter: drop-shadow(0 1px 3px rgba(14, 165, 233, 0.15));
+          }
+          2% {
+            fill: #38bdf8;
+            stroke: #ffffff;
+            stroke-width: 2.2px;
+            filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.9)) drop-shadow(0 0 16px rgba(14, 165, 233, 0.7));
+          }
+          4% {
+            fill: #ffffff;
+            stroke: #0ea5e9;
+            stroke-width: 2.8px;
+            filter: drop-shadow(0 0 16px #ffffff) drop-shadow(0 0 26px rgba(14, 165, 233, 0.95));
+          }
+          6% {
+            fill: #e0f2fe;
+            stroke: #38bdf8;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+          }
+          8% {
+            fill: #ffffff;
+            stroke: #38bdf8;
+            stroke-width: 1.5px;
+            filter: drop-shadow(0 1px 3px rgba(14, 165, 233, 0.15));
+          }
+        }
+
+        .dynamic-circle-blue {
+          animation: blinkBlueNode 4s ease-in-out infinite;
+          will-change: fill, stroke, filter;
+        }
+
+        .dynamic-circle-white {
+          animation: blinkWhiteNode 4s ease-in-out infinite;
+          will-change: fill, stroke, filter;
         }
 
         @media (max-width: 768px) {
