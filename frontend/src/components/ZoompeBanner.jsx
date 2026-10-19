@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Landmark, Zap, Plane, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
 export default function ZoompeBanner() {
   const serviceCategories = [
@@ -89,76 +90,85 @@ export default function ZoompeBanner() {
           }}
         >
           {/* Left Column Description */}
-          <div className="animate-fade-in-up">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
-              <img 
-                src="/images/zoompe/zoompe-logo.png" 
-                alt="Zoompe logo"
-                style={{ height: '3.5rem', width: '3.5rem', borderRadius: '0.75rem', objectFit: 'contain', backgroundColor: '#ffffff', padding: '0.35rem' }}
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
-              />
-              <span className="badge-tag" style={{ color: 'var(--sky)' }}>
-                <span className="beacon-pulse-green" style={{ marginRight: '6px' }} />
-                Retailer Portal
-              </span>
+          <ScrollReveal animation="fade-up" duration={700}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1.25rem' }}>
+                <img 
+                  src="/images/zoompe/zoompe-logo.png" 
+                  alt="Zoompe logo"
+                  style={{ height: '3.5rem', width: '3.5rem', borderRadius: '0.75rem', objectFit: 'contain', backgroundColor: '#ffffff', padding: '0.35rem' }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+                <span className="badge-tag" style={{ color: 'var(--sky)' }}>
+                  <span className="beacon-pulse-green" style={{ marginRight: '6px' }} />
+                  Retailer Portal
+                </span>
+              </div>
+
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.02em', color: '#ffffff' }}>
+                Introducing Zoompe — <span className="text-gradient">Our Retailer Portal</span>
+              </h2>
+
+              <p style={{ marginTop: '1.25rem', fontSize: '1.05rem', lineHeight: 1.65, color: 'rgba(255, 255, 255, 0.75)' }}>
+                We are excited to launch Zoompe, our dedicated retailer portal designed to empower businesses and individuals with a complete suite of digital services, all under one platform.
+              </p>
+
+              <p style={{ marginTop: '1rem', fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)' }}>
+                Whether you're a small shop owner, a CSP agent, or an entrepreneur looking to expand your service offerings, Zoompe gives you everything you need to serve your customers better and grow your business.
+              </p>
+
+              <div style={{ marginTop: '2.25rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem' }}>
+                <a 
+                  href="https://www.zoompe.in" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-gold btn-shimmer"
+                  style={{ padding: '0.85rem 1.65rem', fontSize: '0.95rem' }}
+                >
+                  Visit Our Retailer Portal <ArrowUpRight size={18} />
+                </a>
+                <span className="font-data" style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.5)' }}>
+                  www.zoompe.in
+                </span>
+              </div>
             </div>
+          </ScrollReveal>
 
-            <h2 style={{ fontSize: '2.5rem', fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.02em', color: '#ffffff' }}>
-              Introducing Zoompe — <span className="text-gradient">Our Retailer Portal</span>
-            </h2>
-
-            <p style={{ marginTop: '1.25rem', fontSize: '1.05rem', lineHeight: 1.65, color: 'rgba(255, 255, 255, 0.75)' }}>
-              We are excited to launch Zoompe, our dedicated retailer portal designed to empower businesses and individuals with a complete suite of digital services, all under one platform.
-            </p>
-
-            <p style={{ marginTop: '1rem', fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)' }}>
-              Whether you're a small shop owner, a CSP agent, or an entrepreneur looking to expand your service offerings, Zoompe gives you everything you need to serve your customers better and grow your business.
-            </p>
-
-            <div style={{ marginTop: '2.25rem', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem' }}>
-              <a 
-                href="https://www.zoompe.in" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn-gold btn-shimmer"
-                style={{ padding: '0.85rem 1.65rem', fontSize: '0.95rem' }}
-              >
-                Visit Our Retailer Portal <ArrowUpRight size={18} />
-              </a>
-              <span className="font-data" style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.5)' }}>
-                www.zoompe.in
-              </span>
-            </div>
-          </div>
-
-          {/* Right Column Services Grid */}
+          {/* Right Column Services Grid - Staggered One By One */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem' }}>
             {serviceCategories.map((cat, idx) => (
-              <div 
+              <ScrollReveal 
                 key={idx} 
-                className="feature-card-dark"
-                style={{ padding: '1.5rem', borderRadius: '1rem' }}
+                animation="fade-up" 
+                delay={idx * 110} 
+                duration={650}
+                style={{ height: '100%' }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                  <div style={{ padding: '0.5rem', borderRadius: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.08)' }}>
-                    {cat.icon}
+                <div 
+                  className="feature-card-dark"
+                  style={{ padding: '1.5rem', borderRadius: '1rem', height: '100%', display: 'flex', flexDirection: 'column' }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
+                    <div style={{ padding: '0.5rem', borderRadius: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', flexShrink: 0 }}>
+                      {cat.icon}
+                    </div>
+                    <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#ffffff' }}>
+                      {cat.title}
+                    </h3>
                   </div>
-                  <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: '#ffffff' }}>
-                    {cat.title}
-                  </h3>
-                </div>
 
-                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {cat.items.map((item, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.825rem', color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.45 }}>
-                      <CheckCircle2 size={14} color="var(--gold)" style={{ shrink: 0, marginTop: '0.15rem' }} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
+                    {cat.items.map((item, i) => (
+                      <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.825rem', color: 'rgba(255, 255, 255, 0.7)', lineHeight: 1.45 }}>
+                        <CheckCircle2 size={14} color="var(--gold)" style={{ flexShrink: 0, marginTop: '0.15rem' }} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

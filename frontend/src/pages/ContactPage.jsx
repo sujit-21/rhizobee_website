@@ -477,9 +477,7 @@ export default function ContactPage() {
                         {loading ? 'Transmitting to Database...' : 'Send Message'} <Send size={16} />
                       </button>
 
-                      <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--slate-dim)' }}>
-                        🔒 Submitting securely saves your inquiry into our live MERN database.
-                      </div>
+                      
                     </form>
                   </div>
                 )}

@@ -56,30 +56,34 @@ export default function AnimatedCounter({ value, duration = 1600, className = ''
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          let startTime = null;
+        if (entry.isIntersecting) {
+          if (!hasAnimated.current) {
+            hasAnimated.current = true;
+            let startTime = null;
 
-          const step = (timestamp) => {
-            if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
-            // Ease out quart
-            const easeProgress = 1 - Math.pow(1 - progress, 4);
-            const currentNum = easeProgress * targetNum;
-            setDisplayValue(formatNumber(currentNum));
+            const step = (timestamp) => {
+              if (!startTime) startTime = timestamp;
+              const progress = Math.min((timestamp - startTime) / duration, 1);
+              // Ease out quart
+              const easeProgress = 1 - Math.pow(1 - progress, 4);
+              const currentNum = easeProgress * targetNum;
+              setDisplayValue(formatNumber(currentNum));
 
-            if (progress < 1) {
-              requestAnimationFrame(step);
-            } else {
-              setDisplayValue(strVal); // Ensure exact final value
-            }
-          };
+              if (progress < 1) {
+                requestAnimationFrame(step);
+              } else {
+                setDisplayValue(strVal); // Ensure exact final value
+              }
+            };
 
-          requestAnimationFrame(step);
-          observer.disconnect();
+            requestAnimationFrame(step);
+          }
+        } else {
+          // Reset when scrolled out of view so it can animate again when scrolled back
+          hasAnimated.current = false;
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     observer.observe(el);

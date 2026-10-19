@@ -650,7 +650,7 @@ export default function HomePage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
             {/* Card 1: 4G Audio Soundbox */}
-            <ScrollReveal animation="slide-left" delay={0} duration={700}>
+            <ScrollReveal animation="fade-up" delay={0} duration={650}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/product-soundbox.jpg" alt="Rhizobee 4G Smart Voice Soundbox with instant bilingual announcements" />
@@ -696,7 +696,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             {/* Card 2: Smart Android POS Machine */}
-            <ScrollReveal animation="slide-left" delay={160} duration={700}>
+            <ScrollReveal animation="fade-up" delay={90} duration={650}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/product-pos.jpg" alt="Rhizobee Smart Handheld Android POS Machine with thermal receipt printer" />
@@ -742,7 +742,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             {/* Card 3: Retail Merchant Storefront */}
-            <ScrollReveal animation="slide-left" delay={320} duration={700}>
+            <ScrollReveal animation="fade-up" delay={180} duration={650}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/retail-merchant.jpg" alt="Retail merchant store counter with QR standee and voice soundbox" />
@@ -788,7 +788,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             {/* Card 4: Corporate PPI Wallets & Smart Cards */}
-            <ScrollReveal animation="slide-left" delay={480} duration={700}>
+            <ScrollReveal animation="fade-up" delay={270} duration={650}>
               <div className="product-showcase-card">
                 <div className="image-wrapper">
                   <img src="/images/home/product-cards.jpg" alt="Prepaid corporate smart cards and digital wallet interface" />
