@@ -1,88 +1,130 @@
-export const particleDots = [
-    { cx: 955, cy: 275, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.0s', dur: '2.6s' },
-    { cx: 944, cy: 331, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.2s', dur: '2.8s' },
-    { cx: 910, cy: 383, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.3s', dur: '3.1s' },
-    { cx: 876, cy: 416, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '0.5s', dur: '3.3s' },
-    { cx: 834, cy: 445, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.7s', dur: '3.5s' },
-    { cx: 784, cy: 470, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '0.9s', dur: '3.8s' },
-    { cx: 728, cy: 492, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.0s', dur: '2.8s' },
-    { cx: 666, cy: 508, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.2s', dur: '3.0s' },
-    { cx: 601, cy: 519, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.4s', dur: '3.2s' },
-    { cx: 534, cy: 524, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f59e0b', delay: '1.5s', dur: '3.5s' },
-    { cx: 466, cy: 524, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f59e0b', delay: '1.7s', dur: '3.7s' },
-    { cx: 399, cy: 519, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f59e0b', delay: '1.9s', dur: '2.7s' },
-    { cx: 334, cy: 508, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '2.0s', dur: '3.0s' },
-    { cx: 273, cy: 492, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f59e0b', delay: '2.2s', dur: '3.2s' },
-    { cx: 216, cy: 470, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '2.4s', dur: '3.4s' },
-    { cx: 166, cy: 445, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '0.1s', dur: '3.7s' },
-    { cx: 124, cy: 416, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.2s', dur: '2.7s' },
-    { cx: 90, cy: 383, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '0.4s', dur: '2.9s' },
-    { cx: 56, cy: 331, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '0.6s', dur: '3.1s' },
-    { cx: 45, cy: 275, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '0.7s', dur: '3.4s' },
-    { cx: 56, cy: 219, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.9s', dur: '3.6s' },
-    { cx: 90, cy: 167, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '1.1s', dur: '2.6s' },
-    { cx: 191, cy: 92, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#fb923c', delay: '1.2s', dur: '2.9s' },
-    { cx: 244, cy: 68, rx: 27, ry: 16, grad: 'url(#rgbGradOrange)', fallback: '#fb923c', delay: '1.4s', dur: '3.1s' },
-    { cx: 303, cy: 50, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.6s', dur: '3.3s' },
-    { cx: 432, cy: 28, rx: 27, ry: 16, grad: 'url(#rgbGradMint)', fallback: '#10b981', delay: '1.8s', dur: '3.6s' },
-    { cx: 500, cy: 25, rx: 27, ry: 16, grad: 'url(#rgbGradMint)', fallback: '#10b981', delay: '1.9s', dur: '3.8s' },
-    { cx: 568, cy: 28, rx: 27, ry: 16, grad: 'url(#rgbGradMint)', fallback: '#10b981', delay: '2.1s', dur: '2.8s' },
-    { cx: 634, cy: 36, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '2.3s', dur: '3.0s' },
-    { cx: 697, cy: 50, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '2.4s', dur: '3.3s' },
-    { cx: 756, cy: 68, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.1s', dur: '3.5s' },
-    { cx: 809, cy: 92, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.3s', dur: '3.7s' },
-    { cx: 894, cy: 150, rx: 27, ry: 16, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.4s', dur: '2.8s' },
-    { cx: 924, cy: 184, rx: 27, ry: 16, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.6s', dur: '3.0s' },
-    { cx: 903, cy: 220, rx: 25, ry: 14, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.8s', dur: '3.2s' },
-    { cx: 825, cy: 378, rx: 23, ry: 13, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.0s', dur: '3.5s' },
-    { cx: 784, cy: 409, rx: 23, ry: 13, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.1s', dur: '3.7s' },
-    { cx: 735, cy: 435, rx: 23, ry: 13, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.3s', dur: '2.7s' },
-    { cx: 677, cy: 456, rx: 23, ry: 13, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.5s', dur: '2.9s' },
-    { cx: 613, cy: 470, rx: 23, ry: 13, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.6s', dur: '3.2s' },
-    { cx: 343, cy: 461, rx: 23, ry: 13, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.8s', dur: '3.4s' },
-    { cx: 283, cy: 442, rx: 23, ry: 13, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '2.0s', dur: '3.6s' },
-    { cx: 230, cy: 418, rx: 23, ry: 13, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '2.1s', dur: '2.7s' },
-    { cx: 187, cy: 388, rx: 23, ry: 13, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '2.3s', dur: '2.9s' },
-    { cx: 323, cy: 94, rx: 23, ry: 13, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '2.5s', dur: '3.1s' },
-    { cx: 592, cy: 76, rx: 23, ry: 13, grad: 'url(#rgbGradMint)', fallback: '#10b981', delay: '0.2s', dur: '3.4s' },
-    { cx: 657, cy: 89, rx: 23, ry: 13, grad: 'url(#rgbGradMint)', fallback: '#10b981', delay: '0.3s', dur: '3.6s' },
-    { cx: 770, cy: 379, rx: 21, ry: 12, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '0.5s', dur: '2.6s' },
-    { cx: 283, cy: 410, rx: 21, ry: 12, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.7s', dur: '2.8s' },
-    { cx: 722, cy: 372, rx: 19, ry: 11, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '0.8s', dur: '3.1s' },
-    { cx: 672, cy: 398, rx: 19, ry: 11, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.0s', dur: '3.3s' },
-    { cx: 613, cy: 417, rx: 19, ry: 11, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.2s', dur: '3.5s' },
-    { cx: 349, cy: 406, rx: 19, ry: 11, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.3s', dur: '3.8s' },
-    { cx: 273, cy: 369, rx: 19, ry: 11, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '1.5s', dur: '2.8s' },
-    { cx: 328, cy: 152, rx: 19, ry: 11, grad: 'url(#rgbGradOrange)', fallback: '#fb923c', delay: '1.7s', dur: '3.0s' },
-    { cx: 589, cy: 128, rx: 19, ry: 11, grad: 'url(#rgbGradMint)', fallback: '#10b981', delay: '1.9s', dur: '3.3s' },
-    { cx: 651, cy: 144, rx: 19, ry: 11, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '2.0s', dur: '3.5s' },
-    { cx: 631, cy: 384, rx: 17, ry: 10, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '2.2s', dur: '3.7s' },
-    { cx: 344, cy: 374, rx: 17, ry: 10, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '2.4s', dur: '2.7s' },
-    { cx: 318, cy: 191, rx: 17, ry: 10, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '0.0s', dur: '3.0s' },
-    { cx: 369, cy: 166, rx: 17, ry: 10, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.2s', dur: '3.2s' },
-    { cx: 598, cy: 156, rx: 17, ry: 10, grad: 'url(#rgbGradMint)', fallback: '#10b981', delay: '0.4s', dur: '3.4s' },
-    { cx: 656, cy: 176, rx: 17, ry: 10, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.5s', dur: '3.7s' },
-    { cx: 602, cy: 364, rx: 15, ry: 9, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '0.7s', dur: '2.7s' },
-    { cx: 379, cy: 357, rx: 15, ry: 9, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.9s', dur: '2.9s' },
-    { cx: 334, cy: 330, rx: 15, ry: 9, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '1.1s', dur: '3.2s' },
-    { cx: 315, cy: 242, rx: 15, ry: 9, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '1.2s', dur: '3.4s' },
-    { cx: 347, cy: 210, rx: 15, ry: 9, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '1.4s', dur: '3.6s' },
-    { cx: 593, cy: 183, rx: 15, ry: 9, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.6s', dur: '2.6s' },
-    { cx: 646, cy: 205, rx: 15, ry: 9, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '1.7s', dur: '2.9s' },
-    { cx: 653, cy: 340, rx: 15, ry: 9, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '1.9s', dur: '3.1s' },
-    { cx: 377, cy: 321, rx: 13, ry: 8, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '2.1s', dur: '3.3s' },
-    { cx: 352, cy: 287, rx: 13, ry: 8, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '2.2s', dur: '3.6s' },
-    { cx: 356, cy: 252, rx: 13, ry: 8, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '2.4s', dur: '3.8s' },
-    { cx: 601, cy: 216, rx: 13, ry: 8, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.1s', dur: '2.8s' },
-    { cx: 639, cy: 245, rx: 13, ry: 8, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.3s', dur: '3.1s' },
-    { cx: 650, cy: 280, rx: 13, ry: 8, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '0.4s', dur: '3.3s' },
-    { cx: 630, cy: 315, rx: 13, ry: 8, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '0.6s', dur: '3.5s' },
-    { cx: 585, cy: 341, rx: 13, ry: 8, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '0.8s', dur: '3.7s' },
-    { cx: 405, cy: 305, rx: 12, ry: 7, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '0.9s', dur: '2.8s' },
-    { cx: 391, cy: 269, rx: 12, ry: 7, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.1s', dur: '3.0s' },
-    { cx: 418, cy: 235, rx: 12, ry: 7, grad: 'url(#rgbGradOrange)', fallback: '#f97316', delay: '1.3s', dur: '3.2s' },
-    { cx: 573, cy: 230, rx: 12, ry: 7, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '1.4s', dur: '3.5s' },
-    { cx: 595, cy: 245, rx: 12, ry: 7, grad: 'url(#rgbGradCyan)', fallback: '#38bdf8', delay: '1.6s', dur: '3.7s' },
-    { cx: 609, cy: 281, rx: 12, ry: 7, grad: 'url(#rgbGradPrism)', fallback: '#34d399', delay: '1.8s', dur: '2.7s' },
-    { cx: 582, cy: 315, rx: 12, ry: 7, grad: 'url(#rgbGradCyan)', fallback: '#0ea5e9', delay: '2.0s', dur: '3.0s' }
+// Complete dataset of particle dots matching the PhonePe hardware ecosystem reference
+// Concentric radiating fans on left and right, glowing aqua/cyan arc at bottom, faded cream at top
+
+const leftCenter = { x: 235, y: 260 };
+const rightCenter = { x: 745, y: 260 };
+
+const dots = [];
+
+// ============================================================================
+// 1. LEFT WING: 5 Concentric Radiating Arcs of Peach Oval Discs around Smart Pod
+// ============================================================================
+const leftArcs = [
+  { R: 215, count: 10, rx: 26, ry: 13.5, startDeg: 72, endDeg: 288 },
+  { R: 175, count: 9,  rx: 23, ry: 12,   startDeg: 78, endDeg: 282 },
+  { R: 140, count: 8,  rx: 20, ry: 10.5, startDeg: 84, endDeg: 276 },
+  { R: 108, count: 7,  rx: 17, ry: 9,    startDeg: 90, endDeg: 270 },
+  { R: 78,  count: 6,  rx: 14, ry: 7.5,  startDeg: 95, endDeg: 265 }
 ];
+
+for (const arc of leftArcs) {
+  for (let i = 0; i < arc.count; i++) {
+    const frac = i / (arc.count - 1);
+    const deg = arc.startDeg + frac * (arc.endDeg - arc.startDeg);
+    const rad = deg * Math.PI / 180;
+    const x = Math.round(leftCenter.x - arc.R * Math.cos(rad));
+    const y = Math.round(leftCenter.y + arc.R * Math.sin(rad) * 0.95);
+    
+    // Staggered breathing animation
+    const delay = ((dots.length * 0.13) % 2.4).toFixed(1) + 's';
+    const dur = (2.6 + ((dots.length * 0.21) % 1.2)).toFixed(1) + 's';
+    
+    dots.push({
+      cx: x,
+      cy: y,
+      rx: arc.rx,
+      ry: arc.ry,
+      color: '#f6b17a',
+      grad: 'url(#peachDotGrad)',
+      opacity: 0.92,
+      delay,
+      dur
+    });
+  }
+}
+
+// ============================================================================
+// 2. RIGHT WING: 5 Concentric Radiating Arcs of Peach Oval Discs around EDC Machine
+// ============================================================================
+const rightArcs = [
+  { R: 215, count: 10, rx: 26, ry: 13.5, startDeg: -72, endDeg: 108 },
+  { R: 175, count: 9,  rx: 23, ry: 12,   startDeg: -68, endDeg: 102 },
+  { R: 140, count: 8,  rx: 20, ry: 10.5, startDeg: -64, endDeg: 96 },
+  { R: 108, count: 7,  rx: 17, ry: 9,    startDeg: -60, endDeg: 90 },
+  { R: 78,  count: 6,  rx: 14, ry: 7.5,  startDeg: -55, endDeg: 85 }
+];
+
+for (const arc of rightArcs) {
+  for (let i = 0; i < arc.count; i++) {
+    const frac = i / (arc.count - 1);
+    const deg = arc.startDeg + frac * (arc.endDeg - arc.startDeg);
+    const rad = deg * Math.PI / 180;
+    const x = Math.round(rightCenter.x + arc.R * Math.cos(rad));
+    const y = Math.round(rightCenter.y + arc.R * Math.sin(rad) * 0.95);
+    
+    const delay = ((dots.length * 0.13) % 2.4).toFixed(1) + 's';
+    const dur = (2.6 + ((dots.length * 0.21) % 1.2)).toFixed(1) + 's';
+    
+    dots.push({
+      cx: x,
+      cy: y,
+      rx: arc.rx,
+      ry: arc.ry,
+      color: '#f6b17a',
+      grad: 'url(#peachDotGrad)',
+      opacity: 0.92,
+      delay,
+      dur
+    });
+  }
+}
+
+// ============================================================================
+// 3. BOTTOM ACCENT ARCS: Glowing Luminous Aqua/Cyan/Mint Oval Discs under QR Code
+// ============================================================================
+// Inner glowing aqua arc (directly below QR stand)
+const bottomInnerAqua = [
+  { cx: 395, cy: 468, rx: 19, ry: 10, color: '#fed7aa', grad: 'url(#peachDotGrad)', opacity: 0.88 },
+  { cx: 432, cy: 486, rx: 20, ry: 10.5, color: '#7fe5db', grad: 'url(#aquaDotGrad)', opacity: 0.95 },
+  { cx: 472, cy: 496, rx: 21, ry: 11, color: '#5eead4', grad: 'url(#aquaDotGrad)', opacity: 0.98 },
+  { cx: 512, cy: 496, rx: 21, ry: 11, color: '#5eead4', grad: 'url(#aquaDotGrad)', opacity: 0.98 },
+  { cx: 552, cy: 486, rx: 20, ry: 10.5, color: '#7fe5db', grad: 'url(#aquaDotGrad)', opacity: 0.95 },
+  { cx: 588, cy: 468, rx: 19, ry: 10, color: '#fed7aa', grad: 'url(#peachDotGrad)', opacity: 0.88 }
+];
+
+// Outer glowing cyan/mint arc
+const bottomOuterAqua = [
+  { cx: 372, cy: 502, rx: 23, ry: 12, color: '#f5af76', grad: 'url(#peachDotGrad)', opacity: 0.90 },
+  { cx: 412, cy: 522, rx: 24, ry: 12.5, color: '#9bf2e9', grad: 'url(#aquaDotGrad)', opacity: 0.95 },
+  { cx: 456, cy: 536, rx: 25, ry: 13, color: '#6ee7b7', grad: 'url(#aquaDotGrad)', opacity: 0.98 },
+  { cx: 492, cy: 540, rx: 25, ry: 13, color: '#38bdf8', grad: 'url(#cyanDotGrad)', opacity: 0.98 },
+  { cx: 528, cy: 536, rx: 25, ry: 13, color: '#6ee7b7', grad: 'url(#aquaDotGrad)', opacity: 0.98 },
+  { cx: 572, cy: 522, rx: 24, ry: 12.5, color: '#9bf2e9', grad: 'url(#aquaDotGrad)', opacity: 0.95 },
+  { cx: 612, cy: 502, rx: 23, ry: 12, color: '#f5af76', grad: 'url(#peachDotGrad)', opacity: 0.90 }
+];
+
+for (const d of [...bottomInnerAqua, ...bottomOuterAqua]) {
+  const delay = ((dots.length * 0.15) % 2.4).toFixed(1) + 's';
+  const dur = (2.8 + ((dots.length * 0.19) % 1.0)).toFixed(1) + 's';
+  dots.push({ ...d, delay, dur });
+}
+
+// ============================================================================
+// 4. TOP ACCENT ARC: Faded Soft Pastel Cream/Apricot Discs above SmartSpeaker
+// ============================================================================
+const topFadedDots = [
+  { cx: 395, cy: 75, rx: 16, ry: 8.5, color: '#fef3c7', grad: 'url(#fadedCreamGrad)', opacity: 0.48 },
+  { cx: 432, cy: 58, rx: 17, ry: 9,   color: '#fed7aa', grad: 'url(#fadedCreamGrad)', opacity: 0.42 },
+  { cx: 472, cy: 48, rx: 18, ry: 9.5, color: '#fef3c7', grad: 'url(#fadedCreamGrad)', opacity: 0.38 },
+  { cx: 512, cy: 48, rx: 18, ry: 9.5, color: '#fef3c7', grad: 'url(#fadedCreamGrad)', opacity: 0.38 },
+  { cx: 552, cy: 58, rx: 17, ry: 9,   color: '#fed7aa', grad: 'url(#fadedCreamGrad)', opacity: 0.42 },
+  { cx: 588, cy: 75, rx: 16, ry: 8.5, color: '#fef3c7', grad: 'url(#fadedCreamGrad)', opacity: 0.48 }
+];
+
+for (const d of topFadedDots) {
+  const delay = ((dots.length * 0.17) % 2.5).toFixed(1) + 's';
+  const dur = (3.0 + ((dots.length * 0.23) % 1.0)).toFixed(1) + 's';
+  dots.push({ ...d, delay, dur });
+}
+
+export const particleDots = dots;
