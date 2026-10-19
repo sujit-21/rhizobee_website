@@ -1,26 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { 
-  Plus, 
-  X, 
-  Volume2, 
-  CreditCard, 
-  QrCode, 
-  Smartphone, 
-  CheckCircle2, 
-  ArrowRight, 
-  ShieldCheck, 
-  Zap, 
-  Wifi, 
-  Radio,
-  Sparkles
-} from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 export default function InteractiveHardwareStage() {
   const [activeDevice, setActiveDevice] = useState('pos'); // 'pod', 'soundbox', 'pos', 'qr'
   const [isHovered, setIsHovered] = useState(false);
 
-  // Auto-cycle through devices every 5 seconds if not hovered/interacted
+  // Auto-cycle through devices gently every 4.5 seconds if not actively hovered
   useEffect(() => {
     if (isHovered) return;
     const deviceKeys = ['pod', 'soundbox', 'pos', 'qr'];
@@ -29,90 +14,9 @@ export default function InteractiveHardwareStage() {
         const nextIdx = (deviceKeys.indexOf(prev) + 1) % deviceKeys.length;
         return deviceKeys[nextIdx];
       });
-    }, 5000);
+    }, 4500);
     return () => clearInterval(interval);
   }, [isHovered]);
-
-  const devices = {
-    pod: {
-      id: 'pod',
-      name: 'Smart Pod',
-      subtitle: 'Contactless Tap & Pay Counter Stand',
-      badge: 'NFC TAP-TO-PAY',
-      accentColor: '#fb923c',
-      icon: <Smartphone size={18} color="#fb923c" />,
-      tagline: 'Instant card tap display facing the customer for faster queue turnover.',
-      specs: [
-        { label: 'Payment Modes', val: 'NFC Tap, UPI QR & Chip' },
-        { label: 'Display', val: 'Dual Screen Customer Facing' },
-        { label: 'Settlement', val: 'Real-time Instant T+0' }
-      ],
-      features: [
-        'Dedicated customer-facing payment screen',
-        'Accepts RuPay, Visa, Mastercard & Apple/Google Pay',
-        'Bilingual audio confirmation speaker integrated'
-      ]
-    },
-    soundbox: {
-      id: 'soundbox',
-      name: 'SmartSpeaker 4G',
-      subtitle: 'High-Decibel Voice Payment Soundbox',
-      badge: 'AUDIO CONFIRMATION',
-      accentColor: '#f59e0b',
-      icon: <Volume2 size={18} color="#f59e0b" />,
-      tagline: 'Instant bilingual voice announcement in Hindi, English & 9 regional languages.',
-      specs: [
-        { label: 'Speaker Output', val: '105dB High-Decibel Clarity' },
-        { label: 'Connectivity', val: 'Dual SIM 4G VoLTE + 2G Auto' },
-        { label: 'Battery Backup', val: '7 Days Continuous Standby' }
-      ],
-      features: [
-        'Zero-delay audio alerts in under 0.3 seconds',
-        'Hindi, English, Marathi, Tamil, Telugu, Kannada & more',
-        'Tamper-proof casing with durable rubberized base'
-      ]
-    },
-    pos: {
-      id: 'pos',
-      name: 'Android EDC Machine',
-      subtitle: 'Smart Handheld Android POS Terminal',
-      badge: 'ALL-IN-ONE TERMINAL',
-      accentColor: '#10b981',
-      icon: <CreditCard size={18} color="#10b981" />,
-      tagline: 'High-performance quad-core terminal with built-in cloud thermal receipt printer.',
-      specs: [
-        { label: 'Processing Speed', val: '< 0.8s Card Auth SLA' },
-        { label: 'Receipt Printer', val: 'High-Speed 58mm Thermal' },
-        { label: 'Security', val: 'PCI-PTS 6.x & EMV L1/L2' }
-      ],
-      features: [
-        'Supports Magstripe, Chip Cards & Contactless NFC',
-        'Crisp touchscreen running Android with store inventory apps',
-        'All-day 5200mAh rechargeable lithium battery'
-      ]
-    },
-    qr: {
-      id: 'qr',
-      name: 'Dynamic QR Standee',
-      subtitle: 'Zero-MDR Interoperable Tabletop QR',
-      badge: 'INSTANT SCAN & PAY',
-      accentColor: '#38bdf8',
-      icon: <QrCode size={18} color="#38bdf8" />,
-      tagline: 'Static & dynamic BharatQR codes allowing customers to scan and pay from any UPI app.',
-      specs: [
-        { label: 'MDR Charges', val: '0% Zero MDR on UPI' },
-        { label: 'Interoperability', val: 'PhonePe, GPay, Paytm, BHIM' },
-        { label: 'Durability', val: 'Waterproof Acrylic Stand' }
-      ],
-      features: [
-        'Works with 100+ UPI bank applications seamlessly',
-        'Custom merchant branding with printed shop name & VPA',
-        'Instant SMS & WhatsApp transaction notifications'
-      ]
-    }
-  };
-
-  const current = devices[activeDevice];
 
   // Particle dots data for the PhonePe-style elliptical surrounding wave
   const particleDots = [
@@ -170,93 +74,30 @@ export default function InteractiveHardwareStage() {
 
   return (
     <div 
-      className="hardware-interactive-stage-wrapper"
+      className="hardware-interactive-stage-clean"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
         position: 'relative',
         width: '100%',
-        maxWidth: '78rem',
-        margin: '0 auto 4rem',
-        padding: '1rem',
-        borderRadius: '2rem',
-        backgroundColor: '#ffffff',
-        border: '1px solid var(--line)',
-        boxShadow: '0 20px 50px -15px rgba(251, 146, 60, 0.12), 0 0 0 1px rgba(251, 146, 60, 0.08)',
-        overflow: 'hidden'
+        maxWidth: '82rem',
+        margin: '0 auto 3rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'visible'
       }}
     >
-      {/* Ambient background glow */}
-      <div 
-        style={{
-          position: 'absolute',
-          top: '20%',
-          left: '30%',
-          width: '40%',
-          height: '50%',
-          borderRadius: '9999px',
-          backgroundColor: 'rgba(251, 146, 60, 0.08)',
-          filter: 'blur(70px)',
-          pointerEvents: 'none',
-          zIndex: 0
-        }}
-      />
-      <div 
-        style={{
-          position: 'absolute',
-          top: '30%',
-          right: '15%',
-          width: '35%',
-          height: '45%',
-          borderRadius: '9999px',
-          backgroundColor: 'rgba(56, 189, 248, 0.08)',
-          filter: 'blur(75px)',
-          pointerEvents: 'none',
-          zIndex: 0
-        }}
-      />
-
-      {/* Top Bar with Live Indicator & Title */}
-      <div 
-        style={{
-          position: 'relative',
-          zIndex: 2,
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '1rem',
-          padding: '0.75rem 1.25rem 0.5rem',
-          borderBottom: '1px solid #ffedd5'
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-          <span className="beacon-pulse-green" />
-          <span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--ink)', letterSpacing: '0.04em' }}>
-            RHIZOBEE HARDWARE ECOSYSTEM
-          </span>
-          <span style={{ fontSize: '0.72rem', padding: '2px 8px', borderRadius: '9999px', backgroundColor: '#fee2e2', color: '#c2410c', fontWeight: 600 }}>
-            Interactive 3D Stage
-          </span>
-        </div>
-
-        <div style={{ fontSize: '0.8rem', color: 'var(--slate)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span>Tap/Click any device</span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '18px', height: '18px', borderRadius: '50%', backgroundColor: '#1c1917', color: '#ffffff', fontSize: '11px', fontWeight: 700 }}>+</span>
-          <span>to view live specs</span>
-        </div>
-      </div>
-
-      {/* Main Isometric Stage Container */}
+      {/* Main Isometric Stage Canvas */}
       <div 
         className="isometric-stage-canvas"
         style={{
           position: 'relative',
+          width: '100%',
           minHeight: '480px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          padding: '2rem 1rem'
+          justifyContent: 'center'
         }}
       >
         {/* SVG Elliptical Particle Wave Field */}
@@ -274,9 +115,9 @@ export default function InteractiveHardwareStage() {
         >
           <defs>
             <linearGradient id="orbitLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#fb923c" stopOpacity="0.25" />
-              <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.25" />
+              <stop offset="0%" stopColor="#fb923c" stopOpacity="0.28" />
+              <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.28" />
             </linearGradient>
           </defs>
 
@@ -340,7 +181,7 @@ export default function InteractiveHardwareStage() {
             onClick={() => setActiveDevice('pod')}
             style={{
               position: 'absolute',
-              left: '5%',
+              left: '6%',
               top: '12%',
               cursor: 'pointer',
               transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -357,7 +198,7 @@ export default function InteractiveHardwareStage() {
                 width: '110px',
                 height: '35px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(28, 25, 23, 0.15)',
+                backgroundColor: 'rgba(28, 25, 23, 0.14)',
                 filter: 'blur(10px)',
                 transform: activeDevice === 'pod' ? 'scale(1.15)' : 'scale(1)',
                 transition: 'transform 0.35s ease'
@@ -443,14 +284,14 @@ export default function InteractiveHardwareStage() {
                 <Plus size={14} strokeWidth={3} />
               </button>
 
-              <div style={{ marginTop: '4px', fontSize: '0.78rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
+              <div style={{ marginTop: '4px', fontSize: '0.8rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
                 SMART POD
               </div>
             </div>
           </div>
 
           {/* ========================================================
-              DEVICE 2: SMARTSPEAKER 4G (Top Center)
+              DEVICE 2: SMARTSPEAKER 2nd GEN / 4G (Top Center)
               ======================================================== */}
           <div
             className={`stage-device-unit unit-soundbox ${activeDevice === 'soundbox' ? 'active-unit' : ''}`}
@@ -474,7 +315,7 @@ export default function InteractiveHardwareStage() {
                 width: '120px',
                 height: '35px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(28, 25, 23, 0.15)',
+                backgroundColor: 'rgba(28, 25, 23, 0.14)',
                 filter: 'blur(10px)',
                 transform: activeDevice === 'soundbox' ? 'scale(1.15)' : 'scale(1)',
                 transition: 'transform 0.35s ease'
@@ -548,21 +389,21 @@ export default function InteractiveHardwareStage() {
                 <Plus size={14} strokeWidth={3} />
               </button>
 
-              <div style={{ marginTop: '4px', fontSize: '0.78rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
-                SmartSpeaker 4G
+              <div style={{ marginTop: '4px', fontSize: '0.8rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
+                SmartSpeaker 2<sup>nd</sup> Gen
               </div>
             </div>
           </div>
 
           {/* ========================================================
-              DEVICE 3: SMART ANDROID POS / EDC MACHINE (Right Side)
+              DEVICE 3: EDC MACHINE (Right Side)
               ======================================================== */}
           <div
             className={`stage-device-unit unit-pos ${activeDevice === 'pos' ? 'active-unit' : ''}`}
             onClick={() => setActiveDevice('pos')}
             style={{
               position: 'absolute',
-              right: '8%',
+              right: '7%',
               top: '18%',
               cursor: 'pointer',
               transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -579,7 +420,7 @@ export default function InteractiveHardwareStage() {
                 width: '130px',
                 height: '40px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(28, 25, 23, 0.16)',
+                backgroundColor: 'rgba(28, 25, 23, 0.14)',
                 filter: 'blur(10px)',
                 transform: activeDevice === 'pos' ? 'scale(1.15)' : 'scale(1)',
                 transition: 'transform 0.35s ease'
@@ -620,9 +461,9 @@ export default function InteractiveHardwareStage() {
                   <rect x="25" y="45" width="118" height="150" rx="18" fill="#ffffff" stroke="#10b981" strokeWidth="3" />
                   
                   {/* Vivid Touchscreen */}
-                  <rect x="35" y="58" width="98" height="126" rx="12" fill="url(#screenGrad)" />
+                  <rect x="35" y="58" width="98" height="126" rx="12" fill="url(#screenGradClean)" />
                   <defs>
-                    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="screenGradClean" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#0f172a" />
                       <stop offset="60%" stopColor="#064e3b" />
                       <stop offset="100%" stopColor="#10b981" />
@@ -674,14 +515,14 @@ export default function InteractiveHardwareStage() {
                 <Plus size={14} strokeWidth={3} />
               </button>
 
-              <div style={{ marginTop: '4px', fontSize: '0.78rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
-                Android POS / EDC
+              <div style={{ marginTop: '4px', fontSize: '0.8rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
+                EDC Machine
               </div>
             </div>
           </div>
 
           {/* ========================================================
-              DEVICE 4: DYNAMIC BHARAT QR CODE STANDEE (Bottom Center)
+              DEVICE 4: QR CODE (Bottom Center)
               ======================================================== */}
           <div
             className={`stage-device-unit unit-qr ${activeDevice === 'qr' ? 'active-unit' : ''}`}
@@ -705,7 +546,7 @@ export default function InteractiveHardwareStage() {
                 width: '100px',
                 height: '28px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(28, 25, 23, 0.16)',
+                backgroundColor: 'rgba(28, 25, 23, 0.14)',
                 filter: 'blur(8px)',
                 transform: activeDevice === 'qr' ? 'scale(1.15)' : 'scale(1)',
                 transition: 'transform 0.35s ease'
@@ -796,152 +637,11 @@ export default function InteractiveHardwareStage() {
                 <Plus size={14} strokeWidth={3} />
               </button>
 
-              <div style={{ marginTop: '4px', fontSize: '0.78rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
-                QR Code Standee
+              <div style={{ marginTop: '4px', fontSize: '0.8rem', fontWeight: 700, color: '#1c1917', letterSpacing: '0.02em', textTransform: 'uppercase' }}>
+                QR Code
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Floating Active Device Spec Sheet & Quick Action Drawer */}
-      <div 
-        className="stage-active-spec-drawer"
-        style={{
-          position: 'relative',
-          zIndex: 4,
-          backgroundColor: '#fff7ed',
-          border: `1.5px solid ${current.accentColor}44`,
-          borderRadius: '1.25rem',
-          padding: '1.35rem 1.65rem',
-          boxShadow: `0 12px 30px -10px ${current.accentColor}25`,
-          transition: 'all 0.3s ease'
-        }}
-      >
-        <div 
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '1.25rem'
-          }}
-        >
-          {/* Left: Device Name, Badge, & Tagline */}
-          <div style={{ maxWidth: '28rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-              <span 
-                style={{ 
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                  padding: '3px 10px', 
-                  borderRadius: '9999px', 
-                  backgroundColor: '#ffffff', 
-                  border: `1px solid ${current.accentColor}66`,
-                  fontSize: '0.72rem', 
-                  fontWeight: 700, 
-                  color: current.accentColor 
-                }}
-              >
-                {current.icon}
-                {current.badge}
-              </span>
-              <span style={{ fontSize: '0.8rem', color: 'var(--slate)', fontWeight: 500 }}>
-                • Interactive Hardware Preview
-              </span>
-            </div>
-
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--ink)' }}>
-              {current.name} — <span style={{ color: current.accentColor, fontWeight: 600 }}>{current.subtitle}</span>
-            </h3>
-
-            <p style={{ fontSize: '0.875rem', color: 'var(--slate)', marginTop: '0.35rem', lineHeight: 1.5 }}>
-              {current.tagline}
-            </p>
-          </div>
-
-          {/* Middle: 3 Quick KPI Specs */}
-          <div 
-            className="stage-specs-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '0.75rem',
-              backgroundColor: '#ffffff',
-              padding: '0.85rem 1.15rem',
-              borderRadius: '0.85rem',
-              border: '1px solid #fed7aa'
-            }}
-          >
-            {current.specs.map((sp, idx) => (
-              <div key={idx} style={{ textAlign: 'center', padding: '0 0.35rem' }}>
-                <div style={{ fontSize: '0.7rem', color: '#78716c', textTransform: 'uppercase', fontWeight: 600, letterSpacing: '0.04em' }}>
-                  {sp.label}
-                </div>
-                <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--ink)', marginTop: '2px' }}>
-                  {sp.val}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Right: Quick Action CTA Button */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <Link 
-              to="/contact" 
-              className="btn-royal btn-shimmer"
-              style={{
-                padding: '0.75rem 1.45rem',
-                fontSize: '0.875rem',
-                fontWeight: 700,
-                whiteSpace: 'nowrap'
-              }}
-            >
-              Order for Counter <ArrowRight size={15} />
-            </Link>
-          </div>
-        </div>
-
-        {/* Mobile Quick Selector Tabs */}
-        <div 
-          className="stage-mobile-selector"
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '0.5rem',
-            marginTop: '1rem',
-            paddingTop: '0.75rem',
-            borderTop: '1px solid #fed7aa'
-          }}
-        >
-          {Object.values(devices).map(d => {
-            const isSel = activeDevice === d.id;
-            return (
-              <button
-                key={d.id}
-                onClick={() => setActiveDevice(d.id)}
-                type="button"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '5px 12px',
-                  borderRadius: '9999px',
-                  border: isSel ? `1.5px solid ${d.accentColor}` : '1px solid #cbd5e1',
-                  backgroundColor: isSel ? '#ffffff' : 'transparent',
-                  color: isSel ? d.accentColor : 'var(--slate)',
-                  fontSize: '0.78rem',
-                  fontWeight: isSel ? 700 : 500,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: isSel ? `0 2px 8px ${d.accentColor}25` : 'none'
-                }}
-              >
-                <span>{d.name}</span>
-              </button>
-            );
-          })}
         </div>
       </div>
 
@@ -1020,17 +720,9 @@ export default function InteractiveHardwareStage() {
           transform: scale(1.22);
         }
 
-        @media (max-width: 900px) {
-          .stage-specs-grid {
-            grid-template-columns: 1fr !important;
-            width: 100%;
-          }
-        }
-
         @media (max-width: 768px) {
           .isometric-stage-canvas {
-            min-height: 420px !important;
-            padding: 1rem 0.25rem !important;
+            min-height: 400px !important;
           }
           .stage-devices-layer {
             height: 380px !important;
@@ -1041,7 +733,7 @@ export default function InteractiveHardwareStage() {
 
         @media (max-width: 480px) {
           .isometric-stage-canvas {
-            min-height: 370px !important;
+            min-height: 350px !important;
           }
           .stage-devices-layer {
             height: 340px !important;
