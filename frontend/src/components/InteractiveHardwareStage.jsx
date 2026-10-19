@@ -19,57 +19,152 @@ export default function InteractiveHardwareStage() {
   }, [isHovered]);
 
   // Particle dots data for the PhonePe-style elliptical surrounding wave
+  // Multi-layered concentric orbital cloud with enlarged isometric oval dimensions
   const particleDots = [
-    // Top-left peach/gold cluster
-    { cx: 180, cy: 90, r: 8, color: '#fb923c', delay: '0s', dur: '3.2s' },
-    { cx: 230, cy: 75, r: 10, color: '#f59e0b', delay: '0.4s', dur: '2.8s' },
-    { cx: 280, cy: 65, r: 9, color: '#fed7aa', delay: '0.8s', dur: '3.5s' },
-    { cx: 330, cy: 55, r: 11, color: '#fb923c', delay: '1.2s', dur: '3.1s' },
-    { cx: 380, cy: 50, r: 9, color: '#f59e0b', delay: '0.6s', dur: '3.6s' },
-    { cx: 430, cy: 50, r: 12, color: '#fed7aa', delay: '1.5s', dur: '3.3s' },
-    { cx: 480, cy: 55, r: 10, color: '#fb923c', delay: '0.3s', dur: '2.9s' },
+    // =========================================================================
+    // 1. LEFT WING & SMART POD SWARM (Dense peach/gold/amber cluster - see crop)
+    // =========================================================================
+    // Outer-most arc
+    { cx: 92,  cy: 220, rx: 24, ry: 14, color: '#fb923c', delay: '0s',    dur: '3.2s', opacity: 0.85 },
+    { cx: 88,  cy: 268, rx: 25, ry: 14, color: '#f97316', delay: '0.4s',  dur: '2.8s', opacity: 0.90 },
+    { cx: 104, cy: 315, rx: 23, ry: 13, color: '#fed7aa', delay: '0.8s',  dur: '3.5s', opacity: 0.85 },
+    { cx: 112, cy: 172, rx: 22, ry: 13, color: '#fdba74', delay: '1.2s',  dur: '3.1s', opacity: 0.88 },
+    { cx: 130, cy: 360, rx: 24, ry: 14, color: '#fb923c', delay: '0.6s',  dur: '3.6s', opacity: 0.85 },
+    { cx: 105, cy: 132, rx: 20, ry: 12, color: '#fed7aa', delay: '1.5s',  dur: '3.3s', opacity: 0.80 },
+    { cx: 78,  cy: 238, rx: 21, ry: 12, color: '#fba76a', delay: '0.2s',  dur: '3.0s', opacity: 0.78 },
+    { cx: 96,  cy: 352, rx: 22, ry: 13, color: '#f59e0b', delay: '1.0s',  dur: '3.4s', opacity: 0.82 },
 
-    // Top-right cyan/mint cluster
-    { cx: 540, cy: 65, r: 11, color: '#6ee7b7', delay: '0.7s', dur: '3.4s' },
-    { cx: 590, cy: 80, r: 9, color: '#38bdf8', delay: '1.1s', dur: '3.0s' },
-    { cx: 640, cy: 100, r: 10, color: '#a7f3d0', delay: '0.2s', dur: '3.7s' },
-    { cx: 685, cy: 125, r: 12, color: '#38bdf8', delay: '1.4s', dur: '3.2s' },
-    { cx: 720, cy: 155, r: 9, color: '#6ee7b7', delay: '0.5s', dur: '2.8s' },
+    // Mid-outer arc
+    { cx: 138, cy: 212, rx: 24, ry: 14, color: '#f97316', delay: '0.3s',  dur: '3.4s', opacity: 0.90 },
+    { cx: 134, cy: 258, rx: 26, ry: 15, color: '#fb923c', delay: '0.7s',  dur: '3.0s', opacity: 0.92 },
+    { cx: 142, cy: 302, rx: 23, ry: 13, color: '#fed7aa', delay: '1.1s',  dur: '3.7s', opacity: 0.88 },
+    { cx: 152, cy: 164, rx: 24, ry: 14, color: '#f59e0b', delay: '0.5s',  dur: '2.9s', opacity: 0.88 },
+    { cx: 168, cy: 345, rx: 25, ry: 14, color: '#f97316', delay: '1.3s',  dur: '3.5s', opacity: 0.85 },
+    { cx: 172, cy: 126, rx: 21, ry: 12, color: '#fdba74', delay: '0.9s',  dur: '3.2s', opacity: 0.82 },
+    { cx: 162, cy: 382, rx: 23, ry: 13, color: '#fed7aa', delay: '0.4s',  dur: '3.3s', opacity: 0.80 },
 
-    // Far right cyan cluster
-    { cx: 750, cy: 190, r: 11, color: '#38bdf8', delay: '0.9s', dur: '3.5s' },
-    { cx: 765, cy: 230, r: 10, color: '#a7f3d0', delay: '1.3s', dur: '3.1s' },
-    { cx: 760, cy: 270, r: 12, color: '#38bdf8', delay: '0.4s', dur: '3.6s' },
-    { cx: 740, cy: 310, r: 9, color: '#6ee7b7', delay: '1.6s', dur: '3.3s' },
-    { cx: 710, cy: 345, r: 11, color: '#38bdf8', delay: '0.8s', dur: '2.9s' },
+    // Mid-inner arc
+    { cx: 184, cy: 202, rx: 22, ry: 13, color: '#fed7aa', delay: '0.1s',  dur: '3.6s', opacity: 0.88 },
+    { cx: 178, cy: 246, rx: 25, ry: 14, color: '#f59e0b', delay: '1.2s',  dur: '3.1s', opacity: 0.92 },
+    { cx: 188, cy: 288, rx: 23, ry: 13, color: '#fb923c', delay: '0.6s',  dur: '3.4s', opacity: 0.88 },
+    { cx: 202, cy: 332, rx: 24, ry: 14, color: '#fed7aa', delay: '1.4s',  dur: '3.0s', opacity: 0.85 },
+    { cx: 212, cy: 152, rx: 23, ry: 13, color: '#fb923c', delay: '0.8s',  dur: '3.3s', opacity: 0.88 },
+    { cx: 208, cy: 108, rx: 20, ry: 12, color: '#f59e0b', delay: '0.3s',  dur: '3.5s', opacity: 0.82 },
 
-    // Bottom-right peach/gold cluster
-    { cx: 670, cy: 375, r: 10, color: '#f59e0b', delay: '0.3s', dur: '3.4s' },
-    { cx: 620, cy: 400, r: 12, color: '#fb923c', delay: '1.1s', dur: '3.0s' },
-    { cx: 565, cy: 420, r: 9, color: '#fed7aa', delay: '0.6s', dur: '3.7s' },
-    { cx: 510, cy: 435, r: 11, color: '#f59e0b', delay: '1.5s', dur: '3.2s' },
-    { cx: 450, cy: 440, r: 10, color: '#fb923c', delay: '0.2s', dur: '2.8s' },
-    { cx: 390, cy: 435, r: 12, color: '#fed7aa', delay: '0.9s', dur: '3.5s' },
-    { cx: 330, cy: 420, r: 9, color: '#f59e0b', delay: '1.4s', dur: '3.1s' },
+    // Inner orbiting arc
+    { cx: 228, cy: 230, rx: 21, ry: 12, color: '#fdba74', delay: '1.0s',  dur: '2.9s', opacity: 0.85 },
+    { cx: 234, cy: 272, rx: 24, ry: 14, color: '#f97316', delay: '0.4s',  dur: '3.4s', opacity: 0.90 },
+    { cx: 244, cy: 314, rx: 22, ry: 13, color: '#f59e0b', delay: '1.3s',  dur: '3.1s', opacity: 0.88 },
+    { cx: 248, cy: 188, rx: 20, ry: 12, color: '#fed7aa', delay: '0.7s',  dur: '3.6s', opacity: 0.82 },
+    { cx: 254, cy: 136, rx: 22, ry: 13, color: '#fb923c', delay: '0.2s',  dur: '3.2s', opacity: 0.85 },
 
-    // Bottom-left cluster
-    { cx: 275, cy: 395, r: 11, color: '#fb923c', delay: '0.5s', dur: '3.6s' },
-    { cx: 225, cy: 365, r: 10, color: '#fed7aa', delay: '1.2s', dur: '3.3s' },
-    { cx: 185, cy: 330, r: 12, color: '#f59e0b', delay: '0.1s', dur: '2.9s' },
-    { cx: 155, cy: 290, r: 9, color: '#fb923c', delay: '0.8s', dur: '3.4s' },
-    { cx: 140, cy: 250, r: 11, color: '#fed7aa', delay: '1.6s', dur: '3.0s' },
-    { cx: 145, cy: 205, r: 10, color: '#f59e0b', delay: '0.4s', dur: '3.7s' },
-    { cx: 160, cy: 160, r: 12, color: '#fb923c', delay: '1.0s', dur: '3.2s' },
+    // =========================================================================
+    // 2. TOP-LEFT TO TOP (Leading up towards SmartSpeaker)
+    // =========================================================================
+    { cx: 272, cy: 85,  rx: 23, ry: 13, color: '#fed7aa', delay: '0.5s',  dur: '3.3s', opacity: 0.85 },
+    { cx: 320, cy: 68,  rx: 25, ry: 14, color: '#fb923c', delay: '1.1s',  dur: '3.0s', opacity: 0.90 },
+    { cx: 370, cy: 56,  rx: 22, ry: 13, color: '#f59e0b', delay: '0.3s',  dur: '3.7s', opacity: 0.88 },
+    { cx: 420, cy: 48,  rx: 24, ry: 14, color: '#fed7aa', delay: '1.4s',  dur: '3.2s', opacity: 0.85 },
+    { cx: 468, cy: 48,  rx: 25, ry: 14, color: '#fb923c', delay: '0.8s',  dur: '3.5s', opacity: 0.90 },
 
-    // Inner orbiting accent ring
-    { cx: 260, cy: 130, r: 7, color: '#fed7aa', delay: '0.3s', dur: '3.0s' },
-    { cx: 370, cy: 105, r: 8, color: '#f59e0b', delay: '1.1s', dur: '3.3s' },
-    { cx: 480, cy: 110, r: 8, color: '#6ee7b7', delay: '0.7s', dur: '3.6s' },
-    { cx: 580, cy: 140, r: 7, color: '#38bdf8', delay: '1.3s', dur: '2.9s' },
-    { cx: 645, cy: 210, r: 8, color: '#6ee7b7', delay: '0.5s', dur: '3.4s' },
-    { cx: 630, cy: 290, r: 8, color: '#38bdf8', delay: '1.2s', dur: '3.1s' },
-    { cx: 540, cy: 360, r: 7, color: '#f59e0b', delay: '0.8s', dur: '3.5s' },
-    { cx: 310, cy: 350, r: 8, color: '#fb923c', delay: '0.2s', dur: '3.2s' }
+    { cx: 302, cy: 112, rx: 21, ry: 12, color: '#f59e0b', delay: '0.2s',  dur: '2.8s', opacity: 0.82 },
+    { cx: 352, cy: 94,  rx: 24, ry: 14, color: '#fdba74', delay: '0.9s',  dur: '3.6s', opacity: 0.88 },
+    { cx: 402, cy: 84,  rx: 22, ry: 13, color: '#fed7aa', delay: '1.5s',  dur: '3.1s', opacity: 0.85 },
+    { cx: 448, cy: 80,  rx: 25, ry: 14, color: '#f97316', delay: '0.6s',  dur: '3.3s', opacity: 0.90 },
+
+    { cx: 334, cy: 138, rx: 19, ry: 11, color: '#fed7aa', delay: '1.2s',  dur: '3.4s', opacity: 0.80 },
+    { cx: 382, cy: 122, rx: 21, ry: 12, color: '#fb923c', delay: '0.4s',  dur: '2.9s', opacity: 0.85 },
+    { cx: 432, cy: 114, rx: 20, ry: 12, color: '#f59e0b', delay: '1.0s',  dur: '3.5s', opacity: 0.82 },
+
+    // =========================================================================
+    // 3. TOP TO TOP-RIGHT (Transitioning to mint/teal/cyan)
+    // =========================================================================
+    { cx: 518, cy: 54,  rx: 24, ry: 14, color: '#6ee7b7', delay: '0.3s',  dur: '3.3s', opacity: 0.88 },
+    { cx: 568, cy: 68,  rx: 25, ry: 14, color: '#38bdf8', delay: '0.9s',  dur: '2.9s', opacity: 0.90 },
+    { cx: 618, cy: 88,  rx: 23, ry: 13, color: '#a7f3d0', delay: '1.4s',  dur: '3.6s', opacity: 0.85 },
+    { cx: 668, cy: 115, rx: 24, ry: 14, color: '#38bdf8', delay: '0.6s',  dur: '3.1s', opacity: 0.88 },
+
+    { cx: 498, cy: 85,  rx: 22, ry: 13, color: '#a7f3d0', delay: '1.2s',  dur: '3.4s', opacity: 0.82 },
+    { cx: 548, cy: 98,  rx: 24, ry: 14, color: '#6ee7b7', delay: '0.5s',  dur: '3.0s', opacity: 0.88 },
+    { cx: 598, cy: 118, rx: 23, ry: 13, color: '#38bdf8', delay: '1.1s',  dur: '3.7s', opacity: 0.88 },
+    { cx: 642, cy: 145, rx: 22, ry: 13, color: '#5eead4', delay: '0.2s',  dur: '3.2s', opacity: 0.85 },
+
+    { cx: 482, cy: 116, rx: 19, ry: 11, color: '#6ee7b7', delay: '0.8s',  dur: '3.5s', opacity: 0.80 },
+    { cx: 528, cy: 130, rx: 21, ry: 12, color: '#bae6fd', delay: '1.3s',  dur: '2.8s', opacity: 0.85 },
+    { cx: 574, cy: 148, rx: 20, ry: 12, color: '#a7f3d0', delay: '0.4s',  dur: '3.3s', opacity: 0.82 },
+
+    // =========================================================================
+    // 4. RIGHT WING & EDC MACHINE SWARM (Mint, teal, sky-blue, cyan cluster)
+    // =========================================================================
+    // Outer-most arc
+    { cx: 712, cy: 150, rx: 23, ry: 13, color: '#38bdf8', delay: '0.1s',  dur: '3.2s', opacity: 0.85 },
+    { cx: 752, cy: 192, rx: 25, ry: 14, color: '#6ee7b7', delay: '0.7s',  dur: '3.6s', opacity: 0.90 },
+    { cx: 778, cy: 236, rx: 26, ry: 15, color: '#38bdf8', delay: '1.2s',  dur: '2.9s', opacity: 0.92 },
+    { cx: 782, cy: 282, rx: 24, ry: 14, color: '#a7f3d0', delay: '0.5s',  dur: '3.4s', opacity: 0.88 },
+    { cx: 768, cy: 326, rx: 25, ry: 14, color: '#38bdf8', delay: '1.0s',  dur: '3.1s', opacity: 0.90 },
+    { cx: 738, cy: 366, rx: 23, ry: 13, color: '#5eead4', delay: '0.3s',  dur: '3.5s', opacity: 0.85 },
+    { cx: 808, cy: 222, rx: 20, ry: 12, color: '#38bdf8', delay: '0.9s',  dur: '3.3s', opacity: 0.78 },
+    { cx: 804, cy: 268, rx: 21, ry: 12, color: '#6ee7b7', delay: '1.4s',  dur: '2.8s', opacity: 0.80 },
+    { cx: 784, cy: 312, rx: 19, ry: 11, color: '#38bdf8', delay: '0.6s',  dur: '3.7s', opacity: 0.78 },
+
+    // Mid-outer arc
+    { cx: 688, cy: 176, rx: 21, ry: 12, color: '#a7f3d0', delay: '0.8s',  dur: '3.0s', opacity: 0.82 },
+    { cx: 722, cy: 216, rx: 24, ry: 14, color: '#5eead4', delay: '0.2s',  dur: '3.5s', opacity: 0.88 },
+    { cx: 742, cy: 262, rx: 25, ry: 14, color: '#38bdf8', delay: '1.3s',  dur: '3.2s', opacity: 0.92 },
+    { cx: 732, cy: 306, rx: 22, ry: 13, color: '#6ee7b7', delay: '0.4s',  dur: '3.7s', opacity: 0.85 },
+    { cx: 708, cy: 346, rx: 24, ry: 14, color: '#2dd4bf', delay: '1.1s',  dur: '2.9s', opacity: 0.88 },
+
+    // Mid-inner arc
+    { cx: 662, cy: 202, rx: 20, ry: 12, color: '#bae6fd', delay: '0.6s',  dur: '3.3s', opacity: 0.82 },
+    { cx: 692, cy: 246, rx: 23, ry: 13, color: '#6ee7b7', delay: '1.5s',  dur: '3.0s', opacity: 0.88 },
+    { cx: 688, cy: 292, rx: 21, ry: 12, color: '#38bdf8', delay: '0.3s',  dur: '3.6s', opacity: 0.85 },
+    { cx: 668, cy: 332, rx: 23, ry: 13, color: '#a7f3d0', delay: '0.9s',  dur: '3.1s', opacity: 0.85 },
+
+    // Inner orbiting arc
+    { cx: 638, cy: 232, rx: 19, ry: 11, color: '#5eead4', delay: '0.5s',  dur: '3.4s', opacity: 0.80 },
+    { cx: 648, cy: 276, rx: 22, ry: 13, color: '#38bdf8', delay: '1.2s',  dur: '2.8s', opacity: 0.85 },
+    { cx: 632, cy: 318, rx: 20, ry: 12, color: '#6ee7b7', delay: '0.7s',  dur: '3.5s', opacity: 0.82 },
+
+    // =========================================================================
+    // 5. BOTTOM-RIGHT TO BOTTOM (Transitioning from cyan/teal to gold/peach)
+    // =========================================================================
+    { cx: 702, cy: 396, rx: 24, ry: 14, color: '#f59e0b', delay: '0.2s',  dur: '3.2s', opacity: 0.88 },
+    { cx: 656, cy: 422, rx: 26, ry: 15, color: '#fb923c', delay: '0.8s',  dur: '3.6s', opacity: 0.92 },
+    { cx: 606, cy: 442, rx: 23, ry: 13, color: '#f97316', delay: '1.4s',  dur: '2.9s', opacity: 0.90 },
+    { cx: 556, cy: 454, rx: 25, ry: 14, color: '#fed7aa', delay: '0.5s',  dur: '3.4s', opacity: 0.88 },
+    { cx: 506, cy: 460, rx: 24, ry: 14, color: '#f59e0b', delay: '1.1s',  dur: '3.1s', opacity: 0.88 },
+    { cx: 728, cy: 406, rx: 21, ry: 12, color: '#f59e0b', delay: '0.4s',  dur: '3.5s', opacity: 0.80 },
+    { cx: 674, cy: 446, rx: 22, ry: 13, color: '#fb923c', delay: '1.0s',  dur: '3.0s', opacity: 0.82 },
+
+    { cx: 658, cy: 372, rx: 22, ry: 13, color: '#2dd4bf', delay: '0.7s',  dur: '3.3s', opacity: 0.85 },
+    { cx: 618, cy: 396, rx: 24, ry: 14, color: '#f59e0b', delay: '0.1s',  dur: '3.7s', opacity: 0.88 },
+    { cx: 574, cy: 416, rx: 25, ry: 14, color: '#fb923c', delay: '1.3s',  dur: '3.0s', opacity: 0.90 },
+    { cx: 524, cy: 430, rx: 23, ry: 13, color: '#fed7aa', delay: '0.6s',  dur: '3.5s', opacity: 0.85 },
+
+    { cx: 614, cy: 352, rx: 19, ry: 11, color: '#6ee7b7', delay: '1.2s',  dur: '3.1s', opacity: 0.80 },
+    { cx: 578, cy: 376, rx: 21, ry: 12, color: '#f59e0b', delay: '0.3s',  dur: '3.4s', opacity: 0.82 },
+    { cx: 534, cy: 396, rx: 20, ry: 12, color: '#fb923c', delay: '0.9s',  dur: '2.8s', opacity: 0.85 },
+
+    // =========================================================================
+    // 6. BOTTOM & QR CODE AREA (Rich amber/peach/orange stream)
+    // =========================================================================
+    { cx: 456, cy: 462, rx: 25, ry: 14, color: '#fb923c', delay: '0.2s',  dur: '3.3s', opacity: 0.90 },
+    { cx: 406, cy: 458, rx: 24, ry: 14, color: '#f59e0b', delay: '0.8s',  dur: '2.9s', opacity: 0.88 },
+    { cx: 356, cy: 446, rx: 26, ry: 15, color: '#f97316', delay: '1.4s',  dur: '3.6s', opacity: 0.92 },
+    { cx: 306, cy: 426, rx: 23, ry: 13, color: '#fed7aa', delay: '0.5s',  dur: '3.1s', opacity: 0.88 },
+    { cx: 258, cy: 400, rx: 25, ry: 14, color: '#fb923c', delay: '1.1s',  dur: '3.5s', opacity: 0.90 },
+    { cx: 208, cy: 412, rx: 23, ry: 13, color: '#fb923c', delay: '0.7s',  dur: '3.2s', opacity: 0.85 },
+
+    { cx: 476, cy: 432, rx: 22, ry: 13, color: '#fed7aa', delay: '0.4s',  dur: '3.2s', opacity: 0.85 },
+    { cx: 432, cy: 428, rx: 24, ry: 14, color: '#fb923c', delay: '1.0s',  dur: '3.7s', opacity: 0.90 },
+    { cx: 386, cy: 418, rx: 23, ry: 13, color: '#f59e0b', delay: '0.3s',  dur: '3.0s', opacity: 0.88 },
+    { cx: 338, cy: 402, rx: 25, ry: 14, color: '#f97316', delay: '1.2s',  dur: '3.4s', opacity: 0.90 },
+    { cx: 294, cy: 376, rx: 22, ry: 13, color: '#fed7aa', delay: '0.6s',  dur: '2.8s', opacity: 0.85 },
+
+    { cx: 450, cy: 396, rx: 20, ry: 12, color: '#f59e0b', delay: '0.9s',  dur: '3.5s', opacity: 0.82 },
+    { cx: 408, cy: 390, rx: 22, ry: 13, color: '#fed7aa', delay: '0.1s',  dur: '3.1s', opacity: 0.85 },
+    { cx: 364, cy: 376, rx: 21, ry: 12, color: '#fb923c', delay: '1.3s',  dur: '3.3s', opacity: 0.88 },
+    { cx: 322, cy: 356, rx: 20, ry: 12, color: '#f59e0b', delay: '0.5s',  dur: '3.6s', opacity: 0.82 }
   ];
 
   return (
@@ -115,45 +210,57 @@ export default function InteractiveHardwareStage() {
         >
           <defs>
             <linearGradient id="orbitLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#fb923c" stopOpacity="0.28" />
-              <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.18" />
-              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.28" />
+              <stop offset="0%" stopColor="#fb923c" stopOpacity="0.32" />
+              <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.20" />
+              <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.32" />
             </linearGradient>
           </defs>
 
-          {/* Isometric Perspective Oval Guide Path */}
+          {/* Isometric Perspective Oval Guide Paths (Triple Concentric) */}
           <ellipse 
             cx="450" 
             cy="250" 
-            rx="350" 
-            ry="190" 
+            rx="365" 
+            ry="198" 
             fill="none" 
             stroke="url(#orbitLineGrad)" 
             strokeWidth="1.5" 
             strokeDasharray="6 8"
-            opacity="0.6"
+            opacity="0.45"
           />
           <ellipse 
             cx="450" 
             cy="250" 
-            rx="230" 
-            ry="125" 
+            rx="295" 
+            ry="155" 
             fill="none" 
-            stroke="rgba(251, 146, 60, 0.12)" 
+            stroke="rgba(251, 146, 60, 0.16)" 
+            strokeWidth="1.2"
+            strokeDasharray="5 7"
+            opacity="0.35"
+          />
+          <ellipse 
+            cx="450" 
+            cy="250" 
+            rx="225" 
+            ry="120" 
+            fill="none" 
+            stroke="rgba(251, 146, 60, 0.10)" 
             strokeWidth="1"
             strokeDasharray="4 6"
+            opacity="0.25"
           />
 
-          {/* Render All Particle Wave Dots */}
+          {/* Render All 100+ Particle Wave Isometric Dots */}
           {particleDots.map((dot, i) => (
             <ellipse
               key={i}
               cx={dot.cx}
               cy={dot.cy}
-              rx={dot.r}
-              ry={dot.r * 0.58} /* Isometric tilt flattening */
+              rx={dot.rx}
+              ry={dot.ry}
               fill={dot.color}
-              opacity="0.85"
+              opacity={dot.opacity || 0.88}
               style={{
                 animation: `stageDotBreath ${dot.dur} ease-in-out infinite alternate ${dot.delay}`,
                 transformOrigin: `${dot.cx}px ${dot.cy}px`
