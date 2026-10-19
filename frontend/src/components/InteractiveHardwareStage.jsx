@@ -84,9 +84,12 @@ export default function InteractiveHardwareStage() {
     [649.0, 34.9, 16, 12, 0],
     [297.9, 42.7, 24, 14, 0],
     [370.2, 58.9, 23, 13.5, 0],
+    [411.1, 78.2, 15, 10.5, 0], // SmartSpeaker top-left shoulder
     [737.9, 65.6, 24, 14, 0],
     [671.5, 71.7, 23.5, 14, 0],
-    [617.8, 90.0, 15, 9.5, 0],
+    [667.1, 69.0, 22, 13.5, 0], // SmartSpeaker top-right cluster
+    [617.8, 90.0, 16, 10.5, 0], // SmartSpeaker top-right shoulder
+    [686.4, 96.8, 22, 13, 0],   // SmartSpeaker right inner
     [213.0, 76.7, 24.5, 14, 0],
     [287.4, 83.2, 22, 13, 0],
     [347.8, 95.0, 20, 12, 0],
@@ -187,7 +190,7 @@ export default function InteractiveHardwareStage() {
           }}
         />
 
-        {/* Dynamic Automatic RGB Color-Changing Circles Overlay */}
+        {/* Dynamic Automatic RGB Color-Changing Circles Overlay - Solid Crisp Vector Layer */}
         <svg
           viewBox="0 0 1024 564"
           style={{
@@ -197,7 +200,6 @@ export default function InteractiveHardwareStage() {
             width: '100%',
             height: '100%',
             pointerEvents: 'none',
-            mixBlendMode: 'color',
             zIndex: 6
           }}
         >
@@ -216,7 +218,8 @@ export default function InteractiveHardwareStage() {
                 ry={ry + 2}
                 className="dynamic-ecosystem-circle"
                 style={{
-                  animationDelay: `-${delay}s`
+                  animationDelay: `-${delay}s`,
+                  opacity: 0.92
                 }}
               />
             );
