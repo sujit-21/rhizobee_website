@@ -77,79 +77,91 @@ export default function InteractiveHardwareStage() {
     }
   };
 
-  // Master 67 small circles extracted from the ecosystem artwork including all top and boundary circles: [cx, cy, rx, ry, isCyan]
+  // Master 74 circles forming complete concentric rings around the stage, including full back-side arc behind SmartSpeaker: [cx, cy, rx, ry]
   const ecosystemCircles = [
-    // Top faint circles around and above SmartSpeaker
-    [400.5, 25.5, 18, 14, 0],
-    [649.0, 34.9, 16, 12, 0],
-    [297.9, 42.7, 24, 14, 0],
-    [370.2, 58.9, 23, 13.5, 0],
-    [411.1, 78.2, 15, 10.5, 0], // SmartSpeaker top-left shoulder
-    [737.9, 65.6, 24, 14, 0],
-    [671.5, 71.7, 23.5, 14, 0],
-    [667.1, 69.0, 22, 13.5, 0], // SmartSpeaker top-right cluster
-    [617.8, 90.0, 16, 10.5, 0], // SmartSpeaker top-right shoulder
-    [686.4, 96.8, 22, 13, 0],   // SmartSpeaker right inner
-    [213.0, 76.7, 24.5, 14, 0],
-    [287.4, 83.2, 22, 13, 0],
-    [347.8, 95.0, 20, 12, 0],
-    [820.4, 105.4, 24, 14, 0],
-    [759.1, 108.9, 22, 13, 0],
-    [685.2, 108.8, 20, 12, 0],
-    [212.4, 121.9, 22, 13, 0],
-    [266.6, 117.7, 15, 8.5, 0],
-    [140.3, 126.2, 24, 14, 0],
-    [754.9, 145.1, 20, 12, 0],
-    [824.9, 149.7, 22, 13, 0],
-    [891.7, 161.4, 24, 14, 0],
-    [211.5, 163.3, 16, 11.5, 0],
-    [155.9, 172.4, 22, 13, 0],
-    [91.1, 187.2, 24, 14, 0],
-    [805.2, 185.7, 20, 12, 0],
-    [877.3, 204.0, 22, 13, 0],
-    [180.7, 208.0, 20, 12, 0],
-    [930.7, 225.4, 24, 14, 0],
-    [128.1, 226.5, 22, 13, 0],
-    [841.2, 235.7, 20, 12, 0],
-    [74.0, 249.9, 24, 14, 0],
-    [166.3, 259.2, 20, 12, 0],
-    [899.3, 263.0, 22, 13, 0],
-    [124.2, 285.9, 22, 13, 0],
-    [851.0, 287.4, 20, 12, 0],
-    [943.4, 290.3, 25, 15, 0],
-    [176.4, 309.9, 20, 12, 0],
-    [84.8, 316.5, 24, 14, 0],
-    [897.6, 321.1, 23, 13.5, 0],
-    [838.2, 337.1, 20, 12, 0],
-    [147.6, 342.7, 22, 13, 0],
-    [926.6, 354.9, 24, 14, 0],
-    [209.0, 359.1, 20, 12, 0],
-    [125.0, 377.8, 24, 14, 0],
-    [869.5, 376.9, 22, 13, 0],
-    [801.2, 383.8, 20, 12, 0],
-    [196.2, 396.2, 22, 13, 0],
-    [265.4, 402.6, 20, 12, 0],
-    [880.0, 411.4, 24, 14, 0],
-    [747.2, 421.4, 20, 12, 0],
-    [816.4, 423.5, 22, 13, 0],
-    [191.6, 433.2, 24, 14, 0],
-    [331.6, 434.8, 19.5, 12, 0],
-    [270.3, 441.3, 22, 13, 0],
-    [683.8, 448.5, 13, 10, 0],
-    [808.4, 461.2, 25, 14.5, 0],
-    [414.4, 460.1, 20, 12, 1],
-    [742.4, 462.6, 22, 13, 0],
-    [589.8, 466.0, 20, 12, 1],
-    [502.5, 468.7, 20, 12, 1],
-    [339.2, 468.3, 11, 9, 0],
-    [284.2, 477.1, 24, 14, 0],
-    [649.7, 487.1, 22, 13, 1],
-    [451.4, 494.5, 22, 13, 1],
-    [724.0, 493.6, 16, 12.5, 0],
-    [552.9, 497.8, 23, 13.5, 1],
-    [382.6, 505.1, 24, 14, 1],
-    [609.2, 516.3, 24, 14, 1],
-    [496.9, 521.3, 24, 14, 1]
+    // Back-side circles completing the rings behind and above SmartSpeaker:
+    [440.0, 15.0, 21, 12],
+    [480.0, 13.0, 20, 11],
+    [525.0, 13.0, 20, 11],
+    [570.0, 16.0, 20, 11],
+    [612.0, 24.0, 21, 12],
+    [412.0, 52.0, 19, 11],
+    [585.0, 48.0, 19, 11],
+    [628.0, 54.0, 20, 12],
+    [378.0, 86.0, 17, 10.5],
+    [630.0, 84.0, 17, 10.5],
+
+    // Top boundary and shoulder circles:
+    [400.5, 24.5, 23, 14],
+    [297.5, 42.5, 23, 14],
+    [370.0, 59.0, 21, 13],
+    [649.0, 35.0, 21, 13],
+    [737.5, 65.5, 24, 14],
+    [671.0, 71.5, 21, 13],
+    [213.0, 76.5, 24, 14],
+    [287.0, 83.5, 21, 13],
+    [347.5, 95.0, 18, 11],
+    [820.5, 105.5, 24, 14],
+    [759.0, 109.0, 21, 13],
+    [685.5, 109.0, 18, 11],
+    [212.5, 121.5, 21, 13],
+    [140.5, 126.5, 24, 14],
+
+    // Right side and lower-right rings:
+    [755.0, 145.0, 18, 11],
+    [825.0, 149.5, 21, 13],
+    [891.5, 161.5, 24, 14],
+    [805.5, 186.0, 18, 11],
+    [877.5, 204.0, 21, 13],
+    [930.5, 225.5, 24, 14],
+    [841.5, 236.0, 18, 11],
+    [899.5, 263.0, 21, 13],
+    [851.0, 287.0, 18, 11],
+    [943.5, 290.0, 25, 15],
+    [897.5, 321.5, 21, 13],
+    [838.5, 337.0, 18, 11],
+    [926.5, 355.0, 24, 14],
+    [869.5, 377.0, 21, 13],
+    [801.0, 383.5, 18, 11],
+    [880.5, 411.0, 24, 14],
+    [747.0, 421.5, 18, 11],
+    [816.0, 423.5, 21, 13],
+    [808.5, 461.0, 24, 14],
+    [742.5, 462.5, 21, 13],
+    [713.5, 496.0, 24, 14],
+    [675.5, 451.0, 18, 11],
+    [650.0, 487.0, 21, 13],
+    [609.5, 516.5, 24, 14],
+
+    // Bottom arc (QR Code surround):
+    [589.5, 466.0, 18, 11],
+    [548.5, 493.5, 21, 13],
+    [502.5, 472.5, 18, 11],
+    [497.0, 521.5, 24, 14],
+    [451.0, 494.5, 21, 13],
+    [414.5, 460.0, 18, 11],
+    [382.5, 505.0, 24, 14],
+    [352.5, 472.5, 21, 13],
+
+    // Left side and lower-left rings:
+    [331.5, 435.0, 18, 11],
+    [284.5, 477.0, 24, 14],
+    [270.5, 441.5, 21, 13],
+    [265.5, 403.0, 18, 11],
+    [196.5, 396.5, 21, 13],
+    [191.5, 433.0, 24, 14],
+    [209.0, 359.0, 18, 11],
+    [148.0, 342.5, 21, 13],
+    [125.0, 378.0, 24, 14],
+    [176.5, 310.0, 18, 11],
+    [124.0, 285.5, 21, 13],
+    [84.5, 316.0, 24, 14],
+    [166.5, 259.0, 18, 11],
+    [128.0, 226.5, 21, 13],
+    [74.5, 250.5, 24, 14],
+    [180.5, 208.0, 18, 11],
+    [156.0, 172.5, 21, 13],
+    [91.0, 187.0, 24, 14]
   ];
 
   return (
@@ -176,7 +188,7 @@ export default function InteractiveHardwareStage() {
           userSelect: 'none'
         }}
       >
-        {/* Master High-Res 3D Isometric Ecosystem Artwork */}
+        {/* Master High-Res 3D Isometric Ecosystem Artwork (Pristine clean devices on white) */}
         <img 
           src="/assets/images/hardware-ecosystem.png" 
           alt="Retail Hardware Ecosystem - Smart Pod, SmartSpeaker 2nd Gen, EDC Machine and QR Code"
@@ -190,7 +202,7 @@ export default function InteractiveHardwareStage() {
           }}
         />
 
-        {/* Dynamic Automatic Clockwise Orbiting Cyan RGB Beam Overlay across all 67 circles */}
+        {/* Dynamic Automatic Clockwise Orbiting 3-Color RGB Wave across all concentric circles */}
         <svg
           viewBox="0 0 1024 564"
           style={{
@@ -200,7 +212,8 @@ export default function InteractiveHardwareStage() {
             width: '100%',
             height: '100%',
             pointerEvents: 'none',
-            zIndex: 6
+            zIndex: 6,
+            overflow: 'visible'
           }}
         >
           {ecosystemCircles.map(([cx, cy, rx, ry], idx) => {
@@ -211,19 +224,19 @@ export default function InteractiveHardwareStage() {
             // Clockwise normalized progress from 0 to 1
             const normAngle = ((phi % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
             const orbitProgress = normAngle / (2 * Math.PI);
-            // 6-second continuous orbit wave
-            const delay = (orbitProgress * 6).toFixed(2);
+            // Continuous clockwise orbit wave with pre-warmed negative delay
+            const delay = -(orbitProgress * 6).toFixed(2);
 
             return (
               <ellipse
                 key={idx}
                 cx={cx}
                 cy={cy}
-                rx={rx + 2.5}
-                ry={ry + 2}
+                rx={rx}
+                ry={ry}
                 className="dynamic-ecosystem-circle"
                 style={{
-                  animationDelay: `-${delay}s`
+                  animationDelay: `${delay}s`
                 }}
               />
             );
@@ -485,47 +498,29 @@ export default function InteractiveHardwareStage() {
         @keyframes orbitingBeamGlow {
           0% {
             fill: #f4c187;
-            opacity: 0.95;
-            filter: drop-shadow(0 2px 4px rgba(244, 193, 135, 0.2));
-            transform: scale(1);
+            opacity: 0.96;
+            filter: drop-shadow(0 2px 5px rgba(244, 193, 135, 0.4));
           }
-          8% {
+          33% {
             fill: #22d3ee;
             opacity: 1;
-            filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.85));
-            transform: scale(1.06);
+            filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.65));
           }
-          16% {
-            fill: #06b6d4;
-            opacity: 1;
-            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.65));
-            transform: scale(1.03);
-          }
-          24% {
-            fill: #a78bfa;
-            opacity: 0.95;
-            filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.45));
-            transform: scale(1);
-          }
-          34% {
-            fill: #f4c187;
-            opacity: 0.95;
-            filter: drop-shadow(0 2px 4px rgba(244, 193, 135, 0.2));
-            transform: scale(1);
+          66% {
+            fill: #a855f7;
+            opacity: 0.98;
+            filter: drop-shadow(0 0 7px rgba(168, 85, 247, 0.55));
           }
           100% {
             fill: #f4c187;
-            opacity: 0.95;
-            filter: drop-shadow(0 2px 4px rgba(244, 193, 135, 0.2));
-            transform: scale(1);
+            opacity: 0.96;
+            filter: drop-shadow(0 2px 5px rgba(244, 193, 135, 0.4));
           }
         }
 
         .dynamic-ecosystem-circle {
           animation: orbitingBeamGlow 6s ease-in-out infinite;
-          transform-box: fill-box;
-          transform-origin: center;
-          will-change: fill, filter, transform;
+          will-change: fill, filter;
         }
 
         @media (max-width: 768px) {
